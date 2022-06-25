@@ -1,7 +1,7 @@
 import Cpf from "./Cpf";
 import Phone from "./Phone";
 
-export default class Client {
+export default class CpfClient {
   cpf: Cpf;
   phone: Phone;
 

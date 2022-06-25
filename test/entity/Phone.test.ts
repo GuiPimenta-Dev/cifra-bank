@@ -1,5 +1,10 @@
 import Phone from "../../src/domain/entity/Phone";
 
+test("Must create a new phone", function () {
+  const { value } = new Phone(55, 15, 993134307);
+  expect(value).toEqual({ countryCode: 55, number: 993134307, stateCode: 15 });
+});
+
 test("Must throw an error if country code does not have length of 2", function () {
   expect(() => new Phone(555, 15, 993134307)).toThrowError("Invalid country code");
 });

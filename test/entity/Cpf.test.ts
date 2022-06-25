@@ -5,6 +5,11 @@ test("Must validate a cpf", function () {
   expect(cpf).toBeTruthy();
 });
 
+test("Must clean a cpf", function () {
+  const { value } = new Cpf("935.411.347-80");
+  expect(value).toBe("93541134780");
+});
+
 test("Must throw an error if cpf is invalid", function () {
   expect(() => new Cpf("123.456.789-99")).toThrow(new Error("Invalid cpf"));
 });
