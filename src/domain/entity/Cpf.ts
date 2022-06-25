@@ -1,4 +1,4 @@
-import DocumentValidator from "../service/Validator";
+import DocumentValidator from "../service/DocumentValidator";
 
 export default class Cpf extends DocumentValidator {
   value: string;
