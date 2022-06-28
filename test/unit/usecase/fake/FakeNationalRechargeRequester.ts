@@ -1,8 +1,8 @@
 import NationalRechargeRequesterInterface from "../../../../src/domain/requester/NationalRechargeRequester";
 
 export default class FakeNationalRequester implements NationalRechargeRequesterInterface {
-  async authorize(id: string): Promise<{ token: string }> {
-    return { token: "1234" };
+  async authorize(id: string): Promise<string> {
+    return "1234";
   }
 
   async reserveBalance(value: number, token: string): Promise<{ receiptformatted: string; transactionId: number }> {

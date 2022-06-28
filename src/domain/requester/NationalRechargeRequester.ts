@@ -1,5 +1,5 @@
 export default interface NationalRechargeRequesterInterface {
-  authorize(id: string): Promise<{ token: string }>;
+  authorize(id: string): Promise<string>;
   reserveBalance(value: number, token: string): Promise<{ receiptformatted: string; transactionId: number }>;
   confirmRecharge(
     transactionId: number,
