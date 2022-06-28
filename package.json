@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "tsc && jest ./dist --forceExit --verbose",
+    "test": "tsc && jest ./dist --forceExit",
     "coverage": "tsc && jest ./dist --coverage",
     "start": "tsc && node ./dist/src/main"
   },
