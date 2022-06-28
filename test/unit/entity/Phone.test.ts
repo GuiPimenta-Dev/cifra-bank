@@ -1,4 +1,4 @@
-import Phone from "../../src/domain/entity/Phone";
+import Phone from "../../../src/domain/entity/Phone";
 
 test("Must create a new phone", function () {
   const { value } = new Phone(55, 15, 993134307);

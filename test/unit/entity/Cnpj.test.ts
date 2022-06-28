@@ -1,4 +1,4 @@
-import Cnpj from "../../src/domain/entity/Cnpj";
+import Cnpj from "../../../src/domain/entity/Cnpj";
 
 test("Must validate a cnpj", function () {
   const cnpj = new Cnpj("43.162.287/0001-69");
