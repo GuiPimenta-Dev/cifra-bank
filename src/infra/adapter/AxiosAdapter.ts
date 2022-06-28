@@ -7,7 +7,8 @@ export default class AxiosAdapter implements HttpClientInterface {
 
   async get(url: string, query?: {}, headers?: {}): Promise<any> {
     url = `${BASE_URL}${url}`;
-    return await axios.get(url, { params: query, headers });
+    const response = await axios.get(url, { params: query, headers });
+    return response.data;
   }
 
   async post(url: string, data: any, headers?: {}): Promise<any> {

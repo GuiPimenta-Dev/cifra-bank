@@ -1,8 +1,13 @@
-import NationalRechargeRequesterInterface from "../../../domain/requester/NationalRechargeRequester";
+import RequesterFactoryInterface from "../../../domain/factory/RequesterFactory";
+import NationalRechargeRequester from "../../../domain/requester/NationalRechargeRequester";
 import { NationalRechargeOutputDTO } from "./NationalRechargeDTO";
 
 export default class NationalRecharge {
-  constructor(private requester: NationalRechargeRequesterInterface) {}
+  requester: NationalRechargeRequester;
+
+  constructor(requesterFactory: RequesterFactoryInterface) {
+    this.requester = requesterFactory.createNationalRechargeRequester();
+  }
 
   async execute(cpf: string, value: number): Promise<NationalRechargeOutputDTO> {
     const token = await this.requester.authorize(cpf);
