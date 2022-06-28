@@ -7,7 +7,4 @@ test("Should be able to reserve a national balance", async () => {
   const nationalRecharge = new NationalRecharge(requesterFactory);
   const result = await nationalRecharge.execute("41b44ab9a56440.teste.celcoinapi.v5", 15);
   expect(result).toHaveProperty("receipt");
-  expect(result).toHaveProperty("errorCode");
-  expect(result).toHaveProperty("message");
-  expect(result).toHaveProperty("status");
 });
