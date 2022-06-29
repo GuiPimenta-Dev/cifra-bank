@@ -1,6 +1,6 @@
 import HttpClientInterface from "../../domain/adapter/HttpClient";
 import RequesterFactoryInterface from "../../domain/factory/RequesterFactory";
-import ConsultProviderRequester from "../requester/ConsultProviderRequester";
+import ConsultNationalProviderRequester from "../requester/ConsultNationalProviderRequester";
 import NationalRechargeRequester from "../requester/NationalRechargeRequester";
 
 export default class RequesterFactory implements RequesterFactoryInterface {
@@ -10,7 +10,7 @@ export default class RequesterFactory implements RequesterFactoryInterface {
     return new NationalRechargeRequester(this.httpClient);
   }
 
-  createConsultProviderRequester(): ConsultProviderRequester {
-    return new ConsultProviderRequester(this.httpClient);
+  createConsultProviderRequester(): ConsultNationalProviderRequester {
+    return new ConsultNationalProviderRequester(this.httpClient);
   }
 }

@@ -1,13 +1,16 @@
 import HttpClientInterface from "../../domain/adapter/HttpClient";
-import ConsultProvidersRequesterInterface from "../../domain/requester/ConsultProvidersRequester";
+import ConsultNationalProvidersRequesterInterface from "../../domain/requester/ConsultNationalProvidersRequester";
 import AuthorizeRequester from "./AuthorizeRequester";
 
-export default class ConsultProviderRequester extends AuthorizeRequester implements ConsultProvidersRequesterInterface {
+export default class ConsultNationalProviderRequester
+  extends AuthorizeRequester
+  implements ConsultNationalProvidersRequesterInterface
+{
   constructor(httpClient: HttpClientInterface) {
     super(httpClient);
   }
 
-  async consultProviders(stateCode: number, token: string): Promise<any> {
+  async consultNationalProviders(stateCode: number, token: string): Promise<any> {
     const { providers } = await this.httpClient.get(
       "/transactions/topups/providers",
       { stateCode },
