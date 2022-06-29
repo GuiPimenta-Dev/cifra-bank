@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "tsc && jest ./dist --forceExit",
+    "test": "npx jest --coverage",
     "coverage": "tsc && jest ./dist --coverage",
     "start": "tsc && node ./dist/src/main"
   },
