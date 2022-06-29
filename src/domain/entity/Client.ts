@@ -11,19 +11,19 @@ export default class Client {
     this.phone = new Phone(stateCode, countryCode, number);
   }
 
-  getDocument() {
-    return this.document.value;
-  }
-
-  getPhone() {
-    return this.phone.value;
-  }
-
   private validateDocument(document: string) {
     const cpf = new Cpf(document);
     if (cpf.value) return cpf;
     const cnpj = new Cnpj(document);
     if (cnpj.value) return cnpj;
     throw new Error("Invalid Document!");
+  }
+
+  getDocument() {
+    return this.document.value;
+  }
+
+  getPhone() {
+    return this.phone.value;
   }
 }
