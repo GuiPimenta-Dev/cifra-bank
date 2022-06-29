@@ -3,8 +3,8 @@ import Cpf from "./Cpf";
 import Phone from "./Phone";
 
 export default class Client {
-  document: Cpf | Cnpj;
-  phone: Phone;
+  private document: Cpf | Cnpj;
+  private phone: Phone;
 
   constructor(document: string, stateCode: number, countryCode: number, number: number) {
     this.document = this.validateDocument(document);

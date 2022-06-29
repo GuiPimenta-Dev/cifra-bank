@@ -1,4 +1,4 @@
-import HttpClientInterface from "../../domain/http/HttpClient";
+import HttpClientInterface from "../../domain/adapter/HttpClient";
 import {
   NationalRechargeRequesterInterface,
   ReserveBalanceDTO,

@@ -1,5 +1,5 @@
+import HttpClientInterface from "../../domain/adapter/HttpClient";
 import RequesterFactoryInterface from "../../domain/factory/RequesterFactory";
-import HttpClientInterface from "../../domain/http/HttpClient";
 import ConsultProviderRequester from "../requester/ConsultProviderRequester";
 import NationalRechargeRequester from "../requester/NationalRechargeRequester";
 

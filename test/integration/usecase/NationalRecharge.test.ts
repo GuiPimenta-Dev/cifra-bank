@@ -5,7 +5,6 @@ test("Should be able to reserve a national balance", async () => {
   const httpClient = new AxiosAdapter();
   const requesterFactory = new RequesterFactory(httpClient);
   const nationalRecharge = new NationalRecharge(requesterFactory);
-
   const data = {
     document: "46949827881",
     value: 15,

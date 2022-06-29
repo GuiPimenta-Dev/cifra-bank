@@ -1,4 +1,4 @@
-import HttpClientInterface from "../../domain/http/HttpClient";
+import HttpClientInterface from "../../domain/adapter/HttpClient";
 import ConsultProvidersRequesterInterface from "../../domain/requester/ConsultProvidersRequester";
 import AuthorizeRequester from "./AuthorizeRequester";
 
