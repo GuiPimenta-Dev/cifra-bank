@@ -10,18 +10,22 @@ test("Must clean a cnpj", function () {
   expect(value).toBe("43162287000169");
 });
 
-test("Must throw an error if cnpj is too small", function () {
-  expect(() => new Cnpj("43.162.287/0001-6")).toThrow(new Error("Invalid cnpj"));
+test("Value must be null if cnpj is too small", function () {
+  const { value } = new Cnpj("43.162.287/0001-6");
+  expect(value).toBe(null);
 });
 
-test("Must throw an error if cnpj is too big", function () {
-  expect(() => new Cnpj("43.162.287/0001-690")).toThrow(new Error("Invalid cnpj"));
+test("Value must be null if cnpj is too big", function () {
+  const { value } = new Cnpj("43.162.287/0001-690");
+  expect(value).toBe(null);
 });
 
-test("Must throw an error if cnpj is blocked", function () {
-  expect(() => new Cnpj("11.111.111/1111-11")).toThrow(new Error("Invalid cnpj"));
+test("Value must be null if all cnpj digits are equal", function () {
+  const { value } = new Cnpj("11.111.111/1111-11");
+  expect(value).toBe(null);
 });
 
-test("Must throw an error if cnpj is invalid", function () {
-  expect(() => new Cnpj("43.162.287/0001-89")).toThrow(new Error("Invalid cnpj"));
+test("Value must be null if cnpj is invalid", function () {
+  const { value } = new Cnpj("43.162.287/0001-89");
+  expect(value).toBe(null);
 });

@@ -1,5 +1,8 @@
 import HttpClientInterface from "../../domain/http/HttpClient";
-import NationalRechargeRequesterInterface from "../../domain/requester/NationalRechargeRequester";
+import {
+  NationalRechargeRequesterInterface,
+  ReserveBalanceDTO,
+} from "../../domain/requester/NationalRechargeRequester";
 import AuthorizeRequester from "./AuthorizeRequester";
 
 export default class NationalRechargeRequester
@@ -10,18 +13,15 @@ export default class NationalRechargeRequester
     super(httpClient);
   }
 
-  async reserveBalance(value: number, token: string): Promise<{ receiptformatted: string; transactionId: number }> {
+  async reserveBalance(
+    input: ReserveBalanceDTO,
+    token: string
+  ): Promise<{ receiptformatted: string; transactionId: number }> {
     const data = {
-      topupData: {
-        value,
-      },
-      cpfCnpj: "46949827881",
-      providerId: 2086,
-      phone: {
-        stateCode: 15,
-        countryCode: 55,
-        number: 993134307,
-      },
+      topupData: { value: input.value },
+      cpfCnpj: input.document,
+      providerId: input.providerId,
+      phone: input.phone,
     };
     const { receipt, transactionId } = await this.httpClient.post("/transactions/topups", data, {
       Authorization: `Bearer ${token}`,

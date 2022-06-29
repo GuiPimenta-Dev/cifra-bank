@@ -1,15 +1,14 @@
 import DocumentValidator from "../service/DocumentValidator";
 
 export default class Cnpj extends DocumentValidator {
-  value: string;
+  value: string | null;
+
   constructor(value: string) {
     super();
-    if (!this.validate(value)) throw new Error("Invalid cnpj");
-    this.value = this.clean(value);
+    this.value = this.validate(value) ? this.clean(value) : null;
   }
 
   private validate(cnpj: any) {
-    if (!cnpj) return false;
     cnpj = this.clean(cnpj);
     if (!this.hasCorrectLength(cnpj, 14)) return false;
     if (this.isBlocked(cnpj)) return false;

@@ -1,5 +1,7 @@
+import Client from "../../../domain/entity/Client";
 import RequesterFactoryInterface from "../../../domain/factory/RequesterFactory";
-import NationalRechargeRequester from "../../../domain/requester/NationalRechargeRequester";
+import { ReserveBalanceDTO } from "../../../domain/requester/NationalRechargeRequester";
+import NationalRechargeRequester from "../../../infra/requester/NationalRechargeRequester";
 
 export default class NationalRecharge {
   requester: NationalRechargeRequester;
@@ -8,9 +10,11 @@ export default class NationalRecharge {
     this.requester = requesterFactory.createNationalRechargeRequester();
   }
 
-  async execute(cpf: string, value: number): Promise<{ receipt: string }> {
-    const token = await this.requester.authorize(cpf);
-    const { receiptformatted: receipt, transactionId } = await this.requester.reserveBalance(value, token);
+  async execute(id: string, input: ReserveBalanceDTO): Promise<{ receipt: string }> {
+    const { phone } = input;
+    new Client(input.document, phone.stateCode, phone.countryCode, phone.number);
+    const token = await this.requester.authorize(id);
+    const { receiptformatted: receipt, transactionId } = await this.requester.reserveBalance(input, token);
     await this.requester.confirmRecharge(transactionId, token);
     return { receipt };
   }

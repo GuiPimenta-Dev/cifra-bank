@@ -5,6 +5,13 @@ test("Should be able to reserve a national balance", async () => {
   const httpClient = new AxiosAdapter();
   const requesterFactory = new RequesterFactory(httpClient);
   const nationalRecharge = new NationalRecharge(requesterFactory);
-  const result = await nationalRecharge.execute("41b44ab9a56440.teste.celcoinapi.v5", 15);
+
+  const data = {
+    document: "46949827881",
+    value: 15,
+    providerId: 2086,
+    phone: { stateCode: 11, countryCode: 55, number: 999999999 },
+  };
+  const result = await nationalRecharge.execute("41b44ab9a56440.teste.celcoinapi.v5", data);
   expect(result).toHaveProperty("receipt");
 });

@@ -1,16 +1,14 @@
 import DocumentValidator from "../service/DocumentValidator";
 
 export default class Cpf extends DocumentValidator {
-  value: string;
+  value: string | null;
 
   constructor(value: string) {
     super();
-    if (!this.validate(value)) throw new Error("Invalid cpf");
-    this.value = this.clean(value);
+    this.value = this.validate(value) ? this.clean(value) : null;
   }
 
   private validate(cpf: string) {
-    if (!cpf) return false;
     cpf = this.clean(cpf);
     if (!this.hasCorrectLength(cpf, 11)) return false;
     if (this.isBlocked(cpf)) return false;
