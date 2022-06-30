@@ -27,7 +27,6 @@ export default class NationalRechargeRequester
       Authorization: `Bearer ${token}`,
     });
     const { receiptformatted } = receipt;
-    if (!receiptformatted || !transactionId) throw new Error("Invalid reserve balance response");
     return { receiptformatted, transactionId };
   }
 
