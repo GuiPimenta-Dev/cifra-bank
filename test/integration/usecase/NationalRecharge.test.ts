@@ -1,4 +1,4 @@
-import NationalRecharge from "../../../src/application/usecase/national_recharge/NationalRecharge";
+import NationalRecharge from "../../../src/application/usecase/NationalRecharge";
 import AxiosAdapter from "../../../src/infra/adapter/AxiosAdapter";
 import Broker from "../../../src/infra/broker/Broker";
 import RequesterFactory from "../../../src/infra/factory/RequesterFactory";

@@ -1,11 +1,11 @@
-import Client from "../../../domain/entity/Client";
-import NationalRechargeConfirmed from "../../../domain/event/NationalRechargeConfirmed";
-import RequesterFactoryInterface from "../../../domain/factory/RequesterFactory";
+import Client from "../../domain/entity/Client";
+import NationalRechargeConfirmed from "../../domain/event/NationalRechargeConfirmed";
+import RequesterFactoryInterface from "../../domain/factory/RequesterFactory";
 import {
   NationalRechargeRequesterInterface,
   ReserveBalanceDTO,
-} from "../../../domain/requester/NationalRechargeRequester";
-import Broker from "../../../infra/broker/Broker";
+} from "../../domain/requester/NationalRechargeRequester";
+import Broker from "../../infra/broker/Broker";
 
 export default class NationalRecharge {
   requester: NationalRechargeRequesterInterface;

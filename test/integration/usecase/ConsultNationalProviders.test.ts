@@ -1,4 +1,4 @@
-import ConsultNationalProviders from "../../../src/application/usecase/consult_national_providers/ConsultNationalProviders";
+import ConsultNationalProviders from "../../../src/application/usecase/ConsultNationalProviders";
 import AxiosAdapter from "../../../src/infra/adapter/AxiosAdapter";
 import RequesterFactory from "../../../src/infra/factory/RequesterFactory";
 test("It should be able to consult providers", async () => {

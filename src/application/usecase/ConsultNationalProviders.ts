@@ -1,5 +1,5 @@
-import RequesterFactoryInterface from "../../../domain/factory/RequesterFactory";
-import ConsultNationalProvidersRequesterInterface from "../../../domain/requester/ConsultNationalProvidersRequester";
+import RequesterFactoryInterface from "../../domain/factory/RequesterFactory";
+import ConsultNationalProvidersRequesterInterface from "../../domain/requester/ConsultNationalProvidersRequester";
 
 export default class ConsultNationalProviders {
   requester: ConsultNationalProvidersRequesterInterface;
