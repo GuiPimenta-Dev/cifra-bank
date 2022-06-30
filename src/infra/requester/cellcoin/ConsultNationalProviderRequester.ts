@@ -1,5 +1,5 @@
-import HttpClientInterface from "../../domain/adapter/HttpClient";
-import ConsultNationalProvidersRequesterInterface from "../../domain/requester/ConsultNationalProvidersRequester";
+import HttpClientInterface from "../../../domain/adapter/HttpClient";
+import ConsultNationalProvidersRequesterInterface from "../../../domain/requester/ConsultNationalProvidersRequester";
 import AuthorizeRequester from "./AuthorizeRequester";
 
 export default class ConsultNationalProviderRequester

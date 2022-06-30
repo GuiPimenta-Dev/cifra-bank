@@ -1,4 +1,4 @@
-import HttpClientInterface from "../../domain/adapter/HttpClient";
+import HttpClientInterface from "../../../domain/adapter/HttpClient";
 
 export default class AuthorizeRequester {
   constructor(protected httpClient: HttpClientInterface) {}

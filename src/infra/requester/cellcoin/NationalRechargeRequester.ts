@@ -1,8 +1,8 @@
-import HttpClientInterface from "../../domain/adapter/HttpClient";
+import HttpClientInterface from "../../../domain/adapter/HttpClient";
 import {
   NationalRechargeRequesterInterface,
   ReserveBalanceDTO,
-} from "../../domain/requester/NationalRechargeRequester";
+} from "../../../domain/requester/NationalRechargeRequester";
 import AuthorizeRequester from "./AuthorizeRequester";
 
 export default class NationalRechargeRequester
