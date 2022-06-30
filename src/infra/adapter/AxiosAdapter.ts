@@ -3,8 +3,6 @@ import HttpClientInterface from "../../domain/adapter/HttpClient";
 const BASE_URL = "https://sandbox.openfinance.celcoin.dev/v5";
 
 export default class AxiosAdapter implements HttpClientInterface {
-  headers = { "Content-Type": "application/json" };
-
   async get(url: string, query?: {}, headers?: {}): Promise<any> {
     url = `${BASE_URL}${url}`;
     const response = await axios.get(url, { params: query, headers });

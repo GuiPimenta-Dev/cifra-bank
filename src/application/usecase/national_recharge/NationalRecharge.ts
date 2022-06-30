@@ -1,10 +1,12 @@
 import Client from "../../../domain/entity/Client";
 import RequesterFactoryInterface from "../../../domain/factory/RequesterFactory";
-import { ReserveBalanceDTO } from "../../../domain/requester/NationalRechargeRequester";
-import NationalRechargeRequester from "../../../infra/requester/NationalRechargeRequester";
+import {
+  NationalRechargeRequesterInterface,
+  ReserveBalanceDTO,
+} from "../../../domain/requester/NationalRechargeRequester";
 
 export default class NationalRecharge {
-  requester: NationalRechargeRequester;
+  requester: NationalRechargeRequesterInterface;
 
   constructor(requesterFactory: RequesterFactoryInterface) {
     this.requester = requesterFactory.createNationalRechargeRequester();

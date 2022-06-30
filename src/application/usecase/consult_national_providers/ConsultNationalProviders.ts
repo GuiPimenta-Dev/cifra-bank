@@ -1,8 +1,8 @@
 import RequesterFactoryInterface from "../../../domain/factory/RequesterFactory";
-import ConsultProviderRequester from "../../../infra/requester/ConsultNationalProviderRequester";
+import ConsultNationalProvidersRequesterInterface from "../../../domain/requester/ConsultNationalProvidersRequester";
 
 export default class ConsultNationalProviders {
-  requester: ConsultProviderRequester;
+  requester: ConsultNationalProvidersRequesterInterface;
 
   constructor(requesterFactory: RequesterFactoryInterface) {
     this.requester = requesterFactory.createConsultProviderRequester();
