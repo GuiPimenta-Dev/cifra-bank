@@ -13,17 +13,15 @@ test("Broker must be created with empty list of handlers", () => {
 });
 
 test("Broker should be able to register a new handler", () => {
-  const fakeHandler = new FakeHandler();
-  broker.register(fakeHandler);
+  broker.register(new FakeHandler());
   expect(broker.handlers).toHaveLength(1);
-  expect(broker.handlers[0].name).toEqual("FakeDomainEvent");
+  expect(broker.handlers[0].name).toEqual("FakeDomainEventHappened");
 });
 
 test("Broker should be able to publish a domain event", () => {
   const fakeHandler = new FakeHandler();
   broker.register(fakeHandler);
-  const fakeDomainEvent = new FakeDomainEvent();
-  broker.publish(fakeDomainEvent);
+  broker.publish(new FakeDomainEvent());
   expect(fakeHandler.fakeRepository).toHaveLength(1);
-  expect(fakeHandler.fakeRepository[0].name).toBe("FakeDomainEvent");
+  expect(fakeHandler.fakeRepository[0].name).toBe("FakeDomainEventHappened");
 });

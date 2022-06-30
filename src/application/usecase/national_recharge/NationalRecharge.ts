@@ -20,7 +20,7 @@ export default class NationalRecharge {
     const token = await this.requester.authorize(id);
     const { receiptformatted: receipt, transactionId } = await this.requester.reserveBalance(input, token);
     await this.requester.confirmRecharge(transactionId, token);
-    this.broker.publish(new NationalRechargeConfirmed(input.document, transactionId, input.value));
+    this.broker.publish(new NationalRechargeConfirmed(input.document, transactionId, input.value, input.providerId));
     return { receipt };
   }
 }

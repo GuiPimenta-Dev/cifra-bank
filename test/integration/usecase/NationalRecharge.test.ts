@@ -23,4 +23,5 @@ test("Should be able to make a national recharge", async () => {
   expect(fakeNationalRechargeConfirmedHandler.fakeRepository[0].name).toBe("NationalRechargeConfirmed");
   expect(fakeNationalRechargeConfirmedHandler.fakeRepository[0]).toHaveProperty("transactionId");
   expect(fakeNationalRechargeConfirmedHandler.fakeRepository[0].value).toBe(15);
+  expect(fakeNationalRechargeConfirmedHandler.fakeRepository[0].providerId).toBe(2086);
 });

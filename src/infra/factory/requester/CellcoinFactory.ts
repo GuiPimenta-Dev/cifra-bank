@@ -9,6 +9,7 @@ export default class CellcoinFactory implements RequesterFactoryInterface {
   createNationalRechargeRequester(): NationalRechargeRequester {
     return new NationalRechargeRequester(this.httpClient);
   }
+
   createConsultProviderRequester(): ConsultNationalProviderRequester {
     return new ConsultNationalProviderRequester(this.httpClient);
   }
