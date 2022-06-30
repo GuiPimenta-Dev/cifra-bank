@@ -1,20 +1,15 @@
+import MakeNationalRechargeDTO from "../../../application/usecase/make_national_recharge/MakeNationalRechargeDTO";
 import HttpClientInterface from "../../../domain/adapter/HttpClient";
-import NationalRechargeRequesterInterface, {
-  ReserveBalanceDTO,
-} from "../../../domain/requester/NationalRechargeRequester";
 
-import AuthorizeRequester from "./AuthorizeRequester";
+import AuthorizeBaas from "./Authorize";
 
-export default class NationalRechargeRequester
-  extends AuthorizeRequester
-  implements NationalRechargeRequesterInterface
-{
+export default class MakeNationalRecharge extends AuthorizeBaas {
   constructor(httpClient: HttpClientInterface) {
     super(httpClient);
   }
 
   async reserveBalance(
-    input: ReserveBalanceDTO,
+    input: MakeNationalRechargeDTO,
     token: string
   ): Promise<{ receiptformatted: string; transactionId: number }> {
     const data = {

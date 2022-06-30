@@ -1,7 +1,7 @@
 import DomainEvent from "../../infra/broker/DomainEvent";
 
-export default class NationalRechargeConfirmed implements DomainEvent {
-  name = "NationalRechargeConfirmed";
+export default class NationalRechargeMade implements DomainEvent {
+  name = "NationalRechargeMade";
   constructor(
     readonly document: string,
     readonly transactionId: number,

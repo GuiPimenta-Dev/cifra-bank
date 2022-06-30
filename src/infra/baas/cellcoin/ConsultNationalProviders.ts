@@ -1,11 +1,7 @@
 import HttpClientInterface from "../../../domain/adapter/HttpClient";
-import ConsultNationalProvidersRequesterInterface from "../../../domain/requester/ConsultNationalProvidersRequester";
-import AuthorizeRequester from "./AuthorizeRequester";
+import Authorize from "./Authorize";
 
-export default class ConsultNationalProviderRequester
-  extends AuthorizeRequester
-  implements ConsultNationalProvidersRequesterInterface
-{
+export default class ConsultNationalProviders extends Authorize {
   constructor(httpClient: HttpClientInterface) {
     super(httpClient);
   }

@@ -1,6 +1,6 @@
 import HttpClientInterface from "../../../domain/adapter/HttpClient";
 
-export default class AuthorizeRequester {
+export default class Authorize {
   constructor(protected httpClient: HttpClientInterface) {}
 
   async authorize(id: string): Promise<string> {
