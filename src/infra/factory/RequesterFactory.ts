@@ -1,8 +1,8 @@
 import HttpClientInterface from "../../domain/adapter/HttpClient";
 import RequesterFactoryInterface from "../../domain/factory/RequesterFactory";
-import ConsultNationalProviderRequester from "../requester/cellcoin/ConsultNationalProviderRequester";
-import NationalRechargeRequester from "../requester/cellcoin/NationalRechargeRequester";
-import CellcoinFactory from "./CellcoinFactory";
+import ConsultNationalProvidersRequesterInterface from "../../domain/requester/ConsultNationalProvidersRequester";
+import { NationalRechargeRequesterInterface } from "../../domain/requester/NationalRechargeRequester";
+import CellcoinFactory from "./baas/CellcoinFactory";
 
 export default class RequesterFactory implements RequesterFactoryInterface {
   cellcoinFactory: CellcoinFactory;
@@ -11,11 +11,11 @@ export default class RequesterFactory implements RequesterFactoryInterface {
     this.cellcoinFactory = new CellcoinFactory(httpClient);
   }
 
-  createNationalRechargeRequester(): NationalRechargeRequester {
+  createNationalRechargeRequester(): NationalRechargeRequesterInterface {
     return this.cellcoinFactory.createNationalRechargeRequester();
   }
 
-  createConsultProviderRequester(): ConsultNationalProviderRequester {
+  createConsultProviderRequester(): ConsultNationalProvidersRequesterInterface {
     return this.cellcoinFactory.createConsultProviderRequester();
   }
 }

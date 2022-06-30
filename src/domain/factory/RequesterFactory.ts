@@ -1,7 +1,7 @@
-import ConsultProviderRequester from "../../infra/requester/cellcoin/ConsultNationalProviderRequester";
-import NationalRechargeRequester from "../../infra/requester/cellcoin/NationalRechargeRequester";
+import ConsultNationalProvidersRequesterInterface from "../requester/ConsultNationalProvidersRequester";
+import { NationalRechargeRequesterInterface } from "../requester/NationalRechargeRequester";
 
 export default interface RequesterFactoryInterface {
-  createNationalRechargeRequester(): NationalRechargeRequester;
-  createConsultProviderRequester(): ConsultProviderRequester;
+  createNationalRechargeRequester(): NationalRechargeRequesterInterface;
+  createConsultProviderRequester(): ConsultNationalProvidersRequesterInterface;
 }
