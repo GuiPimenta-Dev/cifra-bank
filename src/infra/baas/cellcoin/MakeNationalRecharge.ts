@@ -1,5 +1,5 @@
 import MakeNationalRechargeDTO from "../../../application/usecase/make_national_recharge/MakeNationalRechargeDTO";
-import HttpClientInterface from "../../../domain/adapter/HttpClient";
+import HttpClientInterface from "../../http/client/Client";
 
 import AuthorizeBaas from "./Authorize";
 

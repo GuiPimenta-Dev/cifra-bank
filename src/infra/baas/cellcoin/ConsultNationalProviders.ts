@@ -1,4 +1,4 @@
-import HttpClientInterface from "../../../domain/adapter/HttpClient";
+import HttpClientInterface from "../../http/client/Client";
 import Authorize from "./Authorize";
 
 export default class ConsultNationalProviders extends Authorize {

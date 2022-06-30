@@ -1,5 +1,5 @@
 import axios from "axios";
-import HttpClientInterface from "../../domain/adapter/HttpClient";
+import HttpClientInterface from "./client/Client";
 const BASE_URL = "https://sandbox.openfinance.celcoin.dev/v5";
 
 export default class AxiosAdapter implements HttpClientInterface {

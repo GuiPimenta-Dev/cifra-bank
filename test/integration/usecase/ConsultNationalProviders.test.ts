@@ -1,7 +1,7 @@
 import ConsultNationalProviders from "../../../src/application/usecase/consult_national_providers/ConsultNationalProviders";
-import AxiosAdapter from "../../../src/infra/adapter/AxiosAdapter";
 import CellcoinFacade from "../../../src/infra/facade/CellcoinFacade";
 import CellcoinFactory from "../../../src/infra/factory/CellcoinFactory";
+import AxiosAdapter from "../../../src/infra/http/AxiosAdapter";
 test("It should be able to consult providers", async () => {
   const httpClient = new AxiosAdapter();
   const cellcoinFactory = new CellcoinFactory(httpClient);
