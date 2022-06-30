@@ -1,4 +1,4 @@
-export interface PhoneDTO {
+interface PhoneDTO {
   stateCode: number;
   countryCode: number;
   number: number;
