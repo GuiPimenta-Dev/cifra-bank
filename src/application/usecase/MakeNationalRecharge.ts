@@ -1,8 +1,8 @@
-import Client from "../../../domain/entity/Client";
-import NationalRechargeMade from "../../../domain/event/NationalRechargeMade";
-import BaasFacade from "../../../domain/facade/BaasFacade";
-import Broker from "../../../infra/broker/Broker";
-import MakeNationalRechargeDTO from "./MakeNationalRechargeDTO";
+import Client from "../../domain/entity/Client";
+import NationalRechargeMade from "../../domain/event/NationalRechargeMade";
+import BaasFacade from "../../domain/facade/BaasFacade";
+import Broker from "../../infra/broker/Broker";
+import MakeNationalRechargeDTO from "../dto/MakeNationalRechargeDTO";
 
 export default class NationalRecharge {
   constructor(readonly baasFacade: BaasFacade, readonly broker: Broker) {}

@@ -1,4 +1,4 @@
-import MakeNationalRechargeDTO from "../../application/usecase/make_national_recharge/MakeNationalRechargeDTO";
+import MakeNationalRechargeDTO from "../../application/dto/MakeNationalRechargeDTO";
 import BaasFacadeInterface from "../../domain/facade/BaasFacade";
 import CellcoinFactory from "../factory/CellcoinFactory";
 

@@ -1,9 +1,9 @@
-import MakeNationalRechargeDTO from "../../../application/usecase/make_national_recharge/MakeNationalRechargeDTO";
+import MakeNationalRechargeDTO from "../../../application/dto/MakeNationalRechargeDTO";
 import HttpClientInterface from "../../http/client/Client";
 
-import AuthorizeBaas from "./Authorize";
+import Authorize from "./Authorize";
 
-export default class MakeNationalRecharge extends AuthorizeBaas {
+export default class MakeNationalRecharge extends Authorize {
   constructor(httpClient: HttpClientInterface) {
     super(httpClient);
   }

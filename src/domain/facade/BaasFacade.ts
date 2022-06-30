@@ -1,4 +1,4 @@
-import MakeNationalRechargeDTO from "../../application/usecase/make_national_recharge/MakeNationalRechargeDTO";
+import MakeNationalRechargeDTO from "../../application/dto/MakeNationalRechargeDTO";
 
 export default interface BaasFacadeInterface {
   consultNationalProviders(id: string, stateCode: number): Promise<any>;

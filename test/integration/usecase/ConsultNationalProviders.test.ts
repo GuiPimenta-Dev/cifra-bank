@@ -1,4 +1,4 @@
-import ConsultNationalProviders from "../../../src/application/usecase/consult_national_providers/ConsultNationalProviders";
+import ConsultNationalProviders from "../../../src/application/usecase/ConsultNationalProviders";
 import CellcoinFacade from "../../../src/infra/facade/CellcoinFacade";
 import CellcoinFactory from "../../../src/infra/factory/CellcoinFactory";
 import AxiosAdapter from "../../../src/infra/http/AxiosAdapter";

@@ -1,4 +1,4 @@
-import BaasFacade from "../../../domain/facade/BaasFacade";
+import BaasFacade from "../../domain/facade/BaasFacade";
 
 export default class ConsultNationalProviders {
   constructor(readonly baasFacade: BaasFacade) {}

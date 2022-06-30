@@ -1,4 +1,4 @@
-import NationalRecharge from "../../../src/application/usecase/make_national_recharge/MakeNationalRecharge";
+import NationalRecharge from "../../../src/application/usecase/MakeNationalRecharge";
 import Broker from "../../../src/infra/broker/Broker";
 import CellcoinFacade from "../../../src/infra/facade/CellcoinFacade";
 import CellcoinFactory from "../../../src/infra/factory/CellcoinFactory";
