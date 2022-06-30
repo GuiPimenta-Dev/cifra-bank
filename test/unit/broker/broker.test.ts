@@ -19,7 +19,7 @@ test("Broker should be able to register a new handler", () => {
   expect(broker.handlers[0].name).toEqual("FakeDomainEvent");
 });
 
-test("Broker should be able to publish a new domain event", () => {
+test("Broker should be able to publish a domain event", () => {
   const fakeHandler = new FakeHandler();
   broker.register(fakeHandler);
   const fakeDomainEvent = new FakeDomainEvent();
