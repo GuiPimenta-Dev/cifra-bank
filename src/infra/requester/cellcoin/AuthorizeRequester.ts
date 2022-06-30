@@ -5,6 +5,7 @@ export default class AuthorizeRequester {
 
   async authorize(id: string): Promise<string> {
     const token = await this.httpClient.authorize(id);
+    if (!token) throw new Error("Invalid authorize response");
     return token;
   }
 }

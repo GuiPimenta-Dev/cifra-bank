@@ -18,6 +18,7 @@ export default class ConsultNationalProviderRequester
         Authorization: `Bearer ${token}`,
       }
     );
+    if (!providers) throw new Error("Invalid consult national providers response");
     return { providers };
   }
 }

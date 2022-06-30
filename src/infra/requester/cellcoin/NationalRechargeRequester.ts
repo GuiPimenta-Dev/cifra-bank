@@ -1,8 +1,8 @@
 import HttpClientInterface from "../../../domain/adapter/HttpClient";
-import {
-  NationalRechargeRequesterInterface,
+import NationalRechargeRequesterInterface, {
   ReserveBalanceDTO,
 } from "../../../domain/requester/NationalRechargeRequester";
+
 import AuthorizeRequester from "./AuthorizeRequester";
 
 export default class NationalRechargeRequester
@@ -27,6 +27,7 @@ export default class NationalRechargeRequester
       Authorization: `Bearer ${token}`,
     });
     const { receiptformatted } = receipt;
+    if (!receiptformatted || !transactionId) throw new Error("Invalid reserve balance response");
     return { receiptformatted, transactionId };
   }
 

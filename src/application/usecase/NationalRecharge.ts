@@ -1,8 +1,7 @@
 import Client from "../../domain/entity/Client";
 import NationalRechargeConfirmed from "../../domain/event/NationalRechargeConfirmed";
 import RequesterFactoryInterface from "../../domain/factory/RequesterFactory";
-import {
-  NationalRechargeRequesterInterface,
+import NationalRechargeRequesterInterface, {
   ReserveBalanceDTO,
 } from "../../domain/requester/NationalRechargeRequester";
 import Broker from "../../infra/broker/Broker";

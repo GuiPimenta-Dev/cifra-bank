@@ -1,17 +1,17 @@
-interface PhoneDTO {
+export interface PhoneDTO {
   stateCode: number;
   countryCode: number;
   number: number;
 }
 
-interface ReserveBalanceDTO {
+export interface ReserveBalanceDTO {
   value: number;
   document: string;
   providerId: number;
   phone: PhoneDTO;
 }
 
-interface NationalRechargeRequesterInterface {
+export default interface NationalRechargeRequesterInterface {
   authorize(id: string): Promise<string>;
   reserveBalance(input: ReserveBalanceDTO, token: string): Promise<{ receiptformatted: string; transactionId: number }>;
   confirmRecharge(
@@ -19,5 +19,3 @@ interface NationalRechargeRequesterInterface {
     token: string
   ): Promise<{ errorCode: string; message: string; status: number }>;
 }
-
-export { PhoneDTO, ReserveBalanceDTO, NationalRechargeRequesterInterface };

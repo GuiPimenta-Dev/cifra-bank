@@ -1,7 +1,7 @@
 import HttpClientInterface from "../../domain/adapter/HttpClient";
 import RequesterFactoryInterface from "../../domain/factory/RequesterFactory";
 import ConsultNationalProvidersRequesterInterface from "../../domain/requester/ConsultNationalProvidersRequester";
-import { NationalRechargeRequesterInterface } from "../../domain/requester/NationalRechargeRequester";
+import NationalRechargeRequesterInterface from "../../domain/requester/NationalRechargeRequester";
 import CellcoinFactory from "./requester/CellcoinFactory";
 
 export default class RequesterFactory implements RequesterFactoryInterface {
