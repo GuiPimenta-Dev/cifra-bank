@@ -12,12 +12,9 @@ export default class CellcoinFacade implements BaasFacadeInterface {
     return { providers };
   }
 
-  async makeNationalRecharge(
-    id: string,
-    input: MakeNationalRechargeDTO
-  ): Promise<{ receipt: string; transactionId: number }> {
+  async makeNationalRecharge(input: MakeNationalRechargeDTO): Promise<{ receipt: string; transactionId: number }> {
     const cellcoin = this.factory.createMakeNationalRecharge();
-    const token = await cellcoin.authorize(id);
+    const token = await cellcoin.authorize(input.id);
     const { receiptformatted: receipt, transactionId } = await cellcoin.reserveBalance(input, token);
     await cellcoin.confirmRecharge(transactionId, token);
     return { receipt, transactionId };

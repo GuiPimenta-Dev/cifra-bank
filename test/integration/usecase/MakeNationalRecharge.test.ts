@@ -13,12 +13,13 @@ test("Should be able to make a national recharge", async () => {
   broker.register(fakeMakeNationalRechargeHandler);
   const nationalRecharge = new NationalRecharge(cellcoinFacade, broker);
   const data = {
+    id: "41b44ab9a56440.teste.celcoinapi.v5",
     document: "46949827881",
     value: 15,
     providerId: 2086,
     phone: { stateCode: 11, countryCode: 55, number: 999999999 },
   };
-  const result = await nationalRecharge.execute("41b44ab9a56440.teste.celcoinapi.v5", data);
+  const result = await nationalRecharge.execute(data);
   expect(result).toHaveProperty("receipt");
   expect(fakeMakeNationalRechargeHandler.fakeRepository).toHaveLength(1);
   expect(fakeMakeNationalRechargeHandler.fakeRepository[0].document).toBe("46949827881");
