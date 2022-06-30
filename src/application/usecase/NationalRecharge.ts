@@ -14,12 +14,13 @@ export default class NationalRecharge {
   }
 
   async execute(id: string, input: ReserveBalanceDTO): Promise<{ receipt: string }> {
-    const { phone } = input;
-    new Client(input.document, phone.stateCode, phone.countryCode, phone.number);
+    const { value, providerId, phone } = input;
+    const document = new Client(input.document, phone.stateCode, phone.countryCode, phone.number).getDocument();
+    const reserveBalanceDTO = { value, document, providerId, phone };
     const token = await this.requester.authorize(id);
-    const { receiptformatted: receipt, transactionId } = await this.requester.reserveBalance(input, token);
+    const { receiptformatted: receipt, transactionId } = await this.requester.reserveBalance(reserveBalanceDTO, token);
     await this.requester.confirmRecharge(transactionId, token);
-    this.broker.publish(new NationalRechargeConfirmed(input.document, transactionId, input.value, input.providerId));
+    this.broker.publish(new NationalRechargeConfirmed(document, transactionId, input.value, input.providerId));
     return { receipt };
   }
 }

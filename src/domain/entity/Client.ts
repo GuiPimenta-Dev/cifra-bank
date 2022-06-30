@@ -19,7 +19,7 @@ export default class Client {
     throw new Error("Invalid Document!");
   }
 
-  getDocument() {
+  getDocument(): string {
     return this.document.value;
   }
 

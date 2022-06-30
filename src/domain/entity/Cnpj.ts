@@ -1,11 +1,11 @@
 import DocumentValidator from "../service/DocumentValidator";
 
 export default class Cnpj extends DocumentValidator {
-  value: string | null;
+  value: string;
 
   constructor(value: string) {
     super();
-    this.value = this.validate(value) ? this.clean(value) : null;
+    this.value = this.validate(value) ? this.clean(value) : "";
   }
 
   private validate(cnpj: any) {

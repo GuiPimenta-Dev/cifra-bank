@@ -12,20 +12,20 @@ test("Must clean a cpf", function () {
 
 test("Value must be null if validators digits are invalid", function () {
   const { value } = new Cpf("935.411.347-81");
-  expect(value).toBe(null);
+  expect(value).toBeFalsy();
 });
 
 test("Value must be null if all digits are equal", function () {
   const { value } = new Cpf("111.111.111-11");
-  expect(value).toBe(null);
+  expect(value).toBeFalsy();
 });
 
 test("Value must be null if cpf is too big", function () {
   const { value } = new Cpf("935.411.347-800");
-  expect(value).toBe(null);
+  expect(value).toBeFalsy();
 });
 
 test("Value must be null if cpf is too small", function () {
   const { value } = new Cpf("935.411.347-8");
-  expect(value).toBe(null);
+  expect(value).toBeFalsy();
 });
