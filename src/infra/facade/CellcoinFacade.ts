@@ -1,8 +1,8 @@
-import ConsultAvailableCountriesDTO from "../../application/dto/ConsultAvailableCountriesDTO";
 import MakeInternationalRechargeDTO from "../../application/dto/MakeInternationalRechargeDTO";
 import MakeNationalRechargeDTO from "../../application/dto/MakeNationalRechargeDTO";
 import BaasFacadeInterface from "../../domain/facade/BaasFacade";
 import ConsultAvailableCountries from "../baas/cellcoin/ConsultAvailableCountries";
+import ConsultInternationalRechargeValues from "../baas/cellcoin/ConsultInternationalRechargeValues";
 import ConsultNationalProviders from "../baas/cellcoin/ConsultNationalProviders";
 import ConsultNationalRechargeValues from "../baas/cellcoin/ConsultNationalRechargeValues";
 import MakeInternationalRecharge from "../baas/cellcoin/MakeInternationalRecharge";
@@ -12,10 +12,16 @@ import HttpClientInterface from "../http/client/Client";
 export default class CellcoinFacade implements BaasFacadeInterface {
   constructor(readonly httpClient: HttpClientInterface) {}
 
-  async consultAvailableCountries(id: string, page: number): Promise<{ countries: ConsultAvailableCountriesDTO[] }> {
+  async consultInternationalRechargeValues(id: string, countryCode: number, number: number): Promise<{ data: any }> {
+    const cellcoin = new ConsultInternationalRechargeValues(this.httpClient);
+    const token = await cellcoin.authorize(id);
+    return await cellcoin.consultInternationalRechargeValues(countryCode, number, token);
+  }
+
+  async consultAvailableCountries(id: string, page: number): Promise<{ countries: any }> {
     const cellcoin = new ConsultAvailableCountries(this.httpClient);
     const token = await cellcoin.authorize(id);
-    return await cellcoin.consultAvailableCountries(token, page);
+    return await cellcoin.consultAvailableCountries(page, token);
   }
 
   async consultNationalProviders(id: string, stateCode: number): Promise<{ providers: string[] }> {
