@@ -6,7 +6,7 @@ export default class ConsultNationalProviders extends Authorize {
     super(httpClient);
   }
 
-  async consultNationalProviders(stateCode: number, token: string): Promise<any> {
+  async consultNationalProviders(stateCode: number, token: string): Promise<{ providers: string[] }> {
     const { providers } = await this.httpClient.get(
       "/transactions/topups/providers",
       { stateCode },

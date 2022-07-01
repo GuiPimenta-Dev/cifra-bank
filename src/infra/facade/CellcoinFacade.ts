@@ -5,11 +5,16 @@ import CellcoinFactory from "../factory/CellcoinFactory";
 export default class CellcoinFacade implements BaasFacadeInterface {
   constructor(readonly factory: CellcoinFactory) {}
 
-  async consultNationalProviders(id: string, stateCode: number): Promise<{ providers: string }> {
+  async consultNationalProviders(id: string, stateCode: number): Promise<{ providers: string[] }> {
     const cellcoin = this.factory.createConsultProviders();
     const token = await cellcoin.authorize(id);
-    const { providers } = await cellcoin.consultNationalProviders(stateCode, token);
-    return { providers };
+    return await cellcoin.consultNationalProviders(stateCode, token);
+  }
+
+  async consultNationalRechargeValues(id: string, stateCode: number, providerId: number): Promise<any> {
+    const cellcoin = this.factory.createConsultNationalRechargeValues();
+    const token = await cellcoin.authorize(id);
+    return await cellcoin.consultNationalRechargeValues(stateCode, providerId, token);
   }
 
   async makeNationalRecharge(input: MakeNationalRechargeDTO): Promise<{ receipt: string; transactionId: number }> {

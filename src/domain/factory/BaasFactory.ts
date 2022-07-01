@@ -1,4 +1,5 @@
 export default interface BaasFactoryInterface {
-  createMakeNationalRecharge(): any;
   createConsultProviders(): any;
+  createConsultNationalRechargeValues(): any;
+  createMakeNationalRecharge(): any;
 }
