@@ -6,7 +6,7 @@ import FakeMakeNationalRechargeHandler from "../fake/FakeMakeNationalRechargeHan
 test("Should be able to make a national recharge", async () => {
   const httpClient = new AxiosAdapter();
   const cellcoinFactory = new CellcoinFactory(httpClient);
-  const cellcoinFacade = cellcoinFactory.createCellcoinBaas();
+  const cellcoinFacade = cellcoinFactory.createCellcoinFacade();
   const broker = new Broker();
   const fakeMakeNationalRechargeHandler = new FakeMakeNationalRechargeHandler();
   broker.register(fakeMakeNationalRechargeHandler);

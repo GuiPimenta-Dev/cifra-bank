@@ -6,7 +6,7 @@ import HttpClientInterface from "../http/client/Client";
 export default class BaasFactory implements BaasFactoryInterface {
   constructor(readonly httpClient: HttpClientInterface) {}
 
-  createCellcoinBaas(): BaasFacade {
+  createCellcoinFacade(): BaasFacade {
     return new CellcoinFacade(this.httpClient);
   }
 }
