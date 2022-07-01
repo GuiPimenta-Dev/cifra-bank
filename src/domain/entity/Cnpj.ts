@@ -1,17 +1,16 @@
-import DocumentValidator from "../service/DocumentValidator";
+import { clean, hasCorrectLength, isBlocked } from "../service/Validators";
 
-export default class Cnpj extends DocumentValidator {
+export default class Cnpj {
   value: string;
 
   constructor(value: string) {
-    super();
-    this.value = this.validate(value) ? this.clean(value) : "";
+    this.value = this.validate(value) ? clean(value) : "";
   }
 
   private validate(cnpj: any) {
-    cnpj = this.clean(cnpj);
-    if (!this.hasCorrectLength(cnpj, 14)) return false;
-    if (this.isBlocked(cnpj)) return false;
+    cnpj = clean(cnpj);
+    if (!hasCorrectLength(cnpj, 14)) return false;
+    if (isBlocked(cnpj)) return false;
     const digit1 = this.calculateDigit(cnpj, 12);
     const digit2 = this.calculateDigit(cnpj, 13);
     const calculatedDigit = `${digit1}${digit2}`;

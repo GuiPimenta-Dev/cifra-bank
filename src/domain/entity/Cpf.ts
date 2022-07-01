@@ -1,17 +1,16 @@
-import DocumentValidator from "../service/DocumentValidator";
+import { clean, hasCorrectLength, isBlocked } from "../service/Validators";
 
-export default class Cpf extends DocumentValidator {
+export default class Cpf {
   value: string;
 
   constructor(value: string) {
-    super();
-    this.value = this.validate(value) ? this.clean(value) : "";
+    this.value = this.validate(value) ? clean(value) : "";
   }
 
   private validate(cpf: string) {
-    cpf = this.clean(cpf);
-    if (!this.hasCorrectLength(cpf, 11)) return false;
-    if (this.isBlocked(cpf)) return false;
+    cpf = clean(cpf);
+    if (!hasCorrectLength(cpf, 11)) return false;
+    if (isBlocked(cpf)) return false;
     const digit1 = this.calculateDigit(cpf, 10);
     const digit2 = this.calculateDigit(cpf, 11);
     const calculatedDigit = `${digit1}${digit2}`;

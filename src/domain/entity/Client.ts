@@ -1,14 +1,15 @@
 import Cnpj from "./Cnpj";
 import Cpf from "./Cpf";
-import Phone from "./Phone";
+import InternationalPhone from "./InternationalPhone";
+import NationalPhone from "./NationalPhone";
 
 export default class Client {
   private document: Cpf | Cnpj;
-  private phone: Phone;
+  private phone: NationalPhone | InternationalPhone;
 
-  constructor(document: string, stateCode: number, countryCode: number, number: number) {
+  constructor(document: string, phone: NationalPhone | InternationalPhone) {
     this.document = this.validateDocument(document);
-    this.phone = new Phone(stateCode, countryCode, number);
+    this.phone = phone;
   }
 
   private validateDocument(document: string) {
