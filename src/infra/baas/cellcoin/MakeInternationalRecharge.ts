@@ -1,24 +1,23 @@
-import MakeNationalRechargeDTO from "../../../application/dto/MakeNationalRechargeDTO";
+import MakeInternationalRechargeDTO from "../../../application/dto/MakeInternationalRechargeDTO";
 import HttpClientInterface from "../../http/client/Client";
-
 import Authorize from "./Authorize";
 
-export default class MakeNationalRecharge extends Authorize {
+export default class MakeInternationalRecharge extends Authorize {
   constructor(httpClient: HttpClientInterface) {
     super(httpClient);
   }
 
   async reserveBalance(
-    input: MakeNationalRechargeDTO,
+    input: MakeInternationalRechargeDTO,
     token: string
   ): Promise<{ receiptformatted: string; transactionId: number }> {
     const data = {
-      topupData: { value: input.value },
+      value: input.value,
       cpfCnpj: input.document,
-      providerId: input.providerId,
+      topupProductId: input.productId,
       phone: input.phone,
     };
-    const { receipt, transactionId } = await this.httpClient.post("/transactions/topups", data, {
+    const { receipt, transactionId } = await this.httpClient.post("/transactions/internationaltopups", data, {
       Authorization: `Bearer ${token}`,
     });
     const { receiptformatted } = receipt;
@@ -26,7 +25,7 @@ export default class MakeNationalRecharge extends Authorize {
   }
 
   async confirmRecharge(transactionId: number, token: string): Promise<void> {
-    const url = `/transactions/topups/${transactionId}/capture`;
+    const url = `/transactions/internationaltopups/${transactionId}/capture`;
     const data = {};
     await this.httpClient.put(url, data, {
       Authorization: `Bearer ${token}`,
