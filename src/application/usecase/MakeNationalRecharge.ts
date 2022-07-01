@@ -1,13 +1,13 @@
 import Client from "../../domain/entity/Client";
 import NationalPhone from "../../domain/entity/NationalPhone";
 import NationalRechargeMade from "../../domain/event/NationalRechargeMade";
-import BaasFacade from "../../domain/facade/BaasFacade";
+import BaasFacadeInterface from "../../domain/facade/BaasFacade";
 import UseCaseInterface from "../../domain/usecase/UseCase";
 import Broker from "../../infra/broker/Broker";
 import MakeNationalRechargeDTO from "../dto/MakeNationalRechargeDTO";
 
 export default class NationalRecharge implements UseCaseInterface {
-  constructor(readonly baasFacade: BaasFacade, readonly broker: Broker) {}
+  constructor(readonly baasFacade: BaasFacadeInterface, readonly broker: Broker) {}
 
   async execute(input: MakeNationalRechargeDTO): Promise<{ receipt: string }> {
     const { id, value, providerId, phone } = input;
