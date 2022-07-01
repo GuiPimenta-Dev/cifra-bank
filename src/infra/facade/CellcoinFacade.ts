@@ -1,25 +1,33 @@
 import MakeInternationalRechargeDTO from "../../application/dto/MakeInternationalRechargeDTO";
 import MakeNationalRechargeDTO from "../../application/dto/MakeNationalRechargeDTO";
 import BaasFacadeInterface from "../../domain/facade/BaasFacade";
-import CellcoinFactory from "../factory/CellcoinFactory";
+import ConsultNationalProviders from "../baas/cellcoin/ConsultNationalProviders";
+import ConsultNationalRechargeValues from "../baas/cellcoin/ConsultNationalRechargeValues";
+import MakeInternationalRecharge from "../baas/cellcoin/MakeInternationalRecharge";
+import MakeNationalRecharge from "../baas/cellcoin/MakeNationalRecharge";
+import HttpClientInterface from "../http/client/Client";
 
 export default class CellcoinFacade implements BaasFacadeInterface {
-  constructor(readonly factory: CellcoinFactory) {}
+  constructor(readonly httpClient: HttpClientInterface) {}
 
   async consultNationalProviders(id: string, stateCode: number): Promise<{ providers: string[] }> {
-    const cellcoin = this.factory.createConsultProviders();
+    const cellcoin = new ConsultNationalProviders(this.httpClient);
     const token = await cellcoin.authorize(id);
     return await cellcoin.consultNationalProviders(stateCode, token);
   }
 
-  async consultNationalRechargeValues(id: string, stateCode: number, providerId: number): Promise<any> {
-    const cellcoin = this.factory.createConsultNationalRechargeValues();
+  async consultNationalRechargeValues(
+    id: string,
+    stateCode: number,
+    providerId: number
+  ): Promise<{ values: string[] }> {
+    const cellcoin = new ConsultNationalRechargeValues(this.httpClient);
     const token = await cellcoin.authorize(id);
     return await cellcoin.consultNationalRechargeValues(stateCode, providerId, token);
   }
 
   async makeNationalRecharge(input: MakeNationalRechargeDTO): Promise<{ receipt: string; transactionId: number }> {
-    const cellcoin = this.factory.createMakeNationalRecharge();
+    const cellcoin = new MakeNationalRecharge(this.httpClient);
     const token = await cellcoin.authorize(input.id);
     const { receiptformatted: receipt, transactionId } = await cellcoin.reserveBalance(input, token);
     await cellcoin.confirmRecharge(transactionId, token);
@@ -29,7 +37,7 @@ export default class CellcoinFacade implements BaasFacadeInterface {
   async makeInternationalRecharge(
     input: MakeInternationalRechargeDTO
   ): Promise<{ receipt: string; transactionId: number }> {
-    const cellcoin = this.factory.createMakeInternationalRecharge();
+    const cellcoin = new MakeInternationalRecharge(this.httpClient);
     const token = await cellcoin.authorize(input.id);
     const { receiptformatted: receipt, transactionId } = await cellcoin.reserveBalance(input, token);
     await cellcoin.confirmRecharge(transactionId, token);

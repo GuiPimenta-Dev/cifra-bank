@@ -1,13 +1,12 @@
 import NationalRecharge from "../../../src/application/usecase/MakeNationalRecharge";
 import Broker from "../../../src/infra/broker/Broker";
-import CellcoinFacade from "../../../src/infra/facade/CellcoinFacade";
-import CellcoinFactory from "../../../src/infra/factory/CellcoinFactory";
+import CellcoinFactory from "../../../src/infra/factory/BaasFactory";
 import AxiosAdapter from "../../../src/infra/http/AxiosAdapter";
 import FakeMakeNationalRechargeHandler from "../fake/FakeMakeNationalRechargeHandler";
 test("Should be able to make a national recharge", async () => {
   const httpClient = new AxiosAdapter();
   const cellcoinFactory = new CellcoinFactory(httpClient);
-  const cellcoinFacade = new CellcoinFacade(cellcoinFactory);
+  const cellcoinFacade = cellcoinFactory.createCellcoinBaas();
   const broker = new Broker();
   const fakeMakeNationalRechargeHandler = new FakeMakeNationalRechargeHandler();
   broker.register(fakeMakeNationalRechargeHandler);

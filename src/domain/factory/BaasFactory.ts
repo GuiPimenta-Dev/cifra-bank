@@ -1,6 +1,5 @@
+import BaasFacadeInterface from "../facade/BaasFacade";
+
 export default interface BaasFactoryInterface {
-  createConsultProviders(): any;
-  createConsultNationalRechargeValues(): any;
-  createMakeNationalRecharge(): any;
-  createMakeInternationalRecharge(): any;
+  createCellcoinBaas(): BaasFacadeInterface;
 }
