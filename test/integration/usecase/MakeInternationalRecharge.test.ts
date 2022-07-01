@@ -3,7 +3,7 @@ import Broker from "../../../src/infra/broker/Broker";
 import CellcoinFactory from "../../../src/infra/factory/BaasFactory";
 import AxiosAdapter from "../../../src/infra/http/AxiosAdapter";
 import FakeMakeInternationalRechargeHandler from "../fake/FakeMakeInternationalRechargeHandler";
-test.skip("Should be able to make an international recharge", async () => {
+test("Should be able to make an international recharge", async () => {
   const httpClient = new AxiosAdapter();
   const cellcoinFactory = new CellcoinFactory(httpClient);
   const cellcoinFacade = cellcoinFactory.createCellcoinBaas();

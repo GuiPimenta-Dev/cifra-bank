@@ -9,7 +9,7 @@ import MakeInternationalRechargeDTO from "../dto/MakeInternationalRechargeDTO";
 export default class MakeInternationalRecharge implements UseCaseInterface {
   constructor(readonly baasFacade: BaasFacade, readonly broker: Broker) {}
 
-  async execute(input: MakeInternationalRechargeDTO): Promise<any> {
+  async execute(input: MakeInternationalRechargeDTO): Promise<{ receipt: string }> {
     const { id, value, productId, phone } = input;
     const internationalPhone = new InternationalPhone(phone.countryCode, phone.number);
     const document = new Client(input.document, internationalPhone).getDocument();
