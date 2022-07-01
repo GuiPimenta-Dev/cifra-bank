@@ -1,4 +1,4 @@
-import NationalRecharge from "../../../src/application/usecase/MakeNationalRecharge";
+import MakeNationalRecharge from "../../../src/application/usecase/MakeNationalRecharge";
 import Broker from "../../../src/infra/broker/Broker";
 import CellcoinFactory from "../../../src/infra/factory/BaasFactory";
 import AxiosAdapter from "../../../src/infra/http/AxiosAdapter";
@@ -10,7 +10,7 @@ test("Should be able to make a national recharge", async () => {
   const broker = new Broker();
   const fakeMakeNationalRechargeHandler = new FakeMakeNationalRechargeHandler();
   broker.register(fakeMakeNationalRechargeHandler);
-  const nationalRecharge = new NationalRecharge(cellcoinFacade, broker);
+  const makeNationalRecharge = new MakeNationalRecharge(cellcoinFacade, broker);
   const data = {
     id: "41b44ab9a56440.teste.celcoinapi.v5",
     document: "46949827881",
@@ -18,7 +18,7 @@ test("Should be able to make a national recharge", async () => {
     providerId: 2086,
     phone: { stateCode: 11, countryCode: 55, number: 999999999 },
   };
-  const result = await nationalRecharge.execute(data);
+  const result = await makeNationalRecharge.execute(data);
   expect(result).toHaveProperty("receipt");
   expect(fakeMakeNationalRechargeHandler.fakeRepository).toHaveLength(1);
   expect(fakeMakeNationalRechargeHandler.fakeRepository[0].document).toBe("46949827881");
