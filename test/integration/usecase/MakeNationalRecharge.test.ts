@@ -6,11 +6,10 @@ import FakeMakeNationalRechargeHandler from "../fake/FakeMakeNationalRechargeHan
 test("Should be able to make a national recharge", async () => {
   const httpClient = new AxiosAdapter();
   const cellcoinFactory = new CellcoinFactory(httpClient);
-  const cellcoinFacade = cellcoinFactory.createCellcoinFacade();
   const broker = new Broker();
   const fakeMakeNationalRechargeHandler = new FakeMakeNationalRechargeHandler();
   broker.register(fakeMakeNationalRechargeHandler);
-  const makeNationalRecharge = new MakeNationalRecharge(cellcoinFacade, broker);
+  const makeNationalRecharge = new MakeNationalRecharge(cellcoinFactory, broker);
   const data = {
     id: "41b44ab9a56440.teste.celcoinapi.v5",
     document: "46949827881",

@@ -6,11 +6,10 @@ import FakeMakeInternationalRechargeHandler from "../fake/FakeMakeInternationalR
 test("Should be able to make an international recharge", async () => {
   const httpClient = new AxiosAdapter();
   const cellcoinFactory = new CellcoinFactory(httpClient);
-  const cellcoinFacade = cellcoinFactory.createCellcoinFacade();
   const broker = new Broker();
   const fakeMakeInternationalRechargeHandler = new FakeMakeInternationalRechargeHandler();
   broker.register(fakeMakeInternationalRechargeHandler);
-  const makeInternationalRecharge = new MakeInternationalRecharge(cellcoinFacade, broker);
+  const makeInternationalRecharge = new MakeInternationalRecharge(cellcoinFactory, broker);
   const data = {
     id: "41b44ab9a56440.teste.celcoinapi.v5",
     document: "35914746817",

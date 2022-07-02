@@ -7,5 +7,5 @@
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|js)$",
   "coverageDirectory": "coverage",
   "collectCoverageFrom": ["src/**/*.{ts,js}", "!src/**/*.d.ts"],
-  "testTimeout": 10000
+  "testTimeout": 20000
 }
