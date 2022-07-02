@@ -11,7 +11,7 @@ export default class consultInternationalRechargeValues extends Authorize {
       "/transactions/internationaltopups/values",
       { countryCode, phoneNumber: number },
       {
-        Authorization: `Bearer ${await token}`,
+        Authorization: `Bearer ${token}`,
       }
     );
     return { data };

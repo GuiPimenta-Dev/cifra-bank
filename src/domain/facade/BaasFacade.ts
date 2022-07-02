@@ -2,6 +2,7 @@ import MakeInternationalRechargeDTO from "../../application/dto/MakeInternationa
 import MakeNationalRechargeDTO from "../../application/dto/MakeNationalRechargeDTO";
 
 export default interface BaasFacadeInterface {
+  consultAccountData(id: string, type: 1 | 2 | 3, digitable: string): Promise<any>;
   consultAvailableCountries(id: string, page: number): Promise<{ countries: any }>;
   consultNationalProviders(id: string, stateCode: number): Promise<{ providers: any }>;
   consultNationalRechargeValues(id: string, stateCode: number, providerId: number): Promise<{ values: any }>;
