@@ -1,6 +1,7 @@
 import MakeInternationalRechargeDTO from "../../application/dto/MakeInternationalRechargeDTO";
 import MakeNationalRechargeDTO from "../../application/dto/MakeNationalRechargeDTO";
 import BaasFacadeInterface from "../../domain/facade/BaasFacade";
+import Authorize from "../baas/cellcoin/Authorize";
 import ConsultAccountData from "../baas/cellcoin/ConsultAccountData";
 import ConsultAvailableCountries from "../baas/cellcoin/ConsultAvailableCountries";
 import ConsultInternationalRechargeValues from "../baas/cellcoin/ConsultInternationalRechargeValues";
@@ -12,6 +13,11 @@ import HttpClientInterface from "../http/client/Client";
 
 export default class CellcoinFacade implements BaasFacadeInterface {
   constructor(readonly httpClient: HttpClientInterface) {}
+
+  async authorize(id: string): Promise<any> {
+    const cellcoin = new Authorize(this.httpClient);
+    return await cellcoin.authorize(id);
+  }
 
   async consultAccountData(id: string, type: 1 | 2 | 3, digitable: string): Promise<any> {
     const cellcoin = new ConsultAccountData(this.httpClient);
