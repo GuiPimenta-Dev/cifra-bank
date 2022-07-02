@@ -2,6 +2,7 @@ import InternationalPhone from "../../domain/entity/InternationalPhone";
 import BaasFacadeInterface from "../../domain/facade/BaasFacade";
 import BaasFactoryInterface from "../../domain/factory/BaasFactory";
 import UseCaseInterface from "../../domain/usecase/UseCase";
+import JwtPayload from "../dto/JwtPayload";
 
 export default class ConsultInternationalRechargeValues implements UseCaseInterface {
   baasFacade: BaasFacadeInterface;
@@ -10,8 +11,8 @@ export default class ConsultInternationalRechargeValues implements UseCaseInterf
     this.baasFacade = baasFactory.createCellcoinFacade();
   }
 
-  async execute(id: string, countryCode: number, number: number): Promise<any> {
+  async execute(jwtPayload: JwtPayload, countryCode: number, number: number): Promise<any> {
     const { value: phone } = new InternationalPhone(countryCode, number);
-    return await this.baasFacade.consultInternationalRechargeValues(id, phone.countryCode, phone.number);
+    return await this.baasFacade.consultInternationalRechargeValues(jwtPayload, phone.countryCode, phone.number);
   }
 }

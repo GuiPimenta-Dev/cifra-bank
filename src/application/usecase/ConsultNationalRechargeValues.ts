@@ -1,6 +1,7 @@
 import BaasFacadeInterface from "../../domain/facade/BaasFacade";
 import BaasFactoryInterface from "../../domain/factory/BaasFactory";
 import UseCaseInterface from "../../domain/usecase/UseCase";
+import JwtPayload from "../dto/JwtPayload";
 
 export default class ConsultNationalRechargeValues implements UseCaseInterface {
   baasFacade: BaasFacadeInterface;
@@ -9,7 +10,7 @@ export default class ConsultNationalRechargeValues implements UseCaseInterface {
     this.baasFacade = baasFactory.createCellcoinFacade();
   }
 
-  async execute(id: string, stateCode: number, providerId: number): Promise<{ values: string[] }> {
-    return this.baasFacade.consultNationalRechargeValues(id, stateCode, providerId);
+  async execute(jwtPayload: JwtPayload, stateCode: number, providerId: number): Promise<{ values: string[] }> {
+    return this.baasFacade.consultNationalRechargeValues(jwtPayload, stateCode, providerId);
   }
 }

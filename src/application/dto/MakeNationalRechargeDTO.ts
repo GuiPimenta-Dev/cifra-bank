@@ -5,7 +5,6 @@ interface PhoneDTO {
 }
 
 export default interface MakeNationalRechargeDTO {
-  id: string;
   value: number;
   document: string;
   providerId: number;

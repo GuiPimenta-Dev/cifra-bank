@@ -1,12 +1,9 @@
+import env from "../../../../env";
 import MakeNationalRechargeDTO from "../../../application/dto/MakeNationalRechargeDTO";
 import HttpClientInterface from "../../http/client/Client";
 
-import Authorize from "./Authorize";
-
-export default class MakeNationalRecharge extends Authorize {
-  constructor(httpClient: HttpClientInterface) {
-    super(httpClient);
-  }
+export default class MakeNationalRecharge {
+  constructor(readonly httpClient: HttpClientInterface) {}
 
   async reserveBalance(
     input: MakeNationalRechargeDTO,
@@ -18,15 +15,19 @@ export default class MakeNationalRecharge extends Authorize {
       providerId: input.providerId,
       phone: input.phone,
     };
-    const { receipt, transactionId } = await this.httpClient.post("/transactions/topups", data, {
-      Authorization: `Bearer ${token}`,
-    });
+    const { receipt, transactionId } = await this.httpClient.post(
+      env.CELLCOIN_BASE_URL + "/transactions/topups",
+      data,
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    );
     const { receiptformatted } = receipt;
     return { receiptformatted, transactionId };
   }
 
   async confirmRecharge(transactionId: number, token: string): Promise<void> {
-    const url = `/transactions/topups/${transactionId}/capture`;
+    const url = env.CELLCOIN_BASE_URL + `/transactions/topups/${transactionId}/capture`;
     const data = {};
     await this.httpClient.put(url, data, {
       Authorization: `Bearer ${token}`,

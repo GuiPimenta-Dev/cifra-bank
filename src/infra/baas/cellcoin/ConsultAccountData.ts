@@ -1,10 +1,7 @@
+import env from "../../../../env";
 import HttpClientInterface from "../../http/client/Client";
-import Authorize from "./Authorize";
-
-export default class ConsultAccountData extends Authorize {
-  constructor(httpClient: HttpClientInterface) {
-    super(httpClient);
-  }
+export default class ConsultAccountData {
+  constructor(readonly httpClient: HttpClientInterface) {}
 
   async consultAccountData(type: 1 | 2 | 3, digitable: string, token: string): Promise<any> {
     const data = {
@@ -13,7 +10,7 @@ export default class ConsultAccountData extends Authorize {
         digitable,
       },
     };
-    return await this.httpClient.post("/transactions/billpayments/authorize", data, {
+    return await this.httpClient.post(env.CELLCOIN_BASE_URL + "/transactions/billpayments/authorize", data, {
       Authorization: `Bearer ${token}`,
     });
   }

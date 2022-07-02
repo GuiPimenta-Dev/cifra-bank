@@ -1,16 +1,14 @@
 import axios from "axios";
+import env from "../../../env";
 import HttpClientInterface from "./client/Client";
-const BASE_URL = "https://sandbox.openfinance.celcoin.dev/v5";
 
 export default class AxiosAdapter implements HttpClientInterface {
   async get(url: string, query?: {}, headers?: {}): Promise<any> {
-    url = `${BASE_URL}${url}`;
     const response = await axios.get(url, { params: query, headers });
     return response.data;
   }
 
   async post(url: string, data: any, headers?: {}): Promise<any> {
-    url = `${BASE_URL}${url}`;
     const options = {
       method: "POST",
       url,
@@ -25,7 +23,6 @@ export default class AxiosAdapter implements HttpClientInterface {
   }
 
   async put(url: string, data: any, headers?: {}): Promise<any> {
-    url = `${BASE_URL}${url}`;
     const options = {
       method: "PUT",
       url,
@@ -39,13 +36,13 @@ export default class AxiosAdapter implements HttpClientInterface {
     return response.data;
   }
 
-  async authorize(id: string): Promise<string> {
+  async authorize(id: string, url: string): Promise<string> {
     const data = {
       client_id: id,
       grant_type: "client_credentials",
-      client_secret: "e9d15cde33024c1494de7480e69b7a18c09d7cd25a8446839b3be82a56a044a3",
+      client_secret: env.CELLCOIN_SECRET,
     };
-    const options = this.parseAuthorizeOptions("POST", "/token", data);
+    const options = this.parseAuthorizeOptions("POST", url, data);
     const response = await axios.request(options);
     const { access_token: token } = response.data;
     return token;
@@ -53,7 +50,6 @@ export default class AxiosAdapter implements HttpClientInterface {
 
   private parseAuthorizeOptions(method: string, url: string, data: any, headers?: any) {
     const boundary = "---011000010111000001101001";
-    url = `${BASE_URL}${url}`;
     let parsedData = "";
     for (let key in data) {
       parsedData += `--${boundary}\r\n`;

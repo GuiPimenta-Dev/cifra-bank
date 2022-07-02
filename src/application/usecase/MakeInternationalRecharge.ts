@@ -5,6 +5,7 @@ import BaasFacadeInterface from "../../domain/facade/BaasFacade";
 import BaasFactoryInterface from "../../domain/factory/BaasFactory";
 import UseCaseInterface from "../../domain/usecase/UseCase";
 import Broker from "../../infra/broker/Broker";
+import JwtPayload from "../dto/JwtPayload";
 import MakeInternationalRechargeDTO from "../dto/MakeInternationalRechargeDTO";
 
 export default class MakeInternationalRecharge implements UseCaseInterface {
@@ -14,12 +15,15 @@ export default class MakeInternationalRecharge implements UseCaseInterface {
     this.baasFacade = baasFactory.createCellcoinFacade();
   }
 
-  async execute(input: MakeInternationalRechargeDTO): Promise<{ receipt: string }> {
-    const { id, value, productId, phone } = input;
+  async execute(jwtPayload: JwtPayload, input: MakeInternationalRechargeDTO): Promise<{ receipt: string }> {
+    const { value, productId, phone } = input;
     const internationalPhone = new InternationalPhone(phone.countryCode, phone.number);
     const document = new Client(input.document, internationalPhone).getDocument();
-    const makeInternationalRechargeDTO = { id, value, document, productId, phone };
-    const { receipt, transactionId } = await this.baasFacade.makeInternationalRecharge(makeInternationalRechargeDTO);
+    const makeInternationalRechargeDTO = { value, document, productId, phone };
+    const { receipt, transactionId } = await this.baasFacade.makeInternationalRecharge(
+      jwtPayload,
+      makeInternationalRechargeDTO
+    );
     this.broker.publish(new InternationalRechargeMade(document, transactionId, value, productId));
     return { receipt };
   }

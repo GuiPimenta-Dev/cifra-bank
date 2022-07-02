@@ -4,7 +4,6 @@ interface PhoneDTO {
 }
 
 export default interface MakeInternationalRechargeDTO {
-  id: string;
   value: number;
   document: string;
   productId: number;

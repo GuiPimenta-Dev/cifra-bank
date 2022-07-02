@@ -1,8 +1,16 @@
+import JwtPayload from "../../../src/application/dto/JwtPayload";
 import MakeNationalRecharge from "../../../src/application/usecase/MakeNationalRecharge";
 import Broker from "../../../src/infra/broker/Broker";
 import BaasFactory from "../../../src/infra/factory/BaasFactory";
 import AxiosAdapter from "../../../src/infra/http/AxiosAdapter";
+import decodeToken from "../../utils/decodeToken";
 import FakeMakeNationalRechargeHandler from "../fake/FakeMakeNationalRechargeHandler";
+
+let jwtPayload: JwtPayload;
+
+beforeAll(async () => {
+  jwtPayload = await decodeToken();
+});
 test("Should be able to make a national recharge", async () => {
   const httpClient = new AxiosAdapter();
   const baasFactory = new BaasFactory(httpClient);
@@ -11,13 +19,12 @@ test("Should be able to make a national recharge", async () => {
   broker.register(fakeMakeNationalRechargeHandler);
   const makeNationalRecharge = new MakeNationalRecharge(baasFactory, broker);
   const data = {
-    id: "41b44ab9a56440.teste.celcoinapi.v5",
     document: "46949827881",
     value: 15,
     providerId: 2086,
     phone: { stateCode: 11, countryCode: 55, number: 999999999 },
   };
-  const result = await makeNationalRecharge.execute(data);
+  const result = await makeNationalRecharge.execute(jwtPayload, data);
   expect(result).toHaveProperty("receipt");
   expect(fakeMakeNationalRechargeHandler.fakeRepository).toHaveLength(1);
   expect(fakeMakeNationalRechargeHandler.fakeRepository[0].document).toBe("46949827881");

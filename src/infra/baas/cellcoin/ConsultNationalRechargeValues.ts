@@ -1,10 +1,8 @@
+import env from "../../../../env";
 import HttpClientInterface from "../../http/client/Client";
-import Authorize from "./Authorize";
 
-export default class consultNationalRechargeValues extends Authorize {
-  constructor(httpClient: HttpClientInterface) {
-    super(httpClient);
-  }
+export default class consultNationalRechargeValues {
+  constructor(readonly httpClient: HttpClientInterface) {}
 
   async consultNationalRechargeValues(
     stateCode: number,
@@ -12,7 +10,7 @@ export default class consultNationalRechargeValues extends Authorize {
     token: string
   ): Promise<{ values: string[] }> {
     const { value: values } = await this.httpClient.get(
-      "/transactions/topups/provider-values",
+      env.CELLCOIN_BASE_URL + "/transactions/topups/provider-values",
       { stateCode, providerId },
       {
         Authorization: `Bearer ${token}`,
