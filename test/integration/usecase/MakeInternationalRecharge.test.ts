@@ -1,15 +1,15 @@
 import MakeInternationalRecharge from "../../../src/application/usecase/MakeInternationalRecharge";
 import Broker from "../../../src/infra/broker/Broker";
-import CellcoinFactory from "../../../src/infra/factory/BaasFactory";
+import BaasFactory from "../../../src/infra/factory/BaasFactory";
 import AxiosAdapter from "../../../src/infra/http/AxiosAdapter";
 import FakeMakeInternationalRechargeHandler from "../fake/FakeMakeInternationalRechargeHandler";
 test("Should be able to make an international recharge", async () => {
   const httpClient = new AxiosAdapter();
-  const cellcoinFactory = new CellcoinFactory(httpClient);
+  const baasFactory = new BaasFactory(httpClient);
   const broker = new Broker();
   const fakeMakeInternationalRechargeHandler = new FakeMakeInternationalRechargeHandler();
   broker.register(fakeMakeInternationalRechargeHandler);
-  const makeInternationalRecharge = new MakeInternationalRecharge(cellcoinFactory, broker);
+  const makeInternationalRecharge = new MakeInternationalRecharge(baasFactory, broker);
   const data = {
     id: "41b44ab9a56440.teste.celcoinapi.v5",
     document: "35914746817",
