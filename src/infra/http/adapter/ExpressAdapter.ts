@@ -31,8 +31,4 @@ export default class ExpressAdapter implements Http {
       console.log(`Server listening on port ${port}`);
     });
   }
-
-  async close(): Promise<void> {
-    await this.app.close();
-  }
 }
