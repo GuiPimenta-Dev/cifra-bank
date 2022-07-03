@@ -1,15 +1,11 @@
 import Cnpj from "./Cnpj";
 import Cpf from "./Cpf";
-import InternationalPhone from "./InternationalPhone";
-import NationalPhone from "./NationalPhone";
 
-export default class Client {
+export default class Document {
   private document: Cpf | Cnpj;
-  private phone: NationalPhone | InternationalPhone;
 
-  constructor(document: string, phone: NationalPhone | InternationalPhone) {
+  constructor(document: string) {
     this.document = this.validateDocument(document);
-    this.phone = phone;
   }
 
   private validateDocument(document: string) {
@@ -22,9 +18,5 @@ export default class Client {
 
   getDocument(): string {
     return this.document.value;
-  }
-
-  getPhone() {
-    return this.phone.value;
   }
 }

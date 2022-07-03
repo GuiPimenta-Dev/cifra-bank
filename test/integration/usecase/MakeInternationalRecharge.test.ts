@@ -1,12 +1,12 @@
-import JwtPayload from "../../../src/application/dto/JwtPayload";
+import JwtPayloadDTO from "../../../src/application/dto/JwtPayloadDTO";
 import MakeInternationalRecharge from "../../../src/application/usecase/MakeInternationalRecharge";
 import Broker from "../../../src/infra/broker/Broker";
 import BaasFactory from "../../../src/infra/factory/BaasFactory";
 import AxiosAdapter from "../../../src/infra/http/AxiosAdapter";
 import decodeToken from "../../utils/decodeToken";
-import FakeMakeInternationalRechargeHandler from "../fake/FakeMakeInternationalRechargeHandler";
+import FakeMakeInternationalRechargeHandler from "../fake/handler/FakeMakeInternationalRechargeHandler";
 
-let jwtPayload: JwtPayload;
+let jwtPayload: JwtPayloadDTO;
 
 beforeAll(async () => {
   jwtPayload = await decodeToken();
@@ -24,8 +24,8 @@ test("Should be able to make an international recharge", async () => {
     productId: 5,
     phone: { countryCode: 509, number: 48227030 },
   };
-  const result = await makeInternationalRecharge.execute(jwtPayload, data);
-  expect(result).toHaveProperty("receipt");
+  const response = await makeInternationalRecharge.execute(jwtPayload, data);
+  expect(response).toHaveProperty("receipt");
   expect(fakeMakeInternationalRechargeHandler.fakeRepository).toHaveLength(1);
   expect(fakeMakeInternationalRechargeHandler.fakeRepository[0].document).toBe("35914746817");
   expect(fakeMakeInternationalRechargeHandler.fakeRepository[0].name).toBe("InternationalRechargeMade");

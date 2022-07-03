@@ -1,10 +1,10 @@
-import JwtPayload from "../../../src/application/dto/JwtPayload";
+import JwtPayloadDTO from "../../../src/application/dto/JwtPayloadDTO";
 import ConsultAvailableCountries from "../../../src/application/usecase/ConsultAvailableCountries";
 import BaasFactory from "../../../src/infra/factory/BaasFactory";
 import AxiosAdapter from "../../../src/infra/http/AxiosAdapter";
 import decodeToken from "../../utils/decodeToken";
 
-let jwtPayload: JwtPayload;
+let jwtPayload: JwtPayloadDTO;
 
 beforeAll(async () => {
   jwtPayload = await decodeToken();

@@ -3,7 +3,7 @@ import HttpClientInterface from "../../http/client/Client";
 export default class ConsultAccountData {
   constructor(readonly httpClient: HttpClientInterface) {}
 
-  async consultAccountData(type: 1 | 2 | 3, digitable: string, token: string): Promise<any> {
+  async consultAccountData(type: number, digitable: string, token: string): Promise<any> {
     const data = {
       barCode: {
         type,
