@@ -11,7 +11,7 @@ import ConsultNationalRechargeValues from "../baas/cellcoin/ConsultNationalRecha
 import MakeBillPayment from "../baas/cellcoin/MakeBillPayment";
 import MakeInternationalRecharge from "../baas/cellcoin/MakeInternationalRecharge";
 import MakeNationalRecharge from "../baas/cellcoin/MakeNationalRecharge";
-import HttpClientInterface from "../http/client/Client";
+import HttpClientInterface from "../http/interface/HttpClient";
 
 export default class CellcoinFacade implements BaasFacadeInterface {
   public token: string = "";

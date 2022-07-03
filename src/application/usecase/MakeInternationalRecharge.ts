@@ -1,8 +1,8 @@
+import UseCaseInterface from "../../domain/application/UseCase";
 import Document from "../../domain/entity/Document";
 import InternationalPhone from "../../domain/entity/InternationalPhone";
 import InternationalRechargeMade from "../../domain/event/InternationalRechargeMade";
 import BaasFacadeInterface from "../../domain/facade/BaasFacade";
-import UseCaseInterface from "../../domain/usecase/UseCase";
 import Broker from "../../infra/broker/Broker";
 import MakeInternationalRechargeDTO from "../dto/MakeInternationalRechargeDTO";
 

@@ -1,8 +1,8 @@
+import UseCaseInterface from "../../domain/application/UseCase";
 import Document from "../../domain/entity/Document";
 import NationalPhone from "../../domain/entity/NationalPhone";
 import NationalRechargeMade from "../../domain/event/NationalRechargeMade";
 import BaasFacadeInterface from "../../domain/facade/BaasFacade";
-import UseCaseInterface from "../../domain/usecase/UseCase";
 import Broker from "../../infra/broker/Broker";
 import MakeNationalRechargeDTO from "../dto/MakeNationalRechargeDTO";
 

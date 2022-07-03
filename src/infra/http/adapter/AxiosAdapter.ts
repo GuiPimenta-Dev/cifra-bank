@@ -1,6 +1,6 @@
 import axios from "axios";
-import env from "../../../env";
-import HttpClientInterface from "./client/Client";
+import env from "../../../../env";
+import HttpClientInterface from "../interface/HttpClient";
 
 export default class AxiosAdapter implements HttpClientInterface {
   async get(url: string, query?: {}, headers?: {}): Promise<any> {

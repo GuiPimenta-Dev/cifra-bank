@@ -1,5 +1,5 @@
 import env from "../../../../env";
-import HttpClientInterface from "../../http/client/Client";
+import HttpClientInterface from "../../http/interface/HttpClient";
 
 export default class consultInternationalRechargeValues {
   constructor(readonly httpClient: HttpClientInterface) {}

@@ -1,7 +1,7 @@
+import UseCaseInterface from "../../domain/application/UseCase";
 import Document from "../../domain/entity/Document";
 import BillPaymentMade from "../../domain/event/BillPaymentMade";
 import BaasFacadeInterface from "../../domain/facade/BaasFacade";
-import UseCaseInterface from "../../domain/usecase/UseCase";
 import Broker from "../../infra/broker/Broker";
 import MakeBillPaymentDTO from "../dto/MakeBillPaymentDTO";
 

@@ -1,5 +1,5 @@
 import BaasFactory from "../../src/infra/factory/BaasFactory";
-import AxiosAdapter from "../../src/infra/http/AxiosAdapter";
+import AxiosAdapter from "../../src/infra/http/adapter/AxiosAdapter";
 
 export async function createCellcoinFacade() {
   const httpClient = new AxiosAdapter();

@@ -1,6 +1,6 @@
 import env from "../../../../env";
 import MakeBillPaymentDTO from "../../../application/dto/MakeBillPaymentDTO";
-import HttpClientInterface from "../../http/client/Client";
+import HttpClientInterface from "../../http/interface/HttpClient";
 
 export default class MakeBillPayment {
   constructor(readonly httpClient: HttpClientInterface) {}

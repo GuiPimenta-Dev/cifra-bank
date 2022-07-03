@@ -1,5 +1,5 @@
+import UseCaseInterface from "../../domain/application/UseCase";
 import BaasFacadeInterface from "../../domain/facade/BaasFacade";
-import UseCaseInterface from "../../domain/usecase/UseCase";
 
 export default class ConsultNationalRechargeValues implements UseCaseInterface {
   constructor(readonly baasFacade: BaasFacadeInterface) {}

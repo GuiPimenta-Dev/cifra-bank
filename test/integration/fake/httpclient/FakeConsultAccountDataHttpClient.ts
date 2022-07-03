@@ -1,4 +1,4 @@
-import HttpClientInterface from "../../../../src/infra/http/client/Client";
+import HttpClientInterface from "../../../../src/infra/http/interface/HttpClient";
 
 export default class FakeConsultAccountDataHttpClient implements HttpClientInterface {
   authorize(id: string, url: string): Promise<string> {
