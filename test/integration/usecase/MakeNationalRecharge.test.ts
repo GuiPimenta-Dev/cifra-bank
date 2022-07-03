@@ -1,27 +1,24 @@
+import env from "../../../env";
 import MakeNationalRecharge from "../../../src/application/usecase/MakeNationalRecharge";
 import Broker from "../../../src/infra/broker/Broker";
+import BaasFactory from "../../../src/infra/factory/BaasFactory";
+import AxiosAdapter from "../../../src/infra/http/adapter/AxiosAdapter";
 import FakeMakeNationalRechargeHandler from "../fake/handler/FakeMakeNationalRechargeHandler";
 
-import BaasFacadeInterface from "../../../src/domain/facade/BaasFacade";
-import { createCellcoinFacade } from "../../utils/createFacade";
-
-let baasFacade: BaasFacadeInterface;
-
-beforeAll(async () => {
-  baasFacade = await createCellcoinFacade();
-});
 test("Should be able to make a national recharge", async () => {
+  const httpClient = new AxiosAdapter();
+  const baasFactory = new BaasFactory(httpClient);
   const broker = new Broker();
   const fakeMakeNationalRechargeHandler = new FakeMakeNationalRechargeHandler();
   broker.register(fakeMakeNationalRechargeHandler);
-  const makeNationalRecharge = new MakeNationalRecharge(baasFacade, broker);
+  const makeNationalRecharge = new MakeNationalRecharge(baasFactory, broker);
   const data = {
     document: "46949827881",
     value: 15,
     providerId: 2086,
     phone: { stateCode: 11, countryCode: 55, number: 999999999 },
   };
-  const response = await makeNationalRecharge.execute(data);
+  const response = await makeNationalRecharge.execute(data, env.TOKEN);
   expect(response).toHaveProperty("receipt");
   expect(fakeMakeNationalRechargeHandler.fakeRepository).toHaveLength(1);
   expect(fakeMakeNationalRechargeHandler.fakeRepository[0].document).toBe("46949827881");

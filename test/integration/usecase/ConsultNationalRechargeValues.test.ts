@@ -1,14 +1,12 @@
+import env from "../../../env";
 import ConsultNationalRechargeValues from "../../../src/application/usecase/ConsultNationalRechargeValues";
-import BaasFacadeInterface from "../../../src/domain/facade/BaasFacade";
-import { createCellcoinFacade } from "../../utils/createFacade";
+import BaasFactory from "../../../src/infra/factory/BaasFactory";
+import AxiosAdapter from "../../../src/infra/http/adapter/AxiosAdapter";
 
-let baasFacade: BaasFacadeInterface;
-
-beforeAll(async () => {
-  baasFacade = await createCellcoinFacade();
-});
 test("Should be able to consult national recharge values", async () => {
-  const nationalRechargeValues = new ConsultNationalRechargeValues(baasFacade);
-  const response = await nationalRechargeValues.execute(11, 2125);
+  const httpClient = new AxiosAdapter();
+  const baasFactory = new BaasFactory(httpClient);
+  const nationalRechargeValues = new ConsultNationalRechargeValues(baasFactory);
+  const response = await nationalRechargeValues.execute(11, 2125, env.TOKEN);
   expect(response).toHaveProperty("values");
 });

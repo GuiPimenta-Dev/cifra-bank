@@ -1,12 +1,12 @@
 import ControllerInterface from "../../domain/application/Controller";
-import BaasFacade from "../../domain/facade/BaasFacade";
+import BaasFactoryInterface from "../../domain/factory/BaasFactory";
 import Authorize from "../usecase/Authorize";
 
 export default class AuthorizeController implements ControllerInterface {
-  constructor(readonly cellcoinFacade: BaasFacade) {}
+  constructor(readonly baasFactory: BaasFactoryInterface) {}
 
   async handle(params: any, body: { id: string }): Promise<any> {
-    const authorize = new Authorize(this.cellcoinFacade);
+    const authorize = new Authorize(this.baasFactory);
     return await authorize.execute(body.id);
   }
 }

@@ -1,26 +1,19 @@
 import jwt from "jsonwebtoken";
 import env from "../../../env";
 import Authorize from "../../../src/application/usecase/Authorize";
-import BaasFacadeInterface from "../../../src/domain/facade/BaasFacade";
-import { createCellcoinFacade } from "../../utils/createFacade";
+import BaasFactory from "../../../src/infra/factory/BaasFactory";
+import AxiosAdapter from "../../../src/infra/http/adapter/AxiosAdapter";
 
-let baasFacade: BaasFacadeInterface;
-
-beforeAll(async () => {
-  baasFacade = await createCellcoinFacade();
-});
-
-export interface JwtPayloadDTO {
-  iat: number;
-  exp: number;
+export interface TokenDto {
+  cellcoinToken: string;
 }
 test("It should be able to authorize Cellcoin", async () => {
-  const authorize = new Authorize(baasFacade);
+  const httpClient = new AxiosAdapter();
+  const baasFactory = new BaasFactory(httpClient);
+  const authorize = new Authorize(baasFactory);
   const response = await authorize.execute("41b44ab9a56440.teste.celcoinapi.v5");
   expect(response.token).toBeDefined();
-  const decodedToken = jwt.verify(response.token, env.JWT_SECRET) as JwtPayloadDTO;
+  const decodedToken = jwt.verify(response.token, env.JWT_SECRET) as TokenDto;
   expect(typeof decodedToken).toBe("object");
-  expect(baasFacade.token).toBeDefined();
-  expect(decodedToken.iat).toBeDefined();
-  expect(decodedToken.exp).toBeDefined();
+  expect(decodedToken.cellcoinToken).toBeDefined();
 });

@@ -1,15 +1,12 @@
+import env from "../../../env";
 import ConsultNationalProviders from "../../../src/application/usecase/ConsultNationalProviders";
-import BaasFacadeInterface from "../../../src/domain/facade/BaasFacade";
-import { createCellcoinFacade } from "../../utils/createFacade";
-
-let baasFacade: BaasFacadeInterface;
-
-beforeAll(async () => {
-  baasFacade = await createCellcoinFacade();
-});
+import BaasFactory from "../../../src/infra/factory/BaasFactory";
+import AxiosAdapter from "../../../src/infra/http/adapter/AxiosAdapter";
 
 test("It should be able to consult providers", async () => {
-  const consultNationalProviders = new ConsultNationalProviders(baasFacade);
-  const response = await consultNationalProviders.execute(13);
+  const httpClient = new AxiosAdapter();
+  const baasFactory = new BaasFactory(httpClient);
+  const consultNationalProviders = new ConsultNationalProviders(baasFactory);
+  const response = await consultNationalProviders.execute(13, env.TOKEN);
   expect(response).toHaveProperty("providers");
 });

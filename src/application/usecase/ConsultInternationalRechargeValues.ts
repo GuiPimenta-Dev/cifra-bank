@@ -1,12 +1,18 @@
 import UseCaseInterface from "../../domain/application/UseCase";
 import InternationalPhone from "../../domain/entity/InternationalPhone";
 import BaasFacadeInterface from "../../domain/facade/BaasFacade";
+import BaasFactoryInterface from "../../domain/factory/BaasFactory";
+import TokenDTO from "../dto/TokenDTO";
 
 export default class ConsultInternationalRechargeValues implements UseCaseInterface {
-  constructor(readonly baasFacade: BaasFacadeInterface) {}
+  baasFacade: BaasFacadeInterface;
 
-  async execute(countryCode: number, number: number): Promise<any> {
+  constructor(baasFactory: BaasFactoryInterface) {
+    this.baasFacade = baasFactory.createCellcoinFacade();
+  }
+
+  async execute(countryCode: number, number: number, token: TokenDTO): Promise<any> {
     const { value: phone } = new InternationalPhone(countryCode, number);
-    return await this.baasFacade.consultInternationalRechargeValues(phone.countryCode, phone.number);
+    return await this.baasFacade.consultInternationalRechargeValues(phone.countryCode, phone.number, token);
   }
 }
