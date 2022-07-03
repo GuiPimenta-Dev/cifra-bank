@@ -1,4 +1,3 @@
-import JwtPayloadDTO from "../../application/dto/JwtPayloadDTO";
 import MakeBillPaymentDTO from "../../application/dto/MakeBillPaymentDTO";
 import MakeInternationalRechargeDTO from "../../application/dto/MakeInternationalRechargeDTO";
 import MakeNationalRechargeDTO from "../../application/dto/MakeNationalRechargeDTO";
@@ -15,60 +14,58 @@ import MakeNationalRecharge from "../baas/cellcoin/MakeNationalRecharge";
 import HttpClientInterface from "../http/client/Client";
 
 export default class CellcoinFacade implements BaasFacadeInterface {
+  public token: string = "";
+
   constructor(readonly httpClient: HttpClientInterface) {}
 
-  async authorize(id: string): Promise<any> {
+  async authorize(id: string): Promise<void> {
     const cellcoin = new Authorize(this.httpClient);
-    return await cellcoin.authorize(id);
+    this.token = await cellcoin.authorize(id);
   }
 
-  async consultAccountData(jwtPayload: JwtPayloadDTO, type: number, digitable: string): Promise<any> {
+  async consultAccountData(type: number, digitable: string): Promise<any> {
     const cellcoin = new ConsultAccountData(this.httpClient);
-    return cellcoin.consultAccountData(type, digitable, jwtPayload.cellcoinToken);
+    return cellcoin.consultAccountData(type, digitable, this.token);
   }
 
-  async consultInternationalRechargeValues(
-    jwtPayload: JwtPayloadDTO,
-    countryCode: number,
-    number: number
-  ): Promise<any> {
+  async consultInternationalRechargeValues(countryCode: number, number: number): Promise<any> {
     const cellcoin = new ConsultInternationalRechargeValues(this.httpClient);
-    return await cellcoin.consultInternationalRechargeValues(countryCode, number, jwtPayload.cellcoinToken);
+    return await cellcoin.consultInternationalRechargeValues(countryCode, number, this.token);
   }
 
-  async consultAvailableCountries(jwtPayload: JwtPayloadDTO, page: number): Promise<any> {
+  async consultAvailableCountries(page: number): Promise<any> {
     const cellcoin = new ConsultAvailableCountries(this.httpClient);
-    return await cellcoin.consultAvailableCountries(page, jwtPayload.cellcoinToken);
+    return await cellcoin.consultAvailableCountries(page, this.token);
   }
 
-  async consultNationalProviders(jwtPayload: JwtPayloadDTO, stateCode: number): Promise<any> {
+  async consultNationalProviders(stateCode: number): Promise<any> {
     const cellcoin = new ConsultNationalProviders(this.httpClient);
-    return await cellcoin.consultNationalProviders(stateCode, jwtPayload.cellcoinToken);
+    return await cellcoin.consultNationalProviders(stateCode, this.token);
   }
 
-  async consultNationalRechargeValues(jwtPayload: JwtPayloadDTO, stateCode: number, providerId: number): Promise<any> {
+  async consultNationalRechargeValues(stateCode: number, providerId: number): Promise<any> {
     const cellcoin = new ConsultNationalRechargeValues(this.httpClient);
-    return await cellcoin.consultNationalRechargeValues(stateCode, providerId, jwtPayload.cellcoinToken);
+    return await cellcoin.consultNationalRechargeValues(stateCode, providerId, this.token);
   }
 
-  async makeBillPayment(jwtPayload: JwtPayloadDTO, input: MakeBillPaymentDTO): Promise<any> {
+  async makeBillPayment(input: MakeBillPaymentDTO): Promise<any> {
     const cellcoin = new MakeBillPayment(this.httpClient);
-    const { receiptformatted: receipt, transactionId } = await cellcoin.reserveBalance(input, jwtPayload.cellcoinToken);
-    await cellcoin.confirmBillPayment(transactionId, jwtPayload.cellcoinToken);
+    const { receiptformatted: receipt, transactionId } = await cellcoin.reserveBalance(input, this.token);
+    await cellcoin.confirmBillPayment(transactionId, this.token);
     return { receipt, transactionId };
   }
 
-  async makeNationalRecharge(jwtPayload: JwtPayloadDTO, input: MakeNationalRechargeDTO): Promise<any> {
+  async makeNationalRecharge(input: MakeNationalRechargeDTO): Promise<any> {
     const cellcoin = new MakeNationalRecharge(this.httpClient);
-    const { receiptformatted: receipt, transactionId } = await cellcoin.reserveBalance(input, jwtPayload.cellcoinToken);
-    await cellcoin.confirmRecharge(transactionId, jwtPayload.cellcoinToken);
+    const { receiptformatted: receipt, transactionId } = await cellcoin.reserveBalance(input, this.token);
+    await cellcoin.confirmRecharge(transactionId, this.token);
     return { receipt, transactionId };
   }
 
-  async makeInternationalRecharge(jwtPayload: JwtPayloadDTO, input: MakeInternationalRechargeDTO): Promise<any> {
+  async makeInternationalRecharge(input: MakeInternationalRechargeDTO): Promise<any> {
     const cellcoin = new MakeInternationalRecharge(this.httpClient);
-    const { receiptformatted: receipt, transactionId } = await cellcoin.reserveBalance(input, jwtPayload.cellcoinToken);
-    await cellcoin.confirmRecharge(transactionId, jwtPayload.cellcoinToken);
+    const { receiptformatted: receipt, transactionId } = await cellcoin.reserveBalance(input, this.token);
+    await cellcoin.confirmRecharge(transactionId, this.token);
     return { receipt, transactionId };
   }
 }

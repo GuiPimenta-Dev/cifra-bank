@@ -1,16 +1,16 @@
-import JwtPayloadDTO from "../../application/dto/JwtPayloadDTO";
 import MakeBillPaymentDTO from "../../application/dto/MakeBillPaymentDTO";
 import MakeInternationalRechargeDTO from "../../application/dto/MakeInternationalRechargeDTO";
 import MakeNationalRechargeDTO from "../../application/dto/MakeNationalRechargeDTO";
 
 export default interface BaasFacadeInterface {
-  authorize(id: string): Promise<any>;
-  consultAccountData(jwtPayload: JwtPayloadDTO, type: number, digitable: string): Promise<any>;
-  consultAvailableCountries(jwtPayload: JwtPayloadDTO, page: number): Promise<any>;
-  consultNationalProviders(jwtPayload: JwtPayloadDTO, stateCode: number): Promise<any>;
-  consultNationalRechargeValues(jwtPayload: JwtPayloadDTO, stateCode: number, providerId: number): Promise<any>;
-  consultInternationalRechargeValues(jwtPayload: JwtPayloadDTO, countryCode: number, number: number): Promise<any>;
-  makeBillPayment(jwtPayload: JwtPayloadDTO, input: MakeBillPaymentDTO): Promise<any>;
-  makeNationalRecharge(jwtPayload: JwtPayloadDTO, input: MakeNationalRechargeDTO): Promise<any>;
-  makeInternationalRecharge(jwtPayload: JwtPayloadDTO, input: MakeInternationalRechargeDTO): Promise<any>;
+  token: string;
+  authorize(id: string): Promise<void>;
+  consultAccountData(type: number, digitable: string): Promise<any>;
+  consultAvailableCountries(page: number): Promise<any>;
+  consultNationalProviders(stateCode: number): Promise<any>;
+  consultNationalRechargeValues(stateCode: number, providerId: number): Promise<any>;
+  consultInternationalRechargeValues(countryCode: number, number: number): Promise<any>;
+  makeBillPayment(input: MakeBillPaymentDTO): Promise<any>;
+  makeNationalRecharge(input: MakeNationalRechargeDTO): Promise<any>;
+  makeInternationalRecharge(input: MakeInternationalRechargeDTO): Promise<any>;
 }

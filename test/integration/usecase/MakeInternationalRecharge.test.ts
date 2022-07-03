@@ -1,30 +1,27 @@
-import JwtPayloadDTO from "../../../src/application/dto/JwtPayloadDTO";
 import MakeInternationalRecharge from "../../../src/application/usecase/MakeInternationalRecharge";
 import Broker from "../../../src/infra/broker/Broker";
-import BaasFactory from "../../../src/infra/factory/BaasFactory";
-import AxiosAdapter from "../../../src/infra/http/AxiosAdapter";
-import decodeToken from "../../utils/decodeToken";
 import FakeMakeInternationalRechargeHandler from "../fake/handler/FakeMakeInternationalRechargeHandler";
 
-let jwtPayload: JwtPayloadDTO;
+import BaasFacadeInterface from "../../../src/domain/facade/BaasFacade";
+import { createCellcoinFacade } from "../../utils/createFacade";
+
+let baasFacade: BaasFacadeInterface;
 
 beforeAll(async () => {
-  jwtPayload = await decodeToken();
+  baasFacade = await createCellcoinFacade();
 });
 test("Should be able to make an international recharge", async () => {
-  const httpClient = new AxiosAdapter();
-  const baasFactory = new BaasFactory(httpClient);
   const broker = new Broker();
   const fakeMakeInternationalRechargeHandler = new FakeMakeInternationalRechargeHandler();
   broker.register(fakeMakeInternationalRechargeHandler);
-  const makeInternationalRecharge = new MakeInternationalRecharge(baasFactory, broker);
+  const makeInternationalRecharge = new MakeInternationalRecharge(baasFacade, broker);
   const data = {
     document: "35914746817",
     value: 5.43,
     productId: 5,
     phone: { countryCode: 509, number: 48227030 },
   };
-  const response = await makeInternationalRecharge.execute(jwtPayload, data);
+  const response = await makeInternationalRecharge.execute(data);
   expect(response).toHaveProperty("receipt");
   expect(fakeMakeInternationalRechargeHandler.fakeRepository).toHaveLength(1);
   expect(fakeMakeInternationalRechargeHandler.fakeRepository[0].document).toBe("35914746817");

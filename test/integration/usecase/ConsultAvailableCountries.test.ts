@@ -1,19 +1,15 @@
-import JwtPayloadDTO from "../../../src/application/dto/JwtPayloadDTO";
 import ConsultAvailableCountries from "../../../src/application/usecase/ConsultAvailableCountries";
-import BaasFactory from "../../../src/infra/factory/BaasFactory";
-import AxiosAdapter from "../../../src/infra/http/AxiosAdapter";
-import decodeToken from "../../utils/decodeToken";
+import BaasFacadeInterface from "../../../src/domain/facade/BaasFacade";
+import { createCellcoinFacade } from "../../utils/createFacade";
 
-let jwtPayload: JwtPayloadDTO;
+let baasFacade: BaasFacadeInterface;
 
 beforeAll(async () => {
-  jwtPayload = await decodeToken();
+  baasFacade = await createCellcoinFacade();
 });
 
 test("It Should be able to consult all available countries", async () => {
-  const httpClient = new AxiosAdapter();
-  const baasFactory = new BaasFactory(httpClient);
-  const consultAvailableCountries = new ConsultAvailableCountries(baasFactory);
-  const response = await consultAvailableCountries.execute(jwtPayload, 1);
+  const consultAvailableCountries = new ConsultAvailableCountries(baasFacade);
+  const response = await consultAvailableCountries.execute(1);
   expect(response).toHaveProperty("countries");
 });

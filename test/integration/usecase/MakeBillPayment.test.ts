@@ -1,23 +1,27 @@
-import JwtPayloadDTO from "../../../src/application/dto/JwtPayloadDTO";
 import MakeBillPayment from "../../../src/application/usecase/MakeBillPayment";
 import Broker from "../../../src/infra/broker/Broker";
 import BaasFactory from "../../../src/infra/factory/BaasFactory";
-import decodeToken from "../../utils/decodeToken";
 import FakeMakeBillPaylmentHandler from "../fake/handler/FakeMakeBillPaymentHandler";
 import FakeMakeBillPaymentHttpClient from "../fake/httpclient/FakeMakeBillPaymentHttpClient";
 
-let jwtPayload: JwtPayloadDTO;
+import BaasFacadeInterface from "../../../src/domain/facade/BaasFacade";
+import { createCellcoinFacade } from "../../utils/createFacade";
+
+let cellcoinFacade: BaasFacadeInterface;
+
 beforeAll(async () => {
-  jwtPayload = await decodeToken();
+  cellcoinFacade = await createCellcoinFacade();
 });
 
 test("It should be able to make a bill payment", async () => {
   const httpClient = new FakeMakeBillPaymentHttpClient();
   const baasFactory = new BaasFactory(httpClient);
+  const baasFacade = baasFactory.createCellcoinFacade();
+  baasFacade.token = cellcoinFacade.token;
   const broker = new Broker();
   const fakeMakeBillPaymentHandler = new FakeMakeBillPaylmentHandler();
   broker.register(fakeMakeBillPaymentHandler);
-  const makeBillPayment = new MakeBillPayment(baasFactory, broker);
+  const makeBillPayment = new MakeBillPayment(baasFacade, broker);
   const data = {
     document: "51680002000100",
     billData: {
@@ -31,7 +35,7 @@ test("It should be able to make a bill payment", async () => {
     dueDate: "07/07/2022",
     transactionId: 816318661,
   };
-  const response = await makeBillPayment.execute(jwtPayload, data);
+  const response = await makeBillPayment.execute(data);
   expect(response).toHaveProperty("receipt");
   expect(fakeMakeBillPaymentHandler.fakeRepository).toHaveLength(1);
   expect(fakeMakeBillPaymentHandler.fakeRepository[0].document).toBe("51680002000100");

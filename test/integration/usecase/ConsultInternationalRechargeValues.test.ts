@@ -1,18 +1,15 @@
-import JwtPayloadDTO from "../../../src/application/dto/JwtPayloadDTO";
 import ConsultInternationalRechargeValues from "../../../src/application/usecase/ConsultInternationalRechargeValues";
-import BaasFactory from "../../../src/infra/factory/BaasFactory";
-import AxiosAdapter from "../../../src/infra/http/AxiosAdapter";
-import decodeToken from "../../utils/decodeToken";
+import BaasFacadeInterface from "../../../src/domain/facade/BaasFacade";
+import { createCellcoinFacade } from "../../utils/createFacade";
 
-let jwtPayload: JwtPayloadDTO;
+let baasFacade: BaasFacadeInterface;
 
 beforeAll(async () => {
-  jwtPayload = await decodeToken();
+  baasFacade = await createCellcoinFacade();
 });
+
 test("Should be able to consult international recharge values", async () => {
-  const httpClient = new AxiosAdapter();
-  const baasFactory = new BaasFactory(httpClient);
-  const nationalRechargeValues = new ConsultInternationalRechargeValues(baasFactory);
-  const response = await nationalRechargeValues.execute(jwtPayload, 509, 48227030);
+  const nationalRechargeValues = new ConsultInternationalRechargeValues(baasFacade);
+  const response = await nationalRechargeValues.execute(509, 48227030);
   expect(response).toHaveProperty("data");
 });
