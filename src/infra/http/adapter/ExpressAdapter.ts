@@ -3,7 +3,6 @@ import Http from "../interface/Http";
 
 export default class ExpressAdapter implements Http {
   app: any;
-
   constructor() {
     this.app = express();
     this.app.use(express.json());
@@ -18,7 +17,7 @@ export default class ExpressAdapter implements Http {
   on(url: string, method: string, fn: any): void {
     this.app[method](url, async function (req: any, res: any) {
       try {
-        const output = await fn(req.params, req.body);
+        const output = await fn(req, res);
         res.json(output);
       } catch (e: any) {
         res.status(422).json({ message: e.message });

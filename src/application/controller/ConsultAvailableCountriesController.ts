@@ -7,6 +7,7 @@ export default class ConsultAvailableCountriesController implements ControllerIn
 
   async handle(params: { page: number }, body: any): Promise<any> {
     const consultAvailableCountries = new ConsultAvailableCountries(this.baasFactory);
-    return consultAvailableCountries.execute(params.page, body.token);
+    const response = await consultAvailableCountries.execute(params.page, body.token);
+    return response;
   }
 }
