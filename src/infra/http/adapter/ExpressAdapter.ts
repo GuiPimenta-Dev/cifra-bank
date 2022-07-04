@@ -1,4 +1,5 @@
 import express from "express";
+import HttpError from "../error/HttpError";
 import Http from "../interface/Http";
 
 export default class ExpressAdapter implements Http {
@@ -18,8 +19,14 @@ export default class ExpressAdapter implements Http {
     this.app[method](url, async function (req: any, res: any) {
       try {
         const output = await fn(req, res);
+        if (output instanceof HttpError) {
+          res.status(output.statusCode).send(output.message);
+        }
         res.json(output);
       } catch (e: any) {
+        if (e instanceof HttpError) {
+          return res.status(e.statusCode).json({ message: e.message });
+        }
         res.status(422).json({ message: e.message });
       }
     });
