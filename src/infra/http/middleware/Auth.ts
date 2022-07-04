@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 import env from "../../../../env";
-import ControllerMiddlewareAdapter from "../adapter/ControllerMiddlewareAdapter";
+import AuthMiddlewareAdapter from "../adapter/AuthMiddlewareAdapter";
 import HttpError from "../error/HttpError";
 
-export default class AuthMiddleware extends ControllerMiddlewareAdapter {
+export default class AuthMiddleware extends AuthMiddlewareAdapter {
   public async handle(query: any, body: any, headers: any): Promise<any> {
     const { authorization } = headers;
     const token = authorization.split(" ")[1];

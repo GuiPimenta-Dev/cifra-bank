@@ -1,7 +1,7 @@
 import ControllerInterface from "../../../domain/application/Controller";
 import MiddlewareInterface from "../interface/Middleware";
 
-export default class MiddlewareAdapter implements MiddlewareInterface {
+export default class AuthMiddlewareAdapter implements MiddlewareInterface {
   private nextHandler: ControllerInterface | null = null;
 
   setNext(handler: ControllerInterface): ControllerInterface {

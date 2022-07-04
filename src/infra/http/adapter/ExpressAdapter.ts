@@ -4,6 +4,7 @@ import Http from "../interface/Http";
 
 export default class ExpressAdapter implements Http {
   app: any;
+
   constructor() {
     this.app = express();
     this.app.use(express.json());
@@ -19,9 +20,6 @@ export default class ExpressAdapter implements Http {
     this.app[method](url, async function (req: any, res: any) {
       try {
         const output = await fn(req, res);
-        if (output instanceof HttpError) {
-          res.status(output.statusCode).send(output.message);
-        }
         res.json(output);
       } catch (e: any) {
         if (e instanceof HttpError) {
@@ -33,8 +31,6 @@ export default class ExpressAdapter implements Http {
   }
 
   listen(port: number): void {
-    this.app.listen(port, () => {
-      console.log(`Server listening on port ${port}`);
-    });
+    this.app.listen(port);
   }
 }
