@@ -1,6 +1,6 @@
 import env from "../../../env";
 import ConsultNationalProviders from "../../../src/application/usecase/ConsultNationalProviders";
-import BaasFactory from "../../../src/infra/factory/BaasFactory";
+import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import AxiosAdapter from "../../../src/infra/http/adapter/AxiosAdapter";
 
 test("It should be able to consult providers", async () => {

@@ -1,7 +1,7 @@
 import env from "../../../env";
 import MakeBillPayment from "../../../src/application/usecase/MakeBillPayment";
+import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import Broker from "../../../src/infra/broker/Broker";
-import BaasFactory from "../../../src/infra/factory/BaasFactory";
 import FakeMakeBillPaylmentHandler from "../fake/handler/FakeMakeBillPaymentHandler";
 import FakeMakeBillPaymentHttpClient from "../fake/httpclient/FakeMakeBillPaymentHttpClient";
 

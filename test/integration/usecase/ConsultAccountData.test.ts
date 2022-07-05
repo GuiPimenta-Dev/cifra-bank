@@ -1,6 +1,6 @@
 import env from "../../../env";
 import ConsultAccountData from "../../../src/application/usecase/ConsultAccountData";
-import BaasFactory from "../../../src/infra/factory/BaasFactory";
+import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import FakeConsultAccountDataHttpClient from "../fake/httpclient/FakeConsultAccountDataHttpClient";
 
 test("It should be able to consult an account data", async () => {

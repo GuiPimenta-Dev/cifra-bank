@@ -1,7 +1,7 @@
 import UseCaseInterface from "../../domain/application/UseCase";
+import BaasFacadeInterface from "../../domain/baas/BaasFacade";
+import BaasFactoryInterface from "../../domain/baas/BaasFactory";
 import InternationalPhone from "../../domain/entity/InternationalPhone";
-import BaasFacadeInterface from "../../domain/facade/BaasFacade";
-import BaasFactoryInterface from "../../domain/factory/BaasFactory";
 import TokenDTO from "../dto/TokenDTO";
 
 export default class ConsultInternationalRechargeValues implements UseCaseInterface {

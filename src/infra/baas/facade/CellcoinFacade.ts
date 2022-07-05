@@ -1,18 +1,18 @@
-import MakeBillPaymentDTO from "../../application/dto/MakeBillPaymentDTO";
-import MakeInternationalRechargeDTO from "../../application/dto/MakeInternationalRechargeDTO";
-import MakeNationalRechargeDTO from "../../application/dto/MakeNationalRechargeDTO";
-import TokenDTO from "../../application/dto/TokenDTO";
-import BaasFacadeInterface from "../../domain/facade/BaasFacade";
-import Authorize from "../baas/cellcoin/Authorize";
-import ConsultAccountData from "../baas/cellcoin/ConsultAccountData";
-import ConsultAvailableCountries from "../baas/cellcoin/ConsultAvailableCountries";
-import ConsultInternationalRechargeValues from "../baas/cellcoin/ConsultInternationalRechargeValues";
-import ConsultNationalProviders from "../baas/cellcoin/ConsultNationalProviders";
-import ConsultNationalRechargeValues from "../baas/cellcoin/ConsultNationalRechargeValues";
-import MakeBillPayment from "../baas/cellcoin/MakeBillPayment";
-import MakeInternationalRecharge from "../baas/cellcoin/MakeInternationalRecharge";
-import MakeNationalRecharge from "../baas/cellcoin/MakeNationalRecharge";
-import HttpClientInterface from "../http/interface/HttpClient";
+import MakeBillPaymentDTO from "../../../application/dto/MakeBillPaymentDTO";
+import MakeInternationalRechargeDTO from "../../../application/dto/MakeInternationalRechargeDTO";
+import MakeNationalRechargeDTO from "../../../application/dto/MakeNationalRechargeDTO";
+import TokenDTO from "../../../application/dto/TokenDTO";
+import BaasFacadeInterface from "../../../domain/baas/BaasFacade";
+import HttpClientInterface from "../../http/interface/HttpClient";
+import Authorize from "../cellcoin/Authorize";
+import ConsultAccountData from "../cellcoin/ConsultAccountData";
+import ConsultAvailableCountries from "../cellcoin/ConsultAvailableCountries";
+import ConsultInternationalRechargeValues from "../cellcoin/ConsultInternationalRechargeValues";
+import ConsultNationalProviders from "../cellcoin/ConsultNationalProviders";
+import ConsultNationalRechargeValues from "../cellcoin/ConsultNationalRechargeValues";
+import MakeBillPayment from "../cellcoin/MakeBillPayment";
+import MakeInternationalRecharge from "../cellcoin/MakeInternationalRecharge";
+import MakeNationalRecharge from "../cellcoin/MakeNationalRecharge";
 
 export default class CellcoinFacade implements BaasFacadeInterface {
   public token: string = "";

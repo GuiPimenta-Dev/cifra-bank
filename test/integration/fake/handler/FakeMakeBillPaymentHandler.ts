@@ -1,5 +1,5 @@
 import BillPaymentMade from "../../../../src/domain/event/BillPaymentMade";
-import Handler from "../../../../src/infra/broker/Handler";
+import Handler from "../../../../src/infra/broker/interface/Handler";
 
 export default class FakeMakeBillPaylmentHandler implements Handler {
   name = "BillPaymentMade";

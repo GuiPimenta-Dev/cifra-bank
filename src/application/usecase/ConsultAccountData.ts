@@ -1,6 +1,6 @@
 import UseCaseInterface from "../../domain/application/UseCase";
-import BaasFacadeInterface from "../../domain/facade/BaasFacade";
-import BaasFactoryInterface from "../../domain/factory/BaasFactory";
+import BaasFacadeInterface from "../../domain/baas/BaasFacade";
+import BaasFactoryInterface from "../../domain/baas/BaasFactory";
 import TokenDTO from "../dto/TokenDTO";
 
 export default class ConsultAccountData implements UseCaseInterface {

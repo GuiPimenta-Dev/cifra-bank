@@ -1,5 +1,5 @@
-import DomainEvent from "./DomainEvent";
-import Handler from "./Handler";
+import DomainEvent from "./interface/DomainEvent";
+import Handler from "./interface/Handler";
 
 export default class Broker {
   handlers: Handler[];

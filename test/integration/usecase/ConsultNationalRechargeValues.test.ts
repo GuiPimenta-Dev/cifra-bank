@@ -1,6 +1,6 @@
 import env from "../../../env";
 import ConsultNationalRechargeValues from "../../../src/application/usecase/ConsultNationalRechargeValues";
-import BaasFactory from "../../../src/infra/factory/BaasFactory";
+import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import AxiosAdapter from "../../../src/infra/http/adapter/AxiosAdapter";
 
 test("Should be able to consult national recharge values", async () => {

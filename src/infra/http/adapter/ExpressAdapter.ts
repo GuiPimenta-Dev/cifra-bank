@@ -1,9 +1,12 @@
 import express from "express";
+import AuthMiddleware from "../../../application/middleware/AuthMiddleware";
+import ControllerInterface from "../../../domain/application/Controller";
 import HttpError from "../error/HttpError";
 import Http from "../interface/Http";
 
 export default class ExpressAdapter implements Http {
   app: any;
+  baseUrl: string = "/v1";
 
   constructor() {
     this.app = express();
@@ -16,10 +19,16 @@ export default class ExpressAdapter implements Http {
     });
   }
 
-  on(url: string, method: string, fn: any): void {
-    this.app[method](url, async function (req: any, res: any) {
+  on(url: string, method: string, controller: ControllerInterface, authorize: boolean = true): void {
+    this.app[method](this.baseUrl + url, async function (req: any, res: any) {
       try {
-        const output = await fn(req, res);
+        let output: any;
+        if (authorize) {
+          const authMiddleware = new AuthMiddleware(controller);
+          output = await authMiddleware.handle(req.query, req.body, req.headers);
+        } else {
+          output = await controller.handle(req.query, req.body);
+        }
         res.json(output);
       } catch (e: any) {
         if (e instanceof HttpError) {

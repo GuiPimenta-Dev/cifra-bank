@@ -1,6 +1,6 @@
-import Authorize from "../../application/usecase/Authorize";
 import ControllerInterface from "../../domain/application/Controller";
-import BaasFactoryInterface from "../../domain/factory/BaasFactory";
+import BaasFactoryInterface from "../../domain/baas/BaasFactory";
+import Authorize from "../usecase/Authorize";
 
 export default class AuthorizeController implements ControllerInterface {
   constructor(readonly baasFactory: BaasFactoryInterface) {}

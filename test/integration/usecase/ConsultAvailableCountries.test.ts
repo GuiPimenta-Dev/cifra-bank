@@ -1,6 +1,6 @@
 import env from "../../../env";
 import ConsultAvailableCountries from "../../../src/application/usecase/ConsultAvailableCountries";
-import BaasFactory from "../../../src/infra/factory/BaasFactory";
+import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import AxiosAdapter from "../../../src/infra/http/adapter/AxiosAdapter";
 
 test("It Should be able to consult all available countries", async () => {

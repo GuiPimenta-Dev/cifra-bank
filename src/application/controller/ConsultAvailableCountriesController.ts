@@ -1,6 +1,6 @@
-import ConsultAvailableCountries from "../../application/usecase/ConsultAvailableCountries";
 import ControllerInterface from "../../domain/application/Controller";
-import BaasFactoryInterface from "../../domain/factory/BaasFactory";
+import BaasFactoryInterface from "../../domain/baas/BaasFactory";
+import ConsultAvailableCountries from "../usecase/ConsultAvailableCountries";
 
 export default class ConsultAvailableCountriesController implements ControllerInterface {
   constructor(readonly baasFactory: BaasFactoryInterface) {}

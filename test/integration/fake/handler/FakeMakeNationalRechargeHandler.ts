@@ -1,5 +1,5 @@
 import NationalRechargeMade from "../../../../src/domain/event/NationalRechargeMade";
-import Handler from "../../../../src/infra/broker/Handler";
+import Handler from "../../../../src/infra/broker/interface/Handler";
 
 export default class FakeMakeNationalRechargeHandler implements Handler {
   name = "NationalRechargeMade";

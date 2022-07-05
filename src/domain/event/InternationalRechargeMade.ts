@@ -1,4 +1,4 @@
-import DomainEvent from "../../infra/broker/DomainEvent";
+import DomainEvent from "../../infra/broker/interface/DomainEvent";
 
 export default class InternationalRechargeMade implements DomainEvent {
   name = "InternationalRechargeMade";

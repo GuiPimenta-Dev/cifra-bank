@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import env from "../../../env";
 import Authorize from "../../../src/application/usecase/Authorize";
-import BaasFactory from "../../../src/infra/factory/BaasFactory";
+import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import AxiosAdapter from "../../../src/infra/http/adapter/AxiosAdapter";
 
 export interface TokenDto {

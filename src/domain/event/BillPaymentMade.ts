@@ -1,4 +1,4 @@
-import DomainEvent from "../../infra/broker/DomainEvent";
+import DomainEvent from "../../infra/broker/interface/DomainEvent";
 
 export default class BillPaymentMade implements DomainEvent {
   name = "BillPaymentMade";

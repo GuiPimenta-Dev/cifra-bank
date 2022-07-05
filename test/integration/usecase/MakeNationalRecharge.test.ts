@@ -1,7 +1,7 @@
 import env from "../../../env";
 import MakeNationalRecharge from "../../../src/application/usecase/MakeNationalRecharge";
+import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import Broker from "../../../src/infra/broker/Broker";
-import BaasFactory from "../../../src/infra/factory/BaasFactory";
 import AxiosAdapter from "../../../src/infra/http/adapter/AxiosAdapter";
 import FakeMakeNationalRechargeHandler from "../fake/handler/FakeMakeNationalRechargeHandler";
 

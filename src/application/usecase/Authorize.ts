@@ -2,8 +2,8 @@ import jwt from "jsonwebtoken";
 
 import env from "../../../env";
 import UseCaseInterface from "../../domain/application/UseCase";
-import BaasFacadeInterface from "../../domain/facade/BaasFacade";
-import BaasFactoryInterface from "../../domain/factory/BaasFactory";
+import BaasFacadeInterface from "../../domain/baas/BaasFacade";
+import BaasFactoryInterface from "../../domain/baas/BaasFactory";
 
 export default class Authorize implements UseCaseInterface {
   cellcoinFacade: BaasFacadeInterface;
