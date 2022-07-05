@@ -9,7 +9,7 @@ export default class AuthMiddlewareAdapter implements MiddlewareInterface {
     return handler;
   }
 
-  async handle(query: any, body: any, headers: any): Promise<any> {
+  async handle(query: any, body: any): Promise<any> {
     if (this.nextHandler) {
       return await this.nextHandler.handle(query, body);
     }

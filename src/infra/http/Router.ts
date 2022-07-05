@@ -4,7 +4,7 @@ import Broker from "../broker/Broker";
 import AuthorizeController from "../controller/AuthorizeController";
 import ConsultAvailableCountriesController from "../controller/ConsultAvailableCountriesController";
 import HttpInterface from "./interface/Http";
-import AuthMiddleware from "./middleware/Auth";
+import AuthMiddleware from "./middleware/AuthMiddleware";
 
 function protectRoute(req: any, controller: ControllerInterface): any {
   const jwt = new AuthMiddleware();
