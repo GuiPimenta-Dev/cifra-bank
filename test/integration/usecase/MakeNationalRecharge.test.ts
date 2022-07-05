@@ -1,9 +1,15 @@
-import env from "../../../env";
+import TokenDTO from "../../../src/application/dto/TokenDTO";
 import MakeNationalRecharge from "../../../src/application/usecase/MakeNationalRecharge";
 import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import Broker from "../../../src/infra/broker/Broker";
 import AxiosAdapter from "../../../src/infra/http/adapter/AxiosAdapter";
 import FakeMakeNationalRechargeHandler from "../fake/handler/FakeMakeNationalRechargeHandler";
+import getToken from "../utils/getToken";
+
+let token: TokenDTO;
+beforeAll(async () => {
+  token = await getToken();
+});
 
 test("Should be able to make a national recharge", async () => {
   const httpClient = new AxiosAdapter();
@@ -18,7 +24,7 @@ test("Should be able to make a national recharge", async () => {
     providerId: 2086,
     phone: { stateCode: 11, countryCode: 55, number: 999999999 },
   };
-  const response = await makeNationalRecharge.execute(data, env.TOKEN);
+  const response = await makeNationalRecharge.execute(data, token);
   expect(response).toHaveProperty("receipt");
   expect(fakeMakeNationalRechargeHandler.fakeRepository).toHaveLength(1);
   expect(fakeMakeNationalRechargeHandler.fakeRepository[0].document).toBe("46949827881");

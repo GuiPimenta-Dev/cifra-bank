@@ -42,13 +42,13 @@ export default class AxiosAdapter implements HttpClientInterface {
       grant_type: "client_credentials",
       client_secret: env.CELLCOIN_SECRET,
     };
-    const options = this.parseAuthorizeOptions("POST", url, data);
+    const options = await this.parseAuthorizeOptions("POST", url, data);
     const response = await axios.request(options);
     const { access_token: token } = response.data;
     return token;
   }
 
-  private parseAuthorizeOptions(method: string, url: string, data: any, headers?: any) {
+  private async parseAuthorizeOptions(method: string, url: string, data: any, headers?: any) {
     const boundary = "---011000010111000001101001";
     let parsedData = "";
     for (let key in data) {

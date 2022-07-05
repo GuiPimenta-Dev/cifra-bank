@@ -1,7 +1,7 @@
 import express from "express";
+import HttpError from "../../../application/error/HttpError";
 import AuthMiddleware from "../../../application/middleware/AuthMiddleware";
 import ControllerInterface from "../../../domain/application/Controller";
-import HttpError from "../error/HttpError";
 import Http from "../interface/Http";
 
 export default class ExpressAdapter implements Http {

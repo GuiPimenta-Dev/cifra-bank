@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import env from "../../../env";
 import ControllerInterface from "../../domain/application/Controller";
 import MiddlewareInterface from "../../domain/application/Middleware";
-import HttpError from "../../infra/http/error/HttpError";
+import HttpError from "../error/HttpError";
 
 export default class AuthMiddleware implements MiddlewareInterface {
   private nextHandler: ControllerInterface;

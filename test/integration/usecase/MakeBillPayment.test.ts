@@ -1,9 +1,15 @@
-import env from "../../../env";
+import TokenDTO from "../../../src/application/dto/TokenDTO";
 import MakeBillPayment from "../../../src/application/usecase/MakeBillPayment";
 import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import Broker from "../../../src/infra/broker/Broker";
 import FakeMakeBillPaylmentHandler from "../fake/handler/FakeMakeBillPaymentHandler";
 import FakeMakeBillPaymentHttpClient from "../fake/httpclient/FakeMakeBillPaymentHttpClient";
+import getToken from "../utils/getToken";
+
+let token: TokenDTO;
+beforeAll(async () => {
+  token = await getToken();
+});
 
 test("It should be able to make a bill payment", async () => {
   const httpClient = new FakeMakeBillPaymentHttpClient();
@@ -25,7 +31,7 @@ test("It should be able to make a bill payment", async () => {
     dueDate: "07/07/2022",
     transactionId: 816318661,
   };
-  const token = env.TOKEN;
+  // const token = env.TOKEN;
   const response = await makeBillPayment.execute(data, token);
   expect(response).toHaveProperty("receipt");
   expect(fakeMakeBillPaymentHandler.fakeRepository).toHaveLength(1);
