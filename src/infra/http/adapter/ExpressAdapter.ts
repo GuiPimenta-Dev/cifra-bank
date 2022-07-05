@@ -1,7 +1,7 @@
 import express from "express";
 import HttpError from "../../../application/error/HttpError";
-import AuthMiddleware from "../../../application/middleware/AuthMiddleware";
 import ControllerInterface from "../../../domain/application/Controller";
+import MiddlewareInterface from "../../../domain/application/Middleware";
 import Http from "../interface/Http";
 
 export default class ExpressAdapter implements Http {
@@ -19,17 +19,12 @@ export default class ExpressAdapter implements Http {
     });
   }
 
-  on(url: string, method: string, controller: ControllerInterface, authorize: boolean = true): void {
+  on(url: string, method: string, fn: ControllerInterface | MiddlewareInterface): any {
     this.app[method](this.baseUrl + url, async function (req: any, res: any) {
       try {
-        let output: any;
-        if (authorize) {
-          const authMiddleware = new AuthMiddleware(controller);
-          output = await authMiddleware.handle(req.query, req.body, req.headers);
-        } else {
-          output = await controller.handle(req.query, req.body);
-        }
-        res.json(output);
+        const { query, body, headers, params } = req;
+        const output = await fn.handle({ query, body, headers, path: params });
+        return res.json(output);
       } catch (e: any) {
         if (e instanceof HttpError) {
           return res.status(e.statusCode).json({ message: e.message });
@@ -40,6 +35,6 @@ export default class ExpressAdapter implements Http {
   }
 
   listen(port: number): void {
-    this.app.listen(port);
+    return this.app.listen(port);
   }
 }

@@ -1,3 +1,7 @@
+import HttpDTO from "../../application/dto/HttpDTO";
+import ControllerInterface from "./Controller";
+
 export default interface MiddlewareInterface {
-  handle(query: any, body: any, headers: any): any;
+  setNext(nextHandler: ControllerInterface): void;
+  handle(input: HttpDTO): any;
 }

@@ -1,3 +1,5 @@
+import HttpDTO from "../../application/dto/HttpDTO";
+
 export default interface ControllerInterface {
-  handle(query: any, body: any): Promise<any>;
+  handle(input: HttpDTO): Promise<any>;
 }
