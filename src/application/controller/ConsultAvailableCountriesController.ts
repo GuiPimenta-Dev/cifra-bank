@@ -5,9 +5,9 @@ import ConsultAvailableCountries from "../usecase/ConsultAvailableCountries";
 export default class ConsultAvailableCountriesController implements ControllerInterface {
   constructor(readonly baasFactory: BaasFactoryInterface) {}
 
-  async handle(params: { page: number }, body: any): Promise<any> {
+  async handle(query: { page: number }, body: any): Promise<any> {
     const consultAvailableCountries = new ConsultAvailableCountries(this.baasFactory);
-    const response = await consultAvailableCountries.execute(params.page, body.token);
+    const response = await consultAvailableCountries.execute(query.page, body.token);
     return response;
   }
 }
