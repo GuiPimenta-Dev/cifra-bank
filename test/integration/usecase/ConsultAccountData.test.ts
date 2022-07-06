@@ -2,8 +2,8 @@
 import TokenDTO from "../../../src/application/dto/TokenDTO";
 import ConsultAccountData from "../../../src/application/usecase/ConsultAccountData";
 import BaasFactory from "../../../src/infra/baas/BaasFactory";
-import FakeConsultAccountDataHttpClient from "../fake/httpclient/FakeConsultAccountDataHttpClient";
-import getToken from "../utils/getToken";
+import FakeConsultAccountDataHttpClient from "../utils/fake/httpclient/FakeConsultAccountDataHttpClient";
+import { getToken } from "../utils/fixtures";
 
 let token: TokenDTO;
 beforeAll(async () => {

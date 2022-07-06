@@ -1,7 +1,7 @@
-import OutputDTO from "../../../../src/application/dto/OutputDTO";
-import HttpClientInterface from "../../../../src/infra/http/interface/HttpClient";
+import OutputDTO from "../../../../../src/application/dto/OutputDTO";
+import HttpClientInterface from "../../../../../src/infra/http/interface/HttpClient";
 
-export default class FakeConsultAccountDataHttpClient implements HttpClientInterface {
+export default class FakeMakeBillPaymentHttpClient implements HttpClientInterface {
   authorize(id: string, url: string): Promise<OutputDTO> {
     throw new Error("Method not implemented.");
   }
@@ -11,7 +11,7 @@ export default class FakeConsultAccountDataHttpClient implements HttpClientInter
   }
 
   async post(url: string, data: any, headers?: {} | undefined): Promise<any> {
-    return { statusCode: 200, data: { value: 77.55, transactionId: 123456789 } };
+    return { statusCode: 200, data: { receipt: "fake-receipt", transactionId: 123456789 } };
   }
 
   async put(url: string, data: any, headers?: {} | undefined): Promise<any> {

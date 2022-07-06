@@ -2,7 +2,7 @@ import TokenDTO from "../../../src/application/dto/TokenDTO";
 import ConsultNationalProviders from "../../../src/application/usecase/ConsultNationalProviders";
 import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import AxiosAdapter from "../../../src/infra/http/adapter/AxiosAdapter";
-import getToken from "../utils/getToken";
+import { getToken } from "../utils/fixtures";
 
 let token: TokenDTO;
 beforeAll(async () => {

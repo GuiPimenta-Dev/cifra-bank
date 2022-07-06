@@ -3,8 +3,8 @@ import MakeInternationalRecharge from "../../../src/application/usecase/MakeInte
 import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import Broker from "../../../src/infra/broker/Broker";
 import AxiosAdapter from "../../../src/infra/http/adapter/AxiosAdapter";
-import FakeMakeInternationalRechargeHandler from "../fake/handler/FakeMakeInternationalRechargeHandler";
-import getToken from "../utils/getToken";
+import FakeMakeInternationalRechargeHandler from "../utils/fake/handler/FakeMakeInternationalRechargeHandler";
+import { getToken } from "../utils/fixtures";
 
 let token: TokenDTO;
 beforeAll(async () => {

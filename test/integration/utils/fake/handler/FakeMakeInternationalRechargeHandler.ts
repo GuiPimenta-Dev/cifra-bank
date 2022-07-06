@@ -1,5 +1,5 @@
-import InternationalRechargeMade from "../../../../src/domain/event/InternationalRechargeMade";
-import Handler from "../../../../src/infra/broker/interface/Handler";
+import InternationalRechargeMade from "../../../../../src/domain/event/InternationalRechargeMade";
+import Handler from "../../../../../src/infra/broker/interface/Handler";
 
 export default class FakeMakeInternationalRechargeHandler implements Handler {
   name = "InternationalRechargeMade";

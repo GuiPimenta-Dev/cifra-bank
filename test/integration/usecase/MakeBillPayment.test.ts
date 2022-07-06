@@ -2,9 +2,9 @@ import TokenDTO from "../../../src/application/dto/TokenDTO";
 import MakeBillPayment from "../../../src/application/usecase/MakeBillPayment";
 import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import Broker from "../../../src/infra/broker/Broker";
-import FakeMakeBillPaylmentHandler from "../fake/handler/FakeMakeBillPaymentHandler";
-import FakeMakeBillPaymentHttpClient from "../fake/httpclient/FakeMakeBillPaymentHttpClient";
-import getToken from "../utils/getToken";
+import FakeMakeBillPaylmentHandler from "../utils/fake/handler/FakeMakeBillPaymentHandler";
+import FakeMakeBillPaymentHttpClient from "../utils/fake/httpclient/FakeMakeBillPaymentHttpClient";
+import { getToken } from "../utils/fixtures";
 
 let token: TokenDTO;
 beforeAll(async () => {
