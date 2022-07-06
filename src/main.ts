@@ -1,4 +1,3 @@
-import JwtMiddleware from "./application/middleware/JwtMiddleware";
 import BaasFactory from "./infra/baas/BaasFactory";
 import Broker from "./infra/broker/Broker";
 import AxiosAdapter from "./infra/http/adapter/AxiosAdapter";
@@ -9,6 +8,5 @@ const app = new ExpressAdapter();
 const httpClient = new AxiosAdapter();
 const baasFactory = new BaasFactory(httpClient);
 const broker = new Broker();
-const authMiddleware = new JwtMiddleware();
-new Router(app, baasFactory, broker, authMiddleware);
+new Router(app, baasFactory, broker);
 export default app;

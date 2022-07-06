@@ -6,9 +6,9 @@ import HttpDTO from "../dto/HttpDTO";
 import HttpError from "../error/HttpError";
 
 export default class JwtMiddleware implements MiddlewareInterface {
-  private nextHandler: ControllerInterface | null = null;
+  private nextHandler: ControllerInterface;
 
-  setNext(controller: ControllerInterface): void {
+  constructor(controller: ControllerInterface) {
     this.nextHandler = controller;
   }
 
@@ -19,7 +19,7 @@ export default class JwtMiddleware implements MiddlewareInterface {
       try {
         headers.token = jwt.verify(token, env.JWT_SECRET);
         input.headers = headers;
-        return this.nextHandler ? await this.nextHandler.handle(input) : null;
+        return await this.nextHandler.handle(input);
       } catch (e) {
         throw new HttpError(401, "Invalid token");
       }
