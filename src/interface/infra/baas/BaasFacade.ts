@@ -1,8 +1,8 @@
-import AuthDTO from "../../application/dto/AuthDTO";
-import MakeBillPaymentDTO from "../../application/dto/MakeBillPaymentDTO";
-import MakeInternationalRechargeDTO from "../../application/dto/MakeInternationalRechargeDTO";
-import MakeNationalRechargeDTO from "../../application/dto/MakeNationalRechargeDTO";
-import OutputDTO from "../../application/dto/OutputDTO";
+import AuthDTO from "../../../application/dto/AuthDTO";
+import MakeBillPaymentDTO from "../../../application/dto/MakeBillPaymentDTO";
+import MakeInternationalRechargeDTO from "../../../application/dto/MakeInternationalRechargeDTO";
+import MakeNationalRechargeDTO from "../../../application/dto/MakeNationalRechargeDTO";
+import OutputDTO from "../../../application/dto/OutputDTO";
 
 export default interface BaasFacadeInterface {
   authorize(id: string): Promise<OutputDTO>;

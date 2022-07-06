@@ -1,6 +1,6 @@
 import env from "../../../../env";
 import OutputDTO from "../../../application/dto/OutputDTO";
-import HttpClientInterface from "../../http/interface/HttpClient";
+import HttpClientInterface from "../../../interface/infra/http/HttpClient";
 
 export default class consultNationalRechargeValues {
   constructor(readonly httpClient: HttpClientInterface) {}

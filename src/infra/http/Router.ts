@@ -1,9 +1,9 @@
-import AuthorizeController from "../../application/controller/AuthorizeController";
-import ConsultAvailableCountriesController from "../../application/controller/ConsultAvailableCountriesController";
-import JwtMiddleware from "../../application/middleware/JwtMiddleware";
-import BaasFactoryInterface from "../../domain/baas/BaasFactory";
+import AuthorizeController from "../../interface/controller/AuthorizeController";
+import ConsultAvailableCountriesController from "../../interface/controller/ConsultAvailableCountriesController";
+import BaasFactoryInterface from "../../interface/infra/baas/BaasFactory";
+import HttpInterface from "../../interface/infra/http/Http";
+import JwtMiddleware from "../../interface/middleware/JwtMiddleware";
 import Broker from "../broker/Broker";
-import HttpInterface from "./interface/Http";
 
 export default class Router {
   constructor(readonly http: HttpInterface, readonly baasFactory: BaasFactoryInterface, readonly broker: Broker) {

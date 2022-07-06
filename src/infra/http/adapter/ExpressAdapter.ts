@@ -1,10 +1,10 @@
 import express from "express";
 import HttpError from "../../../application/error/HttpError";
-import ControllerInterface from "../../../domain/application/Controller";
-import MiddlewareInterface from "../../../domain/application/Middleware";
-import Http from "../interface/Http";
+import ControllerInterface from "../../../application/interface/Controller";
+import MiddlewareInterface from "../../../application/interface/Middleware";
+import HttpInterface from "../../../interface/infra/http/Http";
 
-export default class ExpressAdapter implements Http {
+export default class ExpressAdapter implements HttpInterface {
   app: any;
   baseUrl: string = "/v1";
 

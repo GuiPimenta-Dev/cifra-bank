@@ -1,7 +1,8 @@
-import DomainEvent from "./interface/DomainEvent";
-import Handler from "./interface/Handler";
+import Handler from "../../domain/application/Handler";
+import DomainEvent from "../../domain/event/interface/DomainEvent";
+import BrokerInterface from "../../interface/infra/broker/Broker";
 
-export default class Broker {
+export default class Broker implements BrokerInterface {
   handlers: Handler[];
 
   constructor() {

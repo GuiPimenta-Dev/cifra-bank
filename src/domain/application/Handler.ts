@@ -1,4 +1,4 @@
-import DomainEvent from "./DomainEvent";
+import DomainEvent from "../event/interface/DomainEvent";
 
 export default interface Handler {
   name: string;

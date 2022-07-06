@@ -1,5 +1,5 @@
 import env from "../../../../env";
-import HttpClientInterface from "../../http/interface/HttpClient";
+import HttpClientInterface from "../../../interface/infra/http/HttpClient";
 
 export default class Authorize {
   constructor(protected httpClient: HttpClientInterface) {}

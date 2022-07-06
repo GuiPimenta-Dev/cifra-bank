@@ -2,7 +2,7 @@ import axios from "axios";
 import env from "../../../../env";
 import OutputDTO from "../../../application/dto/OutputDTO";
 import HttpError from "../../../application/error/HttpError";
-import HttpClientInterface from "../interface/HttpClient";
+import HttpClientInterface from "../../../interface/infra/http/HttpClient";
 
 export default class AxiosAdapter implements HttpClientInterface {
   async get(url: string, query?: {}, headers?: {}): Promise<OutputDTO> {

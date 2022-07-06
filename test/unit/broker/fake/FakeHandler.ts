@@ -1,4 +1,4 @@
-import Handler from "../../../../src/infra/broker/interface/Handler";
+import Handler from "../../../../src/domain/application/Handler";
 import FakeDomainEvent from "./FakeDomainEvent";
 
 export default class FakeHandler implements Handler {
