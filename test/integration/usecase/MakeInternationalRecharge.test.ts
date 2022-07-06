@@ -1,14 +1,14 @@
-import TokenDTO from "../../../src/application/dto/TokenDTO";
+import AuthDTO from "../../../src/application/dto/AuthDTO";
 import MakeInternationalRecharge from "../../../src/application/usecase/MakeInternationalRecharge";
 import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import Broker from "../../../src/infra/broker/Broker";
 import AxiosAdapter from "../../../src/infra/http/adapter/AxiosAdapter";
 import FakeMakeInternationalRechargeHandler from "../utils/fake/handler/FakeMakeInternationalRechargeHandler";
-import { getToken } from "../utils/fixtures";
+import { getAuth } from "../utils/fixtures";
 
-let token: TokenDTO;
+let auth: AuthDTO;
 beforeAll(async () => {
-  token = await getToken();
+  auth = await getAuth();
 });
 
 test("Should be able to make an international recharge", async () => {
@@ -24,7 +24,7 @@ test("Should be able to make an international recharge", async () => {
     productId: 5,
     phone: { countryCode: 509, number: 48227030 },
   };
-  const { data } = await makeInternationalRecharge.execute(body, token);
+  const { data } = await makeInternationalRecharge.execute(body, auth);
   expect(data).toHaveProperty("receipt");
   expect(fakeMakeInternationalRechargeHandler.fakeRepository).toHaveLength(1);
   expect(fakeMakeInternationalRechargeHandler.fakeRepository[0].document).toBe("35914746817");

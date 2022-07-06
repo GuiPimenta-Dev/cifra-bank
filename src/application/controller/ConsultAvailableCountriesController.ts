@@ -9,6 +9,6 @@ export default class ConsultAvailableCountriesController implements ControllerIn
   async handle(input: HttpDTO): Promise<any> {
     const { query, headers } = input;
     const consultAvailableCountries = new ConsultAvailableCountries(this.baasFactory);
-    return await consultAvailableCountries.execute(query.page, headers.token);
+    return await consultAvailableCountries.execute(query.page, headers.auth);
   }
 }

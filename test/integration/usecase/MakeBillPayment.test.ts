@@ -1,14 +1,14 @@
-import TokenDTO from "../../../src/application/dto/TokenDTO";
+import AuthDTO from "../../../src/application/dto/AuthDTO";
 import MakeBillPayment from "../../../src/application/usecase/MakeBillPayment";
 import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import Broker from "../../../src/infra/broker/Broker";
 import FakeMakeBillPaylmentHandler from "../utils/fake/handler/FakeMakeBillPaymentHandler";
 import FakeMakeBillPaymentHttpClient from "../utils/fake/httpclient/FakeMakeBillPaymentHttpClient";
-import { getToken } from "../utils/fixtures";
+import { getAuth } from "../utils/fixtures";
 
-let token: TokenDTO;
+let auth: AuthDTO;
 beforeAll(async () => {
-  token = await getToken();
+  auth = await getAuth();
 });
 
 test("It should be able to make a bill payment", async () => {
@@ -31,7 +31,7 @@ test("It should be able to make a bill payment", async () => {
     dueDate: "07/07/2022",
     transactionId: 816318661,
   };
-  const { data } = await makeBillPayment.execute(body, token);
+  const { data } = await makeBillPayment.execute(body, auth);
   expect(data).toHaveProperty("receipt");
   expect(fakeMakeBillPaymentHandler.fakeRepository).toHaveLength(1);
   expect(fakeMakeBillPaymentHandler.fakeRepository[0].document).toBe("51680002000100");

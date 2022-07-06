@@ -13,10 +13,10 @@ export default class Authorize implements UseCaseInterface {
     this.cellcoinFacade = baasFactory.createCellcoinFacade();
   }
 
-  async execute(id: string): Promise<OutputDTO> {
+  async execute(id: string, document: string): Promise<OutputDTO> {
     const { data: cellcoinToken } = await this.cellcoinFacade.authorize(id);
 
-    const token = jwt.sign({ cellcoinToken }, env.JWT_SECRET, {
+    const token = jwt.sign({ document, cellcoinToken }, env.JWT_SECRET, {
       expiresIn: "40min",
     });
 

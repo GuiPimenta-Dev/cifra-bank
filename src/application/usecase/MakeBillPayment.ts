@@ -4,9 +4,9 @@ import BaasFactoryInterface from "../../domain/baas/BaasFactory";
 import Document from "../../domain/entity/Document";
 import BillPaymentMade from "../../domain/event/BillPaymentMade";
 import Broker from "../../infra/broker/Broker";
+import AuthDTO from "../dto/AuthDTO";
 import MakeBillPaymentDTO from "../dto/MakeBillPaymentDTO";
 import OutputDTO from "../dto/OutputDTO";
-import TokenDTO from "../dto/TokenDTO";
 
 export default class MakeBillPayment implements UseCaseInterface {
   baasFacade: BaasFacadeInterface;
@@ -15,7 +15,7 @@ export default class MakeBillPayment implements UseCaseInterface {
     this.baasFacade = baasFactory.createCellcoinFacade();
   }
 
-  async execute(input: MakeBillPaymentDTO, token: TokenDTO): Promise<OutputDTO> {
+  async execute(input: MakeBillPaymentDTO, token: AuthDTO): Promise<OutputDTO> {
     const { value } = input.billData;
     input.document = new Document(input.document).getDocument();
     const { statusCode, data } = await this.baasFacade.makeBillPayment(input, token);

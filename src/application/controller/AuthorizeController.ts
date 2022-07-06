@@ -12,6 +12,6 @@ export default class AuthorizeController implements ControllerInterface {
   async handle(input: HttpDTO): Promise<any> {
     const { body } = input;
     const authorize = new Authorize(this.baasFactory);
-    return await authorize.execute(body.id);
+    return await authorize.execute(body.id, body.document);
   }
 }

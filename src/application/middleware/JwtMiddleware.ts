@@ -17,7 +17,7 @@ export default class JwtMiddleware implements MiddlewareInterface {
     const token = authorization.split(" ")[1];
     if (token) {
       try {
-        headers.token = jwt.verify(token, env.JWT_SECRET);
+        headers.auth = jwt.verify(token, env.JWT_SECRET);
         input.headers = headers;
         return await this.nextHandler.handle(input);
       } catch (e) {

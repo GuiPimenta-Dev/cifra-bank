@@ -5,9 +5,9 @@ import Document from "../../domain/entity/Document";
 import InternationalPhone from "../../domain/entity/InternationalPhone";
 import InternationalRechargeMade from "../../domain/event/InternationalRechargeMade";
 import Broker from "../../infra/broker/Broker";
+import AuthDTO from "../dto/AuthDTO";
 import MakeInternationalRechargeDTO from "../dto/MakeInternationalRechargeDTO";
 import OutputDTO from "../dto/OutputDTO";
-import TokenDTO from "../dto/TokenDTO";
 
 export default class MakeInternationalRecharge implements UseCaseInterface {
   baasFacade: BaasFacadeInterface;
@@ -16,7 +16,7 @@ export default class MakeInternationalRecharge implements UseCaseInterface {
     this.baasFacade = baasFactory.createCellcoinFacade();
   }
 
-  async execute(input: MakeInternationalRechargeDTO, token: TokenDTO): Promise<OutputDTO> {
+  async execute(input: MakeInternationalRechargeDTO, token: AuthDTO): Promise<OutputDTO> {
     const { value, productId, phone } = input;
     new InternationalPhone(phone.countryCode, phone.number);
     const document = new Document(input.document).getDocument();

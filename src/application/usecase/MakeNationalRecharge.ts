@@ -5,9 +5,9 @@ import Document from "../../domain/entity/Document";
 import NationalPhone from "../../domain/entity/NationalPhone";
 import NationalRechargeMade from "../../domain/event/NationalRechargeMade";
 import Broker from "../../infra/broker/Broker";
+import AuthDTO from "../dto/AuthDTO";
 import MakeNationalRechargeDTO from "../dto/MakeNationalRechargeDTO";
 import OutputDTO from "../dto/OutputDTO";
-import TokenDTO from "../dto/TokenDTO";
 
 export default class NationalRecharge implements UseCaseInterface {
   baasFacade: BaasFacadeInterface;
@@ -16,7 +16,7 @@ export default class NationalRecharge implements UseCaseInterface {
     this.baasFacade = baasFactory.createCellcoinFacade();
   }
 
-  async execute(input: MakeNationalRechargeDTO, token: TokenDTO): Promise<OutputDTO> {
+  async execute(input: MakeNationalRechargeDTO, token: AuthDTO): Promise<OutputDTO> {
     const { value, providerId, phone } = input;
     new NationalPhone(phone.countryCode, phone.stateCode, phone.number);
     const document = new Document(input.document).getDocument();
