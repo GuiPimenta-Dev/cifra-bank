@@ -1,4 +1,4 @@
-import Handler from "../../../../../src/domain/application/Handler";
+import Handler from "../../../../../src/application/handler/implements/Handler";
 import NationalRechargeMade from "../../../../../src/domain/event/NationalRechargeMade";
 
 export default class FakeMakeNationalRechargeHandler implements Handler {

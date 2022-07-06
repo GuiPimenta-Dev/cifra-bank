@@ -1,4 +1,4 @@
-import DomainEvent from "./interface/DomainEvent";
+import DomainEvent from "./implements/DomainEvent";
 
 export default class BillPaymentMade implements DomainEvent {
   name = "BillPaymentMade";

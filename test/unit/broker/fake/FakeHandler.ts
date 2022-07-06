@@ -1,4 +1,4 @@
-import Handler from "../../../../src/domain/application/Handler";
+import Handler from "../../../../src/application/handler/implements/Handler";
 import FakeDomainEvent from "./FakeDomainEvent";
 
 export default class FakeHandler implements Handler {
