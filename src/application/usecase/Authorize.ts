@@ -4,6 +4,7 @@ import env from "../../../env";
 import UseCaseInterface from "../../domain/application/UseCase";
 import BaasFacadeInterface from "../../domain/baas/BaasFacade";
 import BaasFactoryInterface from "../../domain/baas/BaasFactory";
+import OutputDTO from "../dto/OutputDTO";
 
 export default class Authorize implements UseCaseInterface {
   cellcoinFacade: BaasFacadeInterface;
@@ -12,13 +13,13 @@ export default class Authorize implements UseCaseInterface {
     this.cellcoinFacade = baasFactory.createCellcoinFacade();
   }
 
-  async execute(id: string): Promise<any> {
-    const cellcoinToken = await this.cellcoinFacade.authorize(id);
+  async execute(id: string): Promise<OutputDTO> {
+    const { data: cellcoinToken } = await this.cellcoinFacade.authorize(id);
 
     const token = jwt.sign({ cellcoinToken }, env.JWT_SECRET, {
       expiresIn: "40min",
     });
 
-    return { token };
+    return { statusCode: 200, data: { token } };
   }
 }

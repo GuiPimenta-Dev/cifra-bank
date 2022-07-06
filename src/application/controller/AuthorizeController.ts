@@ -1,6 +1,6 @@
 import ControllerInterface from "../../domain/application/Controller";
 import BaasFactoryInterface from "../../domain/baas/BaasFactory";
-import HttpDTO from "../dto/HttpDTO";
+import HttpDTO from "../dto/InputDTO";
 import Authorize from "../usecase/Authorize";
 
 export default class AuthorizeController implements ControllerInterface {

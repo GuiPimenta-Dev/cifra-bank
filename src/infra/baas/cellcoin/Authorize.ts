@@ -4,7 +4,7 @@ import HttpClientInterface from "../../http/interface/HttpClient";
 export default class Authorize {
   constructor(protected httpClient: HttpClientInterface) {}
 
-  async authorize(id: string): Promise<string> {
+  async authorize(id: string): Promise<any> {
     return await this.httpClient.authorize(id, env.CELLCOIN_BASE_URL + "/token");
   }
 }

@@ -13,11 +13,12 @@ beforeAll(() => {
 });
 
 test("It should be able to get token", async () => {
-  const response = await httpClient.post(BASE_URL + "/authorize", {
+  const { statusCode, data } = await httpClient.post(BASE_URL + "/authorize", {
     id: "41b44ab9a56440.teste.celcoinapi.v5",
     document: "35914746817",
   });
-  expect(response).toHaveProperty("token");
+  expect(statusCode).toBe(200);
+  expect(data).toHaveProperty("token");
 });
 
 afterAll(() => {

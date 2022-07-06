@@ -12,6 +12,6 @@ test("It should be able to consult providers", async () => {
   const httpClient = new AxiosAdapter();
   const baasFactory = new BaasFactory(httpClient);
   const consultNationalProviders = new ConsultNationalProviders(baasFactory);
-  const response = await consultNationalProviders.execute(13, token);
-  expect(response).toHaveProperty("providers");
+  const { data } = await consultNationalProviders.execute(13, token);
+  expect(data).toHaveProperty("providers");
 });

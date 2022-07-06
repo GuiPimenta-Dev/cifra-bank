@@ -12,6 +12,6 @@ test("Should be able to consult national recharge values", async () => {
   const httpClient = new AxiosAdapter();
   const baasFactory = new BaasFactory(httpClient);
   const nationalRechargeValues = new ConsultNationalRechargeValues(baasFactory);
-  const response = await nationalRechargeValues.execute(11, 2125, token);
-  expect(response).toHaveProperty("values");
+  const { data } = await nationalRechargeValues.execute(11, 2125, token);
+  expect(data).toHaveProperty("values");
 });

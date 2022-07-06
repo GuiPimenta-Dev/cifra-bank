@@ -24,7 +24,7 @@ export default class ExpressAdapter implements Http {
       try {
         const { query, body, headers, params } = req;
         const output = await fn.handle({ query, body, headers, path: params });
-        return res.json(output);
+        res.status(output.statusCode).json(output.data);
       } catch (e: any) {
         if (e instanceof HttpError) {
           return res.status(e.statusCode).json({ message: e.message });

@@ -1,4 +1,4 @@
-export default interface HttpDTO {
+export default interface InputDTO {
   query: any;
   body: any;
   headers: any;

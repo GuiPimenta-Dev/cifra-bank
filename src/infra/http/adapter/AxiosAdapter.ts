@@ -1,14 +1,17 @@
 import axios from "axios";
 import env from "../../../../env";
+import OutputDTO from "../../../application/dto/OutputDTO";
+import HttpError from "../../../application/error/HttpError";
 import HttpClientInterface from "../interface/HttpClient";
 
 export default class AxiosAdapter implements HttpClientInterface {
-  async get(url: string, query?: {}, headers?: {}): Promise<any> {
-    const response = await axios.get(url, { params: query, headers });
-    return response.data;
+  async get(url: string, query?: {}, headers?: {}): Promise<OutputDTO> {
+    const { status: statusCode, data, statusText: message } = await axios.get(url, { params: query, headers });
+    if (statusCode > 299) throw new HttpError(statusCode, message);
+    return { statusCode, data };
   }
 
-  async post(url: string, data: any, headers?: {}): Promise<any> {
+  async post(url: string, body: any, headers?: {}): Promise<any> {
     const options = {
       method: "POST",
       url,
@@ -16,13 +19,14 @@ export default class AxiosAdapter implements HttpClientInterface {
         ...headers,
         "Content-Type": "application/json",
       },
-      data,
+      data: body,
     };
-    const response = await axios.request(options);
-    return response.status, response.data;
+    const { status: statusCode, data, statusText: message } = await axios.request(options);
+    if (statusCode > 299) throw new HttpError(statusCode, message);
+    return { statusCode, data };
   }
 
-  async put(url: string, data: any, headers?: {}): Promise<any> {
+  async put(url: string, body: any, headers?: {}): Promise<OutputDTO> {
     const options = {
       method: "PUT",
       url,
@@ -30,22 +34,24 @@ export default class AxiosAdapter implements HttpClientInterface {
         ...headers,
         "Content-Type": "application/json",
       },
-      data,
+      data: body,
     };
-    const response = await axios.request(options);
-    return response.data;
+    const { status: statusCode, data, statusText: message } = await axios.request(options);
+    if (statusCode > 299) throw new HttpError(statusCode, message);
+    return { statusCode, data };
   }
 
-  async authorize(id: string, url: string): Promise<string> {
-    const data = {
+  async authorize(id: string, url: string): Promise<any> {
+    const body = {
       client_id: id,
       grant_type: "client_credentials",
       client_secret: env.CELLCOIN_SECRET,
     };
-    const options = await this.parseAuthorizeOptions("POST", url, data);
-    const response = await axios.request(options);
-    const { access_token: token } = response.data;
-    return token;
+    const options = await this.parseAuthorizeOptions("POST", url, body);
+    const { status: statusCode, data, statusText: message } = await axios.request(options);
+    if (statusCode > 299) throw new HttpError(statusCode, message);
+    const { access_token: token } = data;
+    return { statusCode, data: token, message };
   }
 
   private async parseAuthorizeOptions(method: string, url: string, data: any, headers?: any) {

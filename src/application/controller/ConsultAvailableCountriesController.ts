@@ -1,6 +1,6 @@
 import ControllerInterface from "../../domain/application/Controller";
 import BaasFactoryInterface from "../../domain/baas/BaasFactory";
-import HttpDTO from "../dto/HttpDTO";
+import HttpDTO from "../dto/InputDTO";
 import ConsultAvailableCountries from "../usecase/ConsultAvailableCountries";
 
 export default class ConsultAvailableCountriesController implements ControllerInterface {
@@ -9,7 +9,6 @@ export default class ConsultAvailableCountriesController implements ControllerIn
   async handle(input: HttpDTO): Promise<any> {
     const { query, headers } = input;
     const consultAvailableCountries = new ConsultAvailableCountries(this.baasFactory);
-    const response = await consultAvailableCountries.execute(query.page, headers.token);
-    return response;
+    return await consultAvailableCountries.execute(query.page, headers.token);
   }
 }

@@ -1,6 +1,8 @@
+import OutputDTO from "../../../application/dto/OutputDTO";
+
 export default interface HttpClientInterface {
-  authorize(id: string, url: string): Promise<string>;
-  get(url: string, query?: {}, headers?: {}): Promise<any>;
-  post(url: string, data: any, headers?: {}): Promise<any>;
-  put(url: string, data: any, headers?: {}): Promise<any>;
+  authorize(id: string, url: string): Promise<OutputDTO>;
+  get(url: string, query?: {}, headers?: {}): Promise<OutputDTO>;
+  post(url: string, body: any, headers?: {}): Promise<OutputDTO>;
+  put(url: string, body: any, headers?: {}): Promise<OutputDTO>;
 }

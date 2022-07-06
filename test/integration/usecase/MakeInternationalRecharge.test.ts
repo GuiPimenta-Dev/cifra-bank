@@ -18,14 +18,14 @@ test("Should be able to make an international recharge", async () => {
   const fakeMakeInternationalRechargeHandler = new FakeMakeInternationalRechargeHandler();
   broker.register(fakeMakeInternationalRechargeHandler);
   const makeInternationalRecharge = new MakeInternationalRecharge(baasFactory, broker);
-  const data = {
+  const body = {
     document: "35914746817",
     value: 5.43,
     productId: 5,
     phone: { countryCode: 509, number: 48227030 },
   };
-  const response = await makeInternationalRecharge.execute(data, token);
-  expect(response).toHaveProperty("receipt");
+  const { data } = await makeInternationalRecharge.execute(body, token);
+  expect(data).toHaveProperty("receipt");
   expect(fakeMakeInternationalRechargeHandler.fakeRepository).toHaveLength(1);
   expect(fakeMakeInternationalRechargeHandler.fakeRepository[0].document).toBe("35914746817");
   expect(fakeMakeInternationalRechargeHandler.fakeRepository[0].name).toBe("InternationalRechargeMade");

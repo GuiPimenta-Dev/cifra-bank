@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import env from "../../../env";
 import ControllerInterface from "../../domain/application/Controller";
 import MiddlewareInterface from "../../domain/application/Middleware";
-import HttpDTO from "../dto/HttpDTO";
+import HttpDTO from "../dto/InputDTO";
 import HttpError from "../error/HttpError";
 
 export default class JwtMiddleware implements MiddlewareInterface {

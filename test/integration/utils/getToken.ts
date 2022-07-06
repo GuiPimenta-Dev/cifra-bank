@@ -9,7 +9,6 @@ export default async (): Promise<TokenDTO> => {
   const httpClient = new AxiosAdapter();
   const baasFactory = new BaasFactory(httpClient);
   const authorize = new Authorize(baasFactory);
-  const response = await authorize.execute("41b44ab9a56440.teste.celcoinapi.v5");
-  expect(response.token).toBeDefined();
-  return jwt.verify(response.token, env.JWT_SECRET) as TokenDTO;
+  const { data } = await authorize.execute("41b44ab9a56440.teste.celcoinapi.v5");
+  return jwt.verify(data.token, env.JWT_SECRET) as TokenDTO;
 };

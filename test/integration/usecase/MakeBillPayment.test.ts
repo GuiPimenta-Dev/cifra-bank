@@ -18,7 +18,7 @@ test("It should be able to make a bill payment", async () => {
   const fakeMakeBillPaymentHandler = new FakeMakeBillPaylmentHandler();
   broker.register(fakeMakeBillPaymentHandler);
   const makeBillPayment = new MakeBillPayment(baasFactory, broker);
-  const data = {
+  const body = {
     document: "51680002000100",
     billData: {
       value: 77.55,
@@ -31,9 +31,8 @@ test("It should be able to make a bill payment", async () => {
     dueDate: "07/07/2022",
     transactionId: 816318661,
   };
-  // const token = env.TOKEN;
-  const response = await makeBillPayment.execute(data, token);
-  expect(response).toHaveProperty("receipt");
+  const { data } = await makeBillPayment.execute(body, token);
+  expect(data).toHaveProperty("receipt");
   expect(fakeMakeBillPaymentHandler.fakeRepository).toHaveLength(1);
   expect(fakeMakeBillPaymentHandler.fakeRepository[0].document).toBe("51680002000100");
   expect(fakeMakeBillPaymentHandler.fakeRepository[0].name).toBe("BillPaymentMade");

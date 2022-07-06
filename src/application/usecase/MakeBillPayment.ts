@@ -5,6 +5,7 @@ import Document from "../../domain/entity/Document";
 import BillPaymentMade from "../../domain/event/BillPaymentMade";
 import Broker from "../../infra/broker/Broker";
 import MakeBillPaymentDTO from "../dto/MakeBillPaymentDTO";
+import OutputDTO from "../dto/OutputDTO";
 import TokenDTO from "../dto/TokenDTO";
 
 export default class MakeBillPayment implements UseCaseInterface {
@@ -14,11 +15,11 @@ export default class MakeBillPayment implements UseCaseInterface {
     this.baasFacade = baasFactory.createCellcoinFacade();
   }
 
-  async execute(input: MakeBillPaymentDTO, token: TokenDTO): Promise<{ receipt: string }> {
+  async execute(input: MakeBillPaymentDTO, token: TokenDTO): Promise<OutputDTO> {
     const { value } = input.billData;
     input.document = new Document(input.document).getDocument();
-    const { receipt, transactionId } = await this.baasFacade.makeBillPayment(input, token);
-    this.broker.publish(new BillPaymentMade(input.document, transactionId, value));
-    return { receipt };
+    const { statusCode, data } = await this.baasFacade.makeBillPayment(input, token);
+    this.broker.publish(new BillPaymentMade(input.document, data.transactionId, value));
+    return { statusCode, data };
   }
 }

@@ -12,6 +12,6 @@ test("It Should be able to consult all available countries", async () => {
   const httpClient = new AxiosAdapter();
   const baasFactory = new BaasFactory(httpClient);
   const consultAvailableCountries = new ConsultAvailableCountries(baasFactory);
-  const response = await consultAvailableCountries.execute(1, token);
-  expect(response).toHaveProperty("countries");
+  const { data } = await consultAvailableCountries.execute(1, token);
+  expect(data).toHaveProperty("countries");
 });
