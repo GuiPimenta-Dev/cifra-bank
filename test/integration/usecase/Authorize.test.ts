@@ -10,7 +10,7 @@ test("It should be able to authorize Cellcoin", async () => {
   const baasFactory = new BaasFactory(httpClient);
   const authorize = new Authorize(baasFactory);
   const { data } = await authorize.execute("41b44ab9a56440.teste.celcoinapi.v5", "35914746817");
-  expect(data.token).toBeDefined();
+  expect(data).toHaveProperty("token");
   const decodedToken = jwt.verify(data.token, env.JWT_SECRET) as AuthDTO;
   expect(typeof decodedToken).toBe("object");
   expect(decodedToken.document).toBe("35914746817");
