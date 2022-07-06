@@ -53,7 +53,7 @@ export default class CellcoinFacade implements BaasFacadeInterface {
   async makeBillPayment(input: MakeBillPaymentDTO, auth: AuthDTO): Promise<OutputDTO> {
     const cellcoin = new MakeBillPayment(this.httpClient);
     const { data } = await cellcoin.reserveBalance(input, auth.document, auth.cellcoinToken);
-    const { receiptformatted: receipt, transactionId } = data;
+    const { receipt, transactionId } = data;
     await cellcoin.confirmBillPayment(transactionId, auth.cellcoinToken);
     return { statusCode: 200, data: { receipt } };
   }
@@ -61,7 +61,7 @@ export default class CellcoinFacade implements BaasFacadeInterface {
   async makeNationalRecharge(input: MakeNationalRechargeDTO, auth: AuthDTO): Promise<OutputDTO> {
     const cellcoin = new MakeNationalRecharge(this.httpClient);
     const { data } = await cellcoin.reserveBalance(input, auth.document, auth.cellcoinToken);
-    const { receiptformatted: receipt, transactionId } = data;
+    const { receipt, transactionId } = data;
     await cellcoin.confirmRecharge(transactionId, auth.cellcoinToken);
     return { statusCode: 200, data: { receipt } };
   }
@@ -69,7 +69,7 @@ export default class CellcoinFacade implements BaasFacadeInterface {
   async makeInternationalRecharge(input: MakeInternationalRechargeDTO, auth: AuthDTO): Promise<OutputDTO> {
     const cellcoin = new MakeInternationalRecharge(this.httpClient);
     const { data } = await cellcoin.reserveBalance(input, auth.document, auth.cellcoinToken);
-    const { receiptformatted: receipt, transactionId } = data;
+    const { receipt, transactionId } = data;
     await cellcoin.confirmRecharge(transactionId, auth.cellcoinToken);
     return { statusCode: 200, data: { receipt } };
   }

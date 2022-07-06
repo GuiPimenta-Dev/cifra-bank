@@ -1,5 +1,6 @@
 import AuthorizeController from "../../interface/controller/AuthorizeController";
 import ConsultAvailableCountriesController from "../../interface/controller/ConsultAvailableCountriesController";
+import ConsultBillController from "../../interface/controller/ConsultBillController";
 import ConsultInternationalValuesController from "../../interface/controller/ConsultInternationalValuesController";
 import ConsultNationalProvidersController from "../../interface/controller/ConsultNationalProvidersController";
 import ConsultNationalValuesController from "../../interface/controller/ConsultNationalValuesController";
@@ -19,6 +20,7 @@ export default class Router {
     http.on("/national/providers", "get", new JwtMiddleware(new ConsultNationalProvidersController(baasFactory)));
     http.on("/national/values", "get", new JwtMiddleware(new ConsultNationalValuesController(baasFactory)));
     http.on("/bills", "post", new JwtMiddleware(new MakeBillPaymentController(baasFactory, broker)));
+    http.on("/bills", "get", new JwtMiddleware(new ConsultBillController(baasFactory)));
     http.on("/national/recharge", "post", new JwtMiddleware(new MakeNationalRechargeController(baasFactory, broker)));
     http.on(
       "/international/recharge",

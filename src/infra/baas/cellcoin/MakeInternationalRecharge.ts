@@ -20,9 +20,7 @@ export default class MakeInternationalRecharge {
         Authorization: `Bearer ${token}`,
       }
     );
-    const { receipt, transactionId } = data;
-    const { receiptFormatted } = receipt;
-    return { statusCode, data: { receiptFormatted, transactionId } };
+    return { statusCode, data };
   }
 
   async confirmRecharge(transactionId: number, token: string): Promise<OutputDTO> {

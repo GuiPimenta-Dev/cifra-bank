@@ -16,9 +16,7 @@ export default class MakeNationalRecharge {
     const { statusCode, data } = await this.httpClient.post(env.CELLCOIN_BASE_URL + "/transactions/topups", body, {
       Authorization: `Bearer ${token}`,
     });
-    const { receipt, transactionId } = data;
-    const { receiptFormatted } = receipt;
-    return { statusCode, data: { receiptFormatted, transactionId } };
+    return { statusCode, data };
   }
 
   async confirmRecharge(transactionId: number, token: string): Promise<OutputDTO> {
