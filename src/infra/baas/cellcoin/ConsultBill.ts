@@ -1,10 +1,10 @@
 import env from "../../../../env";
 import OutputDTO from "../../../application/dto/OutputDTO";
 import HttpClientInterface from "../../../interface/infra/http/HttpClient";
-export default class ConsultAccountData {
+export default class ConsultBill {
   constructor(readonly httpClient: HttpClientInterface) {}
 
-  async consultAccountData(type: number, digitable: string, token: string): Promise<OutputDTO> {
+  async consultBill(type: number, digitable: string, token: string): Promise<OutputDTO> {
     const body = {
       barCode: {
         type,

@@ -6,9 +6,13 @@ import HttpClientInterface from "../../../interface/infra/http/HttpClient";
 
 export default class AxiosAdapter implements HttpClientInterface {
   async get(url: string, query?: {}, headers?: {}): Promise<OutputDTO> {
-    const { status: statusCode, data, statusText: message } = await axios.get(url, { params: query, headers });
-    if (statusCode > 299) throw new HttpError(statusCode, message);
-    return { statusCode, data };
+    let response: any;
+    try {
+      response = await axios.get(url, { params: query, headers });
+    } catch (error: any) {
+      throw new HttpError(error.response.status, error.response.data.message);
+    }
+    return { statusCode: response.status, data: response.data };
   }
 
   async post(url: string, body: any, headers?: {}): Promise<any> {
@@ -21,9 +25,13 @@ export default class AxiosAdapter implements HttpClientInterface {
       },
       data: body,
     };
-    const { status: statusCode, data, statusText: message } = await axios.request(options);
-    if (statusCode > 299) throw new HttpError(statusCode, message);
-    return { statusCode, data };
+    let response: any;
+    try {
+      response = await axios.request(options);
+    } catch (error: any) {
+      throw new HttpError(error.response.status, error.response.data.message);
+    }
+    return { statusCode: response.status, data: response.data };
   }
 
   async put(url: string, body: any, headers?: {}): Promise<OutputDTO> {
@@ -36,9 +44,13 @@ export default class AxiosAdapter implements HttpClientInterface {
       },
       data: body,
     };
-    const { status: statusCode, data, statusText: message } = await axios.request(options);
-    if (statusCode > 299) throw new HttpError(statusCode, message);
-    return { statusCode, data };
+    let response: any;
+    try {
+      response = await axios.request(options);
+    } catch (error: any) {
+      throw new HttpError(error.response.status, error.response.data.message);
+    }
+    return { statusCode: response.status, data: response.data };
   }
 
   async authorize(id: string, url: string): Promise<any> {
@@ -47,11 +59,15 @@ export default class AxiosAdapter implements HttpClientInterface {
       grant_type: "client_credentials",
       client_secret: env.CELLCOIN_SECRET,
     };
-    const options = await this.parseAuthorizeOptions("POST", url, body);
-    const { status: statusCode, data, statusText: message } = await axios.request(options);
-    if (statusCode > 299) throw new HttpError(statusCode, message);
-    const { access_token: token } = data;
-    return { statusCode, data: token, message };
+    let response: any;
+    try {
+      const options = await this.parseAuthorizeOptions("POST", url, body);
+      response = await axios.request(options);
+    } catch (error: any) {
+      throw new HttpError(error.response.status, error.response.data.message);
+    }
+    const { access_token: token } = response.data;
+    return { statusCode: response.status, data: token };
   }
 
   private async parseAuthorizeOptions(method: string, url: string, data: any, headers?: any) {

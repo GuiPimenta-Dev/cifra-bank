@@ -6,9 +6,9 @@ import HttpClientInterface from "../../../interface/infra/http/HttpClient";
 export default class MakeBillPayment {
   constructor(readonly httpClient: HttpClientInterface) {}
 
-  async reserveBalance(input: MakeBillPaymentDTO, token: string): Promise<OutputDTO> {
+  async reserveBalance(input: MakeBillPaymentDTO, document: string, token: string): Promise<OutputDTO> {
     const body = {
-      cpfcnpj: input.document,
+      cpfcnpj: document,
       billData: {
         value: input.billData.value,
         originalValue: input.billData.originalValue,

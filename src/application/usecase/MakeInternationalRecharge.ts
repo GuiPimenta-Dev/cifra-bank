@@ -16,12 +16,12 @@ export default class MakeInternationalRecharge implements UseCaseInterface {
     this.baasFacade = baasFactory.createCellcoinFacade();
   }
 
-  async execute(input: MakeInternationalRechargeDTO, token: AuthDTO): Promise<OutputDTO> {
+  async execute(input: MakeInternationalRechargeDTO, auth: AuthDTO): Promise<OutputDTO> {
     const { value, productId, phone } = input;
     new InternationalPhone(phone.countryCode, phone.number);
-    const document = new Document(input.document).getDocument();
+    const document = new Document(auth.document).getDocument();
     const makeInternationalRechargeDTO = { value, document, productId, phone };
-    const { statusCode, data } = await this.baasFacade.makeInternationalRecharge(makeInternationalRechargeDTO, token);
+    const { statusCode, data } = await this.baasFacade.makeInternationalRecharge(makeInternationalRechargeDTO, auth);
     this.broker.publish(new InternationalRechargeMade(document, data.transactionId, value, productId));
     return { statusCode, data };
   }

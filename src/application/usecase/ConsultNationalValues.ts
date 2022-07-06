@@ -4,13 +4,13 @@ import BaasFactoryInterface from "../../interface/infra/baas/BaasFactory";
 import AuthDTO from "../dto/AuthDTO";
 import OutputDTO from "../dto/OutputDTO";
 
-export default class ConsultNationalRechargeValues implements UseCaseInterface {
+export default class ConsultNationalValues implements UseCaseInterface {
   baasFacade: BaasFacadeInterface;
 
   constructor(baasFactory: BaasFactoryInterface) {
     this.baasFacade = baasFactory.createCellcoinFacade();
   }
   async execute(stateCode: number, providerId: number, token: AuthDTO): Promise<OutputDTO> {
-    return this.baasFacade.consultNationalRechargeValues(stateCode, providerId, token);
+    return this.baasFacade.consultNationalValues(stateCode, providerId, token);
   }
 }

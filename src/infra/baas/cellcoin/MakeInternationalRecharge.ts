@@ -6,10 +6,10 @@ import HttpClientInterface from "../../../interface/infra/http/HttpClient";
 export default class MakeInternationalRecharge {
   constructor(readonly httpClient: HttpClientInterface) {}
 
-  async reserveBalance(input: MakeInternationalRechargeDTO, token: string): Promise<OutputDTO> {
+  async reserveBalance(input: MakeInternationalRechargeDTO, document: string, token: string): Promise<OutputDTO> {
     const body = {
       value: input.value,
-      cpfCnpj: input.document,
+      cpfCnpj: document,
       topupProductId: input.productId,
       phone: input.phone,
     };

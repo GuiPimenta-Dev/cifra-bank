@@ -27,7 +27,7 @@ test("Should be able to make a national recharge", async () => {
   const { data } = await makeNationalRecharge.execute(body, auth);
   expect(data).toHaveProperty("receipt");
   expect(fakeMakeNationalRechargeHandler.fakeRepository).toHaveLength(1);
-  expect(fakeMakeNationalRechargeHandler.fakeRepository[0].document).toBe("46949827881");
+  expect(fakeMakeNationalRechargeHandler.fakeRepository[0].document).toBe("35914746817");
   expect(fakeMakeNationalRechargeHandler.fakeRepository[0].name).toBe("NationalRechargeMade");
   expect(fakeMakeNationalRechargeHandler.fakeRepository[0]).toHaveProperty("transactionId");
   expect(fakeMakeNationalRechargeHandler.fakeRepository[0].value).toBe(15);

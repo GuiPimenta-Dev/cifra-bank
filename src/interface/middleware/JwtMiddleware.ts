@@ -14,16 +14,15 @@ export default class JwtMiddleware implements MiddlewareInterface {
 
   public async handle(input: HttpDTO): Promise<any> {
     const { authorization, ...headers } = input.headers;
+    if (!authorization) throw new HttpError(400, "Authorization header is required");
     const token = authorization.split(" ")[1];
-    if (token) {
-      try {
-        headers.auth = jwt.verify(token, env.JWT_SECRET);
-        input.headers = headers;
-        return await this.nextHandler.handle(input);
-      } catch (e) {
-        throw new HttpError(401, "Invalid token");
-      }
+    if (!token) throw new HttpError(401, "jwt token is required");
+    try {
+      headers.auth = jwt.verify(token, env.JWT_SECRET);
+    } catch (e) {
+      throw new HttpError(401, "Invalid token");
     }
-    throw new HttpError(401, "jwt token is required");
+    input.headers = headers;
+    return await this.nextHandler.handle(input);
   }
 }

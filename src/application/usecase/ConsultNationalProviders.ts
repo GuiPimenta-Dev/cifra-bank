@@ -10,6 +10,7 @@ export default class ConsultNationalProviders implements UseCaseInterface {
   constructor(baasFactory: BaasFactoryInterface) {
     this.baasFacade = baasFactory.createCellcoinFacade();
   }
+
   async execute(stateCode: number, token: AuthDTO): Promise<OutputDTO> {
     return this.baasFacade.consultNationalProviders(stateCode, token);
   }

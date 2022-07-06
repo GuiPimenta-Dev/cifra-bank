@@ -1,6 +1,6 @@
 // import "dotenv";
 import AuthDTO from "../../../src/application/dto/AuthDTO";
-import ConsultAccountData from "../../../src/application/usecase/ConsultAccountData";
+import ConsultBill from "../../../src/application/usecase/ConsultBill";
 import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import FakeConsultAccountDataHttpClient from "../utils/fake/httpclient/FakeConsultAccountDataHttpClient";
 import { getAuth } from "../utils/fixtures";
@@ -12,8 +12,8 @@ beforeAll(async () => {
 test("It should be able to consult an account data", async () => {
   const httpClient = new FakeConsultAccountDataHttpClient();
   const baasFactory = new BaasFactory(httpClient);
-  const consultAccountData = new ConsultAccountData(baasFactory);
-  const { data } = await consultAccountData.execute(1, "846700000009775501090119004723678639901264282574", auth);
+  const consultBill = new ConsultBill(baasFactory);
+  const { data } = await consultBill.execute(1, "846700000009775501090119004723678639901264282574", auth);
   expect(data).toHaveProperty("transactionId");
   expect(data.value).toBe(77.55);
 });

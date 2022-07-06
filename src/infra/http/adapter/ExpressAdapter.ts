@@ -27,7 +27,7 @@ export default class ExpressAdapter implements HttpInterface {
         res.status(output.statusCode).json(output.data);
       } catch (e: any) {
         if (e instanceof HttpError) {
-          return res.status(e.statusCode).json({ message: e.message });
+          return res.status(e.statusCode || 500).json({ message: e.message });
         }
         res.status(422).json({ message: e.message });
       }

@@ -15,11 +15,11 @@ export default class MakeBillPayment implements UseCaseInterface {
     this.baasFacade = baasFactory.createCellcoinFacade();
   }
 
-  async execute(input: MakeBillPaymentDTO, token: AuthDTO): Promise<OutputDTO> {
+  async execute(input: MakeBillPaymentDTO, auth: AuthDTO): Promise<OutputDTO> {
     const { value } = input.billData;
-    input.document = new Document(input.document).getDocument();
-    const { statusCode, data } = await this.baasFacade.makeBillPayment(input, token);
-    this.broker.publish(new BillPaymentMade(input.document, data.transactionId, value));
+    auth.document = new Document(auth.document).getDocument();
+    const { statusCode, data } = await this.baasFacade.makeBillPayment(input, auth);
+    this.broker.publish(new BillPaymentMade(auth.document, data.transactionId, value));
     return { statusCode, data };
   }
 }

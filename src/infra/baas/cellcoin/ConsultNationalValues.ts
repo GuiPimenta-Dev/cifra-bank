@@ -2,10 +2,10 @@ import env from "../../../../env";
 import OutputDTO from "../../../application/dto/OutputDTO";
 import HttpClientInterface from "../../../interface/infra/http/HttpClient";
 
-export default class consultNationalRechargeValues {
+export default class consultNationalValues {
   constructor(readonly httpClient: HttpClientInterface) {}
 
-  async consultNationalRechargeValues(stateCode: number, providerId: number, token: string): Promise<OutputDTO> {
+  async consultNationalValues(stateCode: number, providerId: number, token: string): Promise<OutputDTO> {
     const { statusCode, data } = await this.httpClient.get(
       env.CELLCOIN_BASE_URL + "/transactions/topups/provider-values",
       { stateCode, providerId },

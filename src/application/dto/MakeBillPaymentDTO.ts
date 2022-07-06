@@ -9,7 +9,6 @@ interface barCodeDTO {
 }
 
 export default interface MakeBillPaymentDTO {
-  document: string;
   billData: billDataDTO;
   barCode: barCodeDTO;
   dueDate: string;
