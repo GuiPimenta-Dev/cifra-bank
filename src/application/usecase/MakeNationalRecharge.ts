@@ -1,15 +1,14 @@
-import UseCaseInterface from "../../domain/application/UseCase";
 import Document from "../../domain/entity/Document";
 import NationalPhone from "../../domain/entity/NationalPhone";
 import NationalRechargeMade from "../../domain/event/NationalRechargeMade";
+import BaasFacadeInterface from "../../domain/infra/baas/BaasFacade";
+import BaasFactoryInterface from "../../domain/infra/baas/BaasFactory";
 import Broker from "../../infra/broker/Broker";
-import BaasFacadeInterface from "../../interface/infra/baas/BaasFacade";
-import BaasFactoryInterface from "../../interface/infra/baas/BaasFactory";
 import AuthDTO from "../dto/AuthDTO";
 import MakeNationalRechargeDTO from "../dto/MakeNationalRechargeDTO";
 import OutputDTO from "../dto/OutputDTO";
 
-export default class NationalRecharge implements UseCaseInterface {
+export default class NationalRecharge {
   baasFacade: BaasFacadeInterface;
 
   constructor(baasFactory: BaasFactoryInterface, readonly broker: Broker) {

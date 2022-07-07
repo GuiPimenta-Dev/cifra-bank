@@ -4,7 +4,7 @@
     "test": "tsc && jest ./dist",
     "coverage": "npx jest --coverage --runInBand",
     "start": "nodemon",
-    "debug": "tsnd --inspect --respawn --transpile-only --ignore-watch node_modules --no-notify server.ts"
+    "debug": "tsnd --inspect --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts"
   },
   "devDependencies": {
     "@types/jest": "^28.1.3",

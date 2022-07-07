@@ -1,11 +1,10 @@
-import UseCaseInterface from "../../domain/application/UseCase";
 import InternationalPhone from "../../domain/entity/InternationalPhone";
-import BaasFacadeInterface from "../../interface/infra/baas/BaasFacade";
-import BaasFactoryInterface from "../../interface/infra/baas/BaasFactory";
+import BaasFacadeInterface from "../../domain/infra/baas/BaasFacade";
+import BaasFactoryInterface from "../../domain/infra/baas/BaasFactory";
 import AuthDTO from "../dto/AuthDTO";
 import OutputDTO from "../dto/OutputDTO";
 
-export default class ConsultInternationalValues implements UseCaseInterface {
+export default class ConsultInternationalValues {
   baasFacade: BaasFacadeInterface;
 
   constructor(baasFactory: BaasFactoryInterface) {

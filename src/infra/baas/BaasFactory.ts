@@ -1,6 +1,6 @@
-import BaasFacadeInterface from "../../interface/infra/baas/BaasFacade";
-import BaasFactoryInterface from "../../interface/infra/baas/BaasFactory";
-import HttpClientInterface from "../../interface/infra/http/HttpClient";
+import BaasFacadeInterface from "../../domain/infra/baas/BaasFacade";
+import BaasFactoryInterface from "../../domain/infra/baas/BaasFactory";
+import HttpClientInterface from "../../domain/infra/http/HttpClient";
 import CellcoinFacade from "./facade/CellcoinFacade";
 
 export default class BaasFactory implements BaasFactoryInterface {

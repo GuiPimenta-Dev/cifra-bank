@@ -2,7 +2,7 @@ import axios from "axios";
 import env from "../../../../env";
 import OutputDTO from "../../../application/dto/OutputDTO";
 import HttpError from "../../../application/error/HttpError";
-import HttpClientInterface from "../../../interface/infra/http/HttpClient";
+import HttpClientInterface from "../../../domain/infra/http/HttpClient";
 
 export default class AxiosAdapter implements HttpClientInterface {
   async get(url: string, query?: {}, headers?: {}): Promise<OutputDTO> {
@@ -10,7 +10,7 @@ export default class AxiosAdapter implements HttpClientInterface {
     try {
       response = await axios.get(url, { params: query, headers });
     } catch (error: any) {
-      throw new HttpError(error.response.status, error.response.data.message);
+      throw new HttpError(error.response.status, error.response.data.message || error.response.statusText);
     }
     return { statusCode: response.status, data: response.data };
   }
@@ -29,7 +29,7 @@ export default class AxiosAdapter implements HttpClientInterface {
     try {
       response = await axios.request(options);
     } catch (error: any) {
-      throw new HttpError(error.response.status, error.response.data.message);
+      throw new HttpError(error.response.status, error.response.data.message || error.response.statusText);
     }
     return { statusCode: response.status, data: response.data };
   }
@@ -48,7 +48,7 @@ export default class AxiosAdapter implements HttpClientInterface {
     try {
       response = await axios.request(options);
     } catch (error: any) {
-      throw new HttpError(error.response.status, error.response.data.message);
+      throw new HttpError(error.response.status, error.response.data.message || error.response.statusText);
     }
     return { statusCode: response.status, data: response.data };
   }
@@ -64,7 +64,7 @@ export default class AxiosAdapter implements HttpClientInterface {
       const options = await this.parseAuthorizeOptions("POST", url, body);
       response = await axios.request(options);
     } catch (error: any) {
-      throw new HttpError(error.response.status, error.response.data.message);
+      throw new HttpError(error.response.status, error.response.data.message || error.response.statusText);
     }
     const { access_token: token } = response.data;
     return { statusCode: response.status, data: token };

@@ -1,6 +1,6 @@
 import Handler from "../../application/handler/implements/Handler";
 import DomainEvent from "../../domain/event/implements/DomainEvent";
-import BrokerInterface from "../../interface/infra/broker/Broker";
+import BrokerInterface from "../../domain/infra/broker/Broker";
 
 export default class Broker implements BrokerInterface {
   handlers: Handler[];

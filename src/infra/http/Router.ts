@@ -1,31 +1,19 @@
-import AuthorizeController from "../../interface/controller/AuthorizeController";
-import ConsultAvailableCountriesController from "../../interface/controller/ConsultAvailableCountriesController";
-import ConsultBillController from "../../interface/controller/ConsultBillController";
-import ConsultInternationalValuesController from "../../interface/controller/ConsultInternationalValuesController";
-import ConsultNationalProvidersController from "../../interface/controller/ConsultNationalProvidersController";
-import ConsultNationalValuesController from "../../interface/controller/ConsultNationalValuesController";
-import MakeBillPaymentController from "../../interface/controller/MakeBillPaymentController";
-import MakeInternationalRechargeController from "../../interface/controller/MakeInternationalRechargeController";
-import MakeNationalRechargeController from "../../interface/controller/MakeNationalRechargeController";
-import BaasFactoryInterface from "../../interface/infra/baas/BaasFactory";
-import HttpInterface from "../../interface/infra/http/Http";
-import JwtMiddleware from "../../interface/middleware/JwtMiddleware";
-import Broker from "../broker/Broker";
+import express from "express";
+import Controller from "../../application/controller/Controller";
+import { verifyToken } from "../../application/middleware/Middlewares";
+import ExpressAdapter from "./adapter/ExpressAdapter";
 
-export default class Router {
-  constructor(readonly http: HttpInterface, readonly baasFactory: BaasFactoryInterface, readonly broker: Broker) {
-    http.on("/authorize", "post", new AuthorizeController(baasFactory));
-    http.on("/international/countries", "get", new JwtMiddleware(new ConsultAvailableCountriesController(baasFactory)));
-    http.on("/international/values", "get", new JwtMiddleware(new ConsultInternationalValuesController(baasFactory)));
-    http.on("/national/providers", "get", new JwtMiddleware(new ConsultNationalProvidersController(baasFactory)));
-    http.on("/national/values", "get", new JwtMiddleware(new ConsultNationalValuesController(baasFactory)));
-    http.on("/bills", "post", new JwtMiddleware(new MakeBillPaymentController(baasFactory, broker)));
-    http.on("/bills", "get", new JwtMiddleware(new ConsultBillController(baasFactory)));
-    http.on("/national/recharge", "post", new JwtMiddleware(new MakeNationalRechargeController(baasFactory, broker)));
-    http.on(
-      "/international/recharge",
-      "post",
-      new JwtMiddleware(new MakeInternationalRechargeController(baasFactory, broker))
-    );
-  }
-}
+const app = express();
+app.use(express.json());
+
+app.post("/authorize", ExpressAdapter.create(Controller.authorize));
+app.post("/bills", ExpressAdapter.create(verifyToken, Controller.makeBillPayment));
+app.post("/national/recharge", ExpressAdapter.create(verifyToken, Controller.makeNationalRecharge));
+app.post("/international/recharge", ExpressAdapter.create(verifyToken, Controller.makeInternationalRecharge));
+app.get("/international/countries", ExpressAdapter.create(verifyToken, Controller.consultAvailableCountries));
+app.get("/international/values", ExpressAdapter.create(verifyToken, Controller.consultInternationalValues));
+app.get("/bills", ExpressAdapter.create(verifyToken, Controller.consultBill));
+app.get("/national/providers", ExpressAdapter.create(verifyToken, Controller.consultNationalProviders));
+app.get("/national/values", ExpressAdapter.create(verifyToken, Controller.consultNationalProviders));
+
+export default app;

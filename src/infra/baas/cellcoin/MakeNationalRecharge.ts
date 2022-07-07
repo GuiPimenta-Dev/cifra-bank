@@ -1,7 +1,7 @@
 import env from "../../../../env";
 import MakeNationalRechargeDTO from "../../../application/dto/MakeNationalRechargeDTO";
 import OutputDTO from "../../../application/dto/OutputDTO";
-import HttpClientInterface from "../../../interface/infra/http/HttpClient";
+import HttpClientInterface from "../../../domain/infra/http/HttpClient";
 
 export default class MakeNationalRecharge {
   constructor(readonly httpClient: HttpClientInterface) {}

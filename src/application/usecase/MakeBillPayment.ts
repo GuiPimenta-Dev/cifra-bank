@@ -1,17 +1,16 @@
-import UseCaseInterface from "../../domain/application/UseCase";
 import Document from "../../domain/entity/Document";
 import BillPaymentMade from "../../domain/event/BillPaymentMade";
-import Broker from "../../infra/broker/Broker";
-import BaasFacadeInterface from "../../interface/infra/baas/BaasFacade";
-import BaasFactoryInterface from "../../interface/infra/baas/BaasFactory";
+import BaasFacadeInterface from "../../domain/infra/baas/BaasFacade";
+import BaasFactoryInterface from "../../domain/infra/baas/BaasFactory";
+import BrokerInterface from "../../domain/infra/broker/Broker";
 import AuthDTO from "../dto/AuthDTO";
 import MakeBillPaymentDTO from "../dto/MakeBillPaymentDTO";
 import OutputDTO from "../dto/OutputDTO";
 
-export default class MakeBillPayment implements UseCaseInterface {
+export default class MakeBillPayment {
   baasFacade: BaasFacadeInterface;
 
-  constructor(baasFactory: BaasFactoryInterface, readonly broker: Broker) {
+  constructor(baasFactory: BaasFactoryInterface, readonly broker: BrokerInterface) {
     this.baasFacade = baasFactory.createCellcoinFacade();
   }
 

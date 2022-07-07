@@ -1,10 +1,10 @@
 import Authorize from "../../../src/application/usecase/Authorize";
 import BaasFactory from "../../../src/infra/baas/BaasFactory";
 import AxiosAdapter from "../../../src/infra/http/adapter/AxiosAdapter";
-import app from "../../../src/main";
+import app from "../../../src/infra/http/Router";
 
 const PORT = 3001;
-const BASE_URL = `http://localhost:${PORT}/v1`;
+const BASE_URL = `http://localhost:${PORT}`;
 
 let httpClient: AxiosAdapter;
 let server: any;

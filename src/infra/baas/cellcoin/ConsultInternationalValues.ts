@@ -1,6 +1,6 @@
 import env from "../../../../env";
 import OutputDTO from "../../../application/dto/OutputDTO";
-import HttpClientInterface from "../../../interface/infra/http/HttpClient";
+import HttpClientInterface from "../../../domain/infra/http/HttpClient";
 
 export default class consultInternationalValues {
   constructor(readonly httpClient: HttpClientInterface) {}
