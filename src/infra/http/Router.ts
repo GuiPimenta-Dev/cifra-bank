@@ -14,6 +14,6 @@ app.get("/international/countries", ExpressAdapter.create(verifyToken, Controlle
 app.get("/international/values", ExpressAdapter.create(verifyToken, Controller.consultInternationalValues));
 app.get("/bills", ExpressAdapter.create(verifyToken, Controller.consultBill));
 app.get("/national/providers", ExpressAdapter.create(verifyToken, Controller.consultNationalProviders));
-app.get("/national/values", ExpressAdapter.create(verifyToken, Controller.consultNationalProviders));
+app.get("/national/values", ExpressAdapter.create(verifyToken, Controller.consultNationalValues));
 
 export default app;
