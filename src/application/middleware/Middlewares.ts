@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 import env from "../../../env";
-import InputDTO from "../dto/InputDTO";
+import InputDTO from "../../domain/dto/InputDTO";
 import HttpError from "../error/HttpError";
 
-export async function verifyToken(input: InputDTO): Promise<any> {
+export async function verifyToken(input: InputDTO): Promise<void> {
   const { authorization } = input.headers;
   if (!authorization) throw new HttpError(400, "Authorization header is required");
   const token = authorization.split(" ")[1];
