@@ -3,8 +3,8 @@ import AuthDTO from "../../../../src/domain/dto/AuthDTO";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import Broker from "../../../../src/infra/broker/Broker";
 import AxiosAdapter from "../../../../src/infra/http/adapter/AxiosAdapter";
-import FakeMakeInternationalRechargeHandler from "../../utils/fake/handler/FakeMakeInternationalRechargeHandler";
-import { getAuth } from "../../utils/fixtures";
+import FakeMakeInternationalRechargeHandler from "../../../utils/fake/handler/FakeMakeInternationalRechargeHandler";
+import { getAuth } from "../../../utils/fixtures";
 
 let auth: AuthDTO;
 beforeAll(async () => {

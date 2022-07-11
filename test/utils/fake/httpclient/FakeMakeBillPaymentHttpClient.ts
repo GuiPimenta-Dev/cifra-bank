@@ -1,5 +1,5 @@
-import OutputDTO from "../../../../../src/domain/dto/OutputDTO";
-import HttpClientInterface from "../../../../../src/domain/infra/http/HttpClient";
+import OutputDTO from "../../../../src/domain/dto/OutputDTO";
+import HttpClientInterface from "../../../../src/domain/infra/http/HttpClient";
 
 export default class FakeMakeBillPaymentHttpClient implements HttpClientInterface {
   authorize(id: string, url: string): Promise<OutputDTO> {

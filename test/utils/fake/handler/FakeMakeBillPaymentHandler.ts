@@ -1,5 +1,5 @@
-import Handler from "../../../../../src/application/handler/implements/Handler";
-import BillPaymentMade from "../../../../../src/domain/event/BillPaymentMade";
+import Handler from "../../../../src/application/handler/implements/Handler";
+import BillPaymentMade from "../../../../src/domain/event/BillPaymentMade";
 
 export default class FakeMakeBillPaylmentHandler implements Handler {
   name = "BillPaymentMade";

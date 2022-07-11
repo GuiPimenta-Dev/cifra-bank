@@ -12,6 +12,13 @@ let authorization: string;
 
 beforeAll(() => {
   server = app.listen(PORT);
+  process.on("uncaughtException", (error, origin) => {
+    console.log(`\n${origin} signal received: \n${error}`);
+  });
+
+  process.on("unhandledRejection", (error) => {
+    console.log(`\nunhandledRejection signal received: \n${error}`);
+  });
   httpClient = new AxiosAdapter();
 });
 

@@ -2,7 +2,7 @@ import ConsultInternationalValues from "../../../../src/application/usecase/inte
 import AuthDTO from "../../../../src/domain/dto/AuthDTO";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import AxiosAdapter from "../../../../src/infra/http/adapter/AxiosAdapter";
-import { getAuth } from "../../utils/fixtures";
+import { getAuth } from "../../../utils/fixtures";
 
 let auth: AuthDTO;
 beforeAll(async () => {

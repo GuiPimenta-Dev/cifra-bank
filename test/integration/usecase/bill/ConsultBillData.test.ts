@@ -2,8 +2,8 @@
 import ConsultBill from "../../../../src/application/usecase/bill/ConsultBill";
 import AuthDTO from "../../../../src/domain/dto/AuthDTO";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
-import FakeConsultAccountDataHttpClient from "../../utils/fake/httpclient/FakeConsultAccountDataHttpClient";
-import { getAuth } from "../../utils/fixtures";
+import FakeConsultAccountDataHttpClient from "../../../utils/fake/httpclient/FakeConsultAccountDataHttpClient";
+import { getAuth } from "../../../utils/fixtures";
 
 let auth: AuthDTO;
 beforeAll(async () => {
