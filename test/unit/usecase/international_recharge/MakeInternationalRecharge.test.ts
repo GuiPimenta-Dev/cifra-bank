@@ -1,7 +1,7 @@
 import MakeInternationalRecharge from "../../../../src/application/usecase/international_recharge/MakeInternationalRecharge";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import Broker from "../../../../src/infra/broker/Broker";
-import FakeMakeInternationalRechargeHandler from "../../../utils/fake/handler/FakeMakeInternationalRechargeHandler";
+import FakeHandler from "../../../utils/fake/broker/FakeHandler";
 import FakeHttpClient from "../../../utils/fake/httpclient/FakeHttpClient";
 import { fakeAuth } from "../../../utils/Fixtures";
 
@@ -11,8 +11,9 @@ test("Should be able to make an international recharge", async () => {
   const baasFactory = new BaasFactory(httpClient);
   const internationalRechargeFacade = baasFactory.createInternationalRechargeFacade();
   const broker = new Broker();
-  const fakeMakeInternationalRechargeHandler = new FakeMakeInternationalRechargeHandler();
-  broker.register(fakeMakeInternationalRechargeHandler);
+  const fakeHandler = new FakeHandler();
+  fakeHandler.setName("InternationalRechargeMade");
+  broker.register(fakeHandler);
   const makeInternationalRecharge = new MakeInternationalRecharge(internationalRechargeFacade, broker);
   const body = {
     document: "35914746817",
@@ -22,10 +23,10 @@ test("Should be able to make an international recharge", async () => {
   };
   const { data } = await makeInternationalRecharge.execute(body, fakeAuth());
   expect(data.receipt).toBe("fake-receipt");
-  expect(fakeMakeInternationalRechargeHandler.fakeRepository).toHaveLength(1);
-  expect(fakeMakeInternationalRechargeHandler.fakeRepository[0].document).toBe("35914746817");
-  expect(fakeMakeInternationalRechargeHandler.fakeRepository[0].name).toBe("InternationalRechargeMade");
-  expect(fakeMakeInternationalRechargeHandler.fakeRepository[0].transactionId).toBe(123456789);
-  expect(fakeMakeInternationalRechargeHandler.fakeRepository[0].value).toBe(5.43);
-  expect(fakeMakeInternationalRechargeHandler.fakeRepository[0].productId).toBe(5);
+  expect(fakeHandler.fakeRepository).toHaveLength(1);
+  expect(fakeHandler.fakeRepository[0].document).toBe("35914746817");
+  expect(fakeHandler.fakeRepository[0].name).toBe("InternationalRechargeMade");
+  expect(fakeHandler.fakeRepository[0].transactionId).toBe(123456789);
+  expect(fakeHandler.fakeRepository[0].value).toBe(5.43);
+  expect(fakeHandler.fakeRepository[0].productId).toBe(5);
 });

@@ -1,7 +1,7 @@
 import MakeBillPayment from "../../../../src/application/usecase/bill/MakeBillPayment";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import Broker from "../../../../src/infra/broker/Broker";
-import FakeMakeBillPaylmentHandler from "../../../utils/fake/handler/FakeMakeBillPaymentHandler";
+import FakeHandler from "../../../utils/fake/broker/FakeHandler";
 import FakeHttpClient from "../../../utils/fake/httpclient/FakeHttpClient";
 import { fakeAuth } from "../../../utils/Fixtures";
 
@@ -11,8 +11,9 @@ test("It should be able to make a bill payment", async () => {
   const baasFactory = new BaasFactory(httpClient);
   const billFacade = baasFactory.createBillFacade();
   const broker = new Broker();
-  const fakeMakeBillPaymentHandler = new FakeMakeBillPaylmentHandler();
-  broker.register(fakeMakeBillPaymentHandler);
+  const fakeHandler = new FakeHandler();
+  fakeHandler.setName("BillPaymentMade");
+  broker.register(fakeHandler);
   const makeBillPayment = new MakeBillPayment(billFacade, broker);
   const body = {
     billData: {
@@ -28,8 +29,8 @@ test("It should be able to make a bill payment", async () => {
   };
   const { data } = await makeBillPayment.execute(body, fakeAuth());
   expect(data).toHaveProperty("receipt");
-  expect(fakeMakeBillPaymentHandler.fakeRepository).toHaveLength(1);
-  expect(fakeMakeBillPaymentHandler.fakeRepository[0].document).toBe("35914746817");
-  expect(fakeMakeBillPaymentHandler.fakeRepository[0].name).toBe("BillPaymentMade");
-  expect(fakeMakeBillPaymentHandler.fakeRepository[0].transactionId).toBe(123456789);
+  expect(fakeHandler.fakeRepository).toHaveLength(1);
+  expect(fakeHandler.fakeRepository[0].document).toBe("35914746817");
+  expect(fakeHandler.fakeRepository[0].name).toBe("BillPaymentMade");
+  expect(fakeHandler.fakeRepository[0].transactionId).toBe(123456789);
 });

@@ -1,11 +1,16 @@
 import Handler from "../../../../src/application/handler/implements/Handler";
-import FakeDomainEvent from "./FakeDomainEvent";
+import DomainEvent from "../../../../src/domain/event/implements/DomainEvent";
 
 export default class FakeHandler implements Handler {
-  name = "FakeDomainEventHappened";
-  constructor(readonly fakeRepository: FakeDomainEvent[] = []) {}
+  name = "";
 
-  handle(event: FakeDomainEvent): void {
+  constructor(readonly fakeRepository: any[] = []) {}
+
+  handle(event: DomainEvent): void {
     this.fakeRepository.push(event);
+  }
+
+  setName(name: string): void {
+    this.name = name;
   }
 }
