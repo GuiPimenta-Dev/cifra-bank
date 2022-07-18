@@ -3,7 +3,7 @@ import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import Broker from "../../../../src/infra/broker/Broker";
 import FakeMakeBillPaylmentHandler from "../../../utils/fake/handler/FakeMakeBillPaymentHandler";
 import FakeHttpClient from "../../../utils/fake/httpclient/FakeHttpClient";
-import { fakeAuth } from "../../../utils/fixtures";
+import { fakeAuth } from "../../../utils/Fixtures";
 
 test("It should be able to make a bill payment", async () => {
   const httpClient = new FakeHttpClient();

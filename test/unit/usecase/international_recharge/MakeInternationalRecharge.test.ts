@@ -3,7 +3,7 @@ import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import Broker from "../../../../src/infra/broker/Broker";
 import FakeMakeInternationalRechargeHandler from "../../../utils/fake/handler/FakeMakeInternationalRechargeHandler";
 import FakeHttpClient from "../../../utils/fake/httpclient/FakeHttpClient";
-import { fakeAuth } from "../../../utils/fixtures";
+import { fakeAuth } from "../../../utils/Fixtures";
 
 test("Should be able to make an international recharge", async () => {
   const httpClient = new FakeHttpClient();

@@ -1,6 +1,6 @@
 import request from "supertest";
 import app from "../../../src/infra/http/Router";
-import { getToken } from "../../utils/fixtures";
+import { getToken } from "../../utils/Fixtures";
 
 let authorization: string;
 beforeEach(async () => {
