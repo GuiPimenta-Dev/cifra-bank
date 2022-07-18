@@ -1,18 +1,14 @@
 import ConsultNationalProviders from "../../../../src/application/usecase/national_recharge/ConsultNationalProviders";
-import AuthDTO from "../../../../src/domain/dto/AuthDTO";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
-import AxiosAdapter from "../../../../src/infra/http/adapter/AxiosAdapter";
-import { getAuth } from "../../../utils/fixtures";
+import FakeHttpClient from "../../../utils/fake/httpclient/FakeHttpClient";
+import { fakeAuth } from "../../../utils/fixtures";
 
-let auth: AuthDTO;
-beforeAll(async () => {
-  auth = await getAuth();
-});
 test("It should be able to consult providers", async () => {
-  const httpClient = new AxiosAdapter();
+  const httpClient = new FakeHttpClient();
+  httpClient.mockGet({ providers: [] });
   const baasFactory = new BaasFactory(httpClient);
   const nationalRechargeFacade = baasFactory.createNationalRechargeFacade();
   const consultNationalProviders = new ConsultNationalProviders(nationalRechargeFacade);
-  const { data } = await consultNationalProviders.execute(13, auth);
+  const { data } = await consultNationalProviders.execute(13, fakeAuth());
   expect(data).toHaveProperty("providers");
 });

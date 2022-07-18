@@ -1,18 +1,13 @@
 import MakeNationalRecharge from "../../../../src/application/usecase/national_recharge/MakeNationalRecharge";
-import AuthDTO from "../../../../src/domain/dto/AuthDTO";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import Broker from "../../../../src/infra/broker/Broker";
-import AxiosAdapter from "../../../../src/infra/http/adapter/AxiosAdapter";
 import FakeMakeNationalRechargeHandler from "../../../utils/fake/handler/FakeMakeNationalRechargeHandler";
-import { getAuth } from "../../../utils/fixtures";
-
-let auth: AuthDTO;
-beforeAll(async () => {
-  auth = await getAuth();
-});
+import FakeHttpClient from "../../../utils/fake/httpclient/FakeHttpClient";
+import { fakeAuth } from "../../../utils/fixtures";
 
 test("Should be able to make a national recharge", async () => {
-  const httpClient = new AxiosAdapter();
+  const httpClient = new FakeHttpClient();
+  httpClient.mockPost({ receipt: "fake-receipt", transactionId: 123456789 });
   const baasFactory = new BaasFactory(httpClient);
   const broker = new Broker();
   const fakeMakeNationalRechargeHandler = new FakeMakeNationalRechargeHandler();
@@ -25,12 +20,12 @@ test("Should be able to make a national recharge", async () => {
     providerId: 2086,
     phone: { stateCode: 11, countryCode: 55, number: 999999999 },
   };
-  const { data } = await makeNationalRecharge.execute(body, auth);
-  expect(data).toHaveProperty("receipt");
+  const { data } = await makeNationalRecharge.execute(body, fakeAuth());
+  expect(data.receipt).toBe("fake-receipt");
   expect(fakeMakeNationalRechargeHandler.fakeRepository).toHaveLength(1);
   expect(fakeMakeNationalRechargeHandler.fakeRepository[0].document).toBe("35914746817");
   expect(fakeMakeNationalRechargeHandler.fakeRepository[0].name).toBe("NationalRechargeMade");
-  expect(fakeMakeNationalRechargeHandler.fakeRepository[0]).toHaveProperty("transactionId");
+  expect(fakeMakeNationalRechargeHandler.fakeRepository[0].transactionId).toBe(123456789);
   expect(fakeMakeNationalRechargeHandler.fakeRepository[0].value).toBe(15);
   expect(fakeMakeNationalRechargeHandler.fakeRepository[0].providerId).toBe(2086);
 });

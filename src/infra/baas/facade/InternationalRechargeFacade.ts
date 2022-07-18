@@ -25,6 +25,6 @@ export default class InternationalRechargeFacade implements InternationalRecharg
     const { data } = await internationalRecharge.reserveBalance(input, auth.document, auth.celcoinToken);
     const { receipt, transactionId } = data;
     await internationalRecharge.confirmRecharge(transactionId, auth.celcoinToken);
-    return { statusCode: 200, data: { receipt } };
+    return { statusCode: 200, data: { receipt, transactionId } };
   }
 }

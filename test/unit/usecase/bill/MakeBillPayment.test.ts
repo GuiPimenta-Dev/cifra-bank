@@ -1,18 +1,13 @@
 import MakeBillPayment from "../../../../src/application/usecase/bill/MakeBillPayment";
-import AuthDTO from "../../../../src/domain/dto/AuthDTO";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import Broker from "../../../../src/infra/broker/Broker";
 import FakeMakeBillPaylmentHandler from "../../../utils/fake/handler/FakeMakeBillPaymentHandler";
-import FakeMakeBillPaymentHttpClient from "../../../utils/fake/httpclient/FakeMakeBillPaymentHttpClient";
-import { getAuth } from "../../../utils/fixtures";
-
-let auth: AuthDTO;
-beforeAll(async () => {
-  auth = await getAuth();
-});
+import FakeHttpClient from "../../../utils/fake/httpclient/FakeHttpClient";
+import { fakeAuth } from "../../../utils/fixtures";
 
 test("It should be able to make a bill payment", async () => {
-  const httpClient = new FakeMakeBillPaymentHttpClient();
+  const httpClient = new FakeHttpClient();
+  httpClient.mockPost({ receipt: "fake-receipt", transactionId: 123456789 });
   const baasFactory = new BaasFactory(httpClient);
   const billFacade = baasFactory.createBillFacade();
   const broker = new Broker();
@@ -31,10 +26,10 @@ test("It should be able to make a bill payment", async () => {
     dueDate: "07/07/2022",
     transactionId: 816318661,
   };
-  const { data } = await makeBillPayment.execute(body, auth);
+  const { data } = await makeBillPayment.execute(body, fakeAuth());
   expect(data).toHaveProperty("receipt");
   expect(fakeMakeBillPaymentHandler.fakeRepository).toHaveLength(1);
   expect(fakeMakeBillPaymentHandler.fakeRepository[0].document).toBe("35914746817");
   expect(fakeMakeBillPaymentHandler.fakeRepository[0].name).toBe("BillPaymentMade");
-  expect(fakeMakeBillPaymentHandler.fakeRepository[0]).toHaveProperty("transactionId");
+  expect(fakeMakeBillPaymentHandler.fakeRepository[0].transactionId).toBe(123456789);
 });

@@ -25,6 +25,6 @@ export default class NationalRechargeFacade implements NationalRechargeFacadeInt
     const { data } = await nationalRecharge.reserveBalance(input, auth.document, auth.celcoinToken);
     const { receipt, transactionId } = data;
     await nationalRecharge.confirmRecharge(transactionId, auth.celcoinToken);
-    return { statusCode: 200, data: { receipt } };
+    return { statusCode: 200, data: { receipt, transactionId } };
   }
 }
