@@ -11,8 +11,7 @@ test("It should be able to make a bill payment", async () => {
   const baasFactory = new BaasFactory(httpClient);
   const billFacade = baasFactory.createBillFacade();
   const broker = new Broker();
-  const fakeHandler = new FakeHandler();
-  fakeHandler.setName("BillPaymentMade");
+  const fakeHandler = new FakeHandler("BillPaymentMade");
   broker.register(fakeHandler);
   const makeBillPayment = new MakeBillPayment(billFacade, broker);
   const body = {

@@ -10,9 +10,8 @@ test("Should be able to make a national recharge", async () => {
   httpClient.mockPost({ receipt: "fake-receipt", transactionId: 123456789 });
   const baasFactory = new BaasFactory(httpClient);
   const broker = new Broker();
-  const fakeHandler = new FakeHandler();
+  const fakeHandler = new FakeHandler("NationalRechargeMade");
   const nationalRechargeFacade = baasFactory.createNationalRechargeFacade();
-  fakeHandler.setName("NationalRechargeMade");
   broker.register(fakeHandler);
   const makeNationalRecharge = new MakeNationalRecharge(nationalRechargeFacade, broker);
   const body = {
