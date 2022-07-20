@@ -14,7 +14,6 @@ export default class Authorize {
     const token = jwt.sign({ document, celcoinToken }, env.JWT_SECRET, {
       expiresIn: "40min",
     });
-
     return { statusCode: 200, data: { token } };
   }
 }

@@ -6,6 +6,6 @@ export default class ConsultNationalValues {
   constructor(private nationalRecharge: NationalRechargeFacadeInterface) {}
 
   async execute(stateCode: number, providerId: number, token: AuthDTO): Promise<OutputDTO> {
-    return this.nationalRecharge.consultNationalValues(stateCode, providerId, token);
+    return await this.nationalRecharge.consultNationalValues(stateCode, providerId, token);
   }
 }

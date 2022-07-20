@@ -6,6 +6,6 @@ export default class ConsultBill {
   constructor(private billFacade: BillFacadeInterface) {}
 
   async execute(type: number, digitable: string, auth: AuthDTO): Promise<OutputDTO> {
-    return this.billFacade.consultBill(type, digitable, auth);
+    return await this.billFacade.consultBill(type, digitable, auth);
   }
 }
