@@ -2,7 +2,6 @@ import OutputDTO from "../../../../src/domain/dto/OutputDTO";
 import HttpClientInterface from "../../../../src/domain/infra/http/HttpClient";
 
 export default class FakeHttpClient implements HttpClientInterface {
-  private authorizeResponse: any;
   private getResponse: any;
   private postResponse: any;
   private putResponse: any;
