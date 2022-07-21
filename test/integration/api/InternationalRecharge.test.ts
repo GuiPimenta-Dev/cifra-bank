@@ -27,10 +27,9 @@ test("It should be able to consult international values", async () => {
 
 test("It should be able to make a international recharge", async () => {
   const { statusCode } = await request(app)
-    .post("/international/recharge")
+    .post("/international/recharge/5")
     .send({
       value: 85.99,
-      productId: 5,
       phone: {
         number: 48227030,
         countryCode: 509,

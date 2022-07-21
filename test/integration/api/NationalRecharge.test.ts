@@ -12,7 +12,7 @@ test("It should be able to consult national providers", async () => {
   const { statusCode } = await request(app)
     .get("/national/providers")
     .query({
-      stateCode: 13,
+      stateCode: 11,
     })
     .set({ authorization });
 
@@ -21,10 +21,9 @@ test("It should be able to consult national providers", async () => {
 
 test("It should be able to consult national values", async () => {
   const { statusCode } = await request(app)
-    .get("/national/values")
+    .get("/national/values/2125")
     .query({
       stateCode: 11,
-      providerId: 2125,
     })
     .set({ authorization });
 
@@ -33,10 +32,9 @@ test("It should be able to consult national values", async () => {
 
 test("It should be able to make a national recharge", async () => {
   const { statusCode } = await request(app)
-    .post("/national/recharge")
+    .post("/national/recharge/2125")
     .send({
       value: 85.99,
-      providerId: 2125,
       phone: {
         stateCode: 15,
         number: 993134307,

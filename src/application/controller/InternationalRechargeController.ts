@@ -26,8 +26,9 @@ export default class InternationalRechargeController {
   }
 
   static async makeInternationalRecharge(input: InputDTO): Promise<any> {
-    const { body, headers } = input;
+    const { body, path, headers } = input;
+    const data = { ...body, ...path };
     const makeInternationalRecharge = new MakeInternationalRecharge(internationalRechargeFacade, broker);
-    return makeInternationalRecharge.execute(body, headers.auth);
+    return makeInternationalRecharge.execute(data, headers.auth);
   }
 }

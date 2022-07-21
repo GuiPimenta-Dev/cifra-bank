@@ -20,14 +20,15 @@ export default class NationalRechargeController {
   }
 
   static async consultNationalValues(input: InputDTO): Promise<OutputDTO> {
-    const { query, headers } = input;
+    const { path, query, headers } = input;
     const consultNationalValues = new ConsultNationalValues(nationalRechargeFacade);
-    return consultNationalValues.execute(query.stateCode, query.providerId, headers.auth);
+    return consultNationalValues.execute(query.stateCode, path.providerId, headers.auth);
   }
 
   static async makeNationalRecharge(input: InputDTO): Promise<any> {
-    const { body, headers } = input;
+    const { body, path, headers } = input;
+    const data = { ...body, ...path };
     const makeNationalRecharge = new MakeNationalRecharge(nationalRechargeFacade, broker);
-    return makeNationalRecharge.execute(body, headers.auth);
+    return makeNationalRecharge.execute(data, headers.auth);
   }
 }

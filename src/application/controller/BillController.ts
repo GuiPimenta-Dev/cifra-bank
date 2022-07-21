@@ -12,14 +12,17 @@ const broker = new Broker();
 
 export default class BillController {
   static async consultBill(input: InputDTO): Promise<any> {
-    const { query, headers } = input;
+    const { query, path, headers } = input;
     const consultBill = new ConsultBill(billFacade);
-    return consultBill.execute(query.type, query.digitable, headers.auth);
+    return consultBill.execute(query.type, path.digitable, headers.auth);
   }
 
   static async makeBillPayment(input: InputDTO): Promise<any> {
-    const { body, headers } = input;
+    const { body, path, headers } = input;
+    const { barCode, ...bill } = body;
+    barCode.digitable = path.digitable;
+    const data = { ...bill, barCode };
     const makeBillPayment = new MakeBillPayment(billFacade, broker);
-    return makeBillPayment.execute(body, headers.auth);
+    return makeBillPayment.execute(data, headers.auth);
   }
 }

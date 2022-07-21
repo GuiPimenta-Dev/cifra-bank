@@ -10,10 +10,13 @@ const app = express();
 app.use(express.json());
 
 app.post("/authorize", ExpressAdapter.create(AuthorizeController.authorize));
-app.post("/bills", ExpressAdapter.create(verifyToken, BillController.makeBillPayment));
-app.post("/national/recharge", ExpressAdapter.create(verifyToken, NationalRechargeController.makeNationalRecharge));
+app.post("/bills/:digitable", ExpressAdapter.create(verifyToken, BillController.makeBillPayment));
 app.post(
-  "/international/recharge",
+  "/national/recharge/:providerId",
+  ExpressAdapter.create(verifyToken, NationalRechargeController.makeNationalRecharge)
+);
+app.post(
+  "/international/recharge/:productId",
   ExpressAdapter.create(verifyToken, InternationalRechargeController.makeInternationalRecharge)
 );
 app.get(
@@ -24,8 +27,11 @@ app.get(
   "/international/values",
   ExpressAdapter.create(verifyToken, InternationalRechargeController.consultInternationalValues)
 );
-app.get("/bills", ExpressAdapter.create(verifyToken, BillController.consultBill));
+app.get("/bills/:digitable", ExpressAdapter.create(verifyToken, BillController.consultBill));
 app.get("/national/providers", ExpressAdapter.create(verifyToken, NationalRechargeController.consultNationalProviders));
-app.get("/national/values", ExpressAdapter.create(verifyToken, NationalRechargeController.consultNationalValues));
+app.get(
+  "/national/values/:providerId",
+  ExpressAdapter.create(verifyToken, NationalRechargeController.consultNationalValues)
+);
 
 export default app;
