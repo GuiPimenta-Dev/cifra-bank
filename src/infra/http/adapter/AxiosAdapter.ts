@@ -9,7 +9,7 @@ export default class AxiosAdapter implements HttpClientInterface {
     try {
       response = await axios.get(url, { params: query, headers });
     } catch (error: any) {
-      throw new HttpError(error.response.status, error.response.data.message || error.response.statusText);
+      throw new HttpError(error.response.status, error.response.data || error.response.statusText);
     }
     return { statusCode: response.status, data: response.data };
   }
@@ -28,7 +28,7 @@ export default class AxiosAdapter implements HttpClientInterface {
     try {
       response = await axios.request(options);
     } catch (error: any) {
-      throw new HttpError(error.response.status, error.response.data.message || error.response.statusText);
+      throw new HttpError(error.response.status, error.response.data || error.response.statusText);
     }
     return { statusCode: response.status, data: response.data };
   }
@@ -47,7 +47,7 @@ export default class AxiosAdapter implements HttpClientInterface {
     try {
       response = await axios.request(options);
     } catch (error: any) {
-      throw new HttpError(error.response.status, error.response.data.message || error.response.statusText);
+      throw new HttpError(error.response.status, error.response.data || error.response.statusText);
     }
     return { statusCode: response.status, data: response.data };
   }
