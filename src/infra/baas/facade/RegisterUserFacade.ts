@@ -2,10 +2,12 @@ import HttpError from "../../../application/error/HttpError";
 import OutputDTO from "../../../domain/dto/application/OutputDTO";
 import ConfirmUserPhoneDTO from "../../../domain/dto/usecase/ConfirmUserPhoneDTO";
 import RegisterUserInfoDTO from "../../../domain/dto/usecase/RegisterUserInfoDTO";
+import UploadDocumentImageDTO from "../../../domain/dto/usecase/UploadDocumentImageDTO";
 import RegisterUserFacadeInterface from "../../../domain/infra/baas/facade/RegisterUserFacade";
 import HttpClient from "../../../domain/infra/http/HttpClient";
 import ConfirmUserPhone from "../cronos/register_user/ConfirmUserPhone";
 import RegisterUserInfo from "../cronos/register_user/RegisterUserInfo";
+import UploadDocumentImage from "../cronos/register_user/UploadDocumentImage";
 
 export default class RegisterUserFacade implements RegisterUserFacadeInterface {
   constructor(readonly httpClient: HttpClient) {}
@@ -23,5 +25,10 @@ export default class RegisterUserFacade implements RegisterUserFacadeInterface {
   confirmUserPhone(input: ConfirmUserPhoneDTO): Promise<OutputDTO> {
     const confirmUserPhone = new ConfirmUserPhone(this.httpClient);
     return confirmUserPhone.confirmSMSCode(input);
+  }
+
+  uploadDocumentImage(input: UploadDocumentImageDTO): Promise<OutputDTO> {
+    const uploadDocumentImage = new UploadDocumentImage(this.httpClient);
+    return uploadDocumentImage.sendImage(input);
   }
 }
