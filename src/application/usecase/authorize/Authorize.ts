@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 import env from "../../../../env";
-import OutputDTO from "../../../domain/dto/OutputDTO";
+import OutputDTO from "../../../domain/dto/application/OutputDTO";
 import Document from "../../../domain/entity/Document";
 import AuthorizeFacadeInterface from "../../../domain/infra/baas/facade/AuthorizeFacade";
 

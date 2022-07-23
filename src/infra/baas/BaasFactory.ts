@@ -4,9 +4,14 @@ import AuthorizeFacade from "./facade/AuthorizeFacade";
 import BillFacade from "./facade/BillFacade";
 import InternationalRechargeFacade from "./facade/InternationalRechargeFacade";
 import NationalRechargeFacade from "./facade/NationalRechargeFacade";
+import RegisterUserFacade from "./facade/RegisterUserFacade";
 
 export default class BaasFactory implements BaasFactoryInterface {
   constructor(readonly httpClient: HttpClientInterface) {}
+
+  createRegisterUserFacade(): RegisterUserFacade {
+    return new RegisterUserFacade(this.httpClient);
+  }
 
   createAuthorizeFacade(): AuthorizeFacade {
     return new AuthorizeFacade(this.httpClient);

@@ -1,7 +1,7 @@
 import ConsultNationalValues from "../../../../src/application/usecase/national_recharge/ConsultNationalValues";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
-import FakeHttpClient from "../../../utils/fake/httpclient/FakeHttpClient";
 import { fakeAuth } from "../../../utils/Fixtures";
+import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
 test("Should be able to consult national recharge values", async () => {
   const httpClient = new FakeHttpClient();

@@ -1,8 +1,8 @@
 // import "dotenv";
 import ConsultBill from "../../../../src/application/usecase/bill/ConsultBill";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
-import FakeHttpClient from "../../../utils/fake/httpclient/FakeHttpClient";
 import { fakeAuth } from "../../../utils/Fixtures";
+import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
 test("It should be able to consult an account data", async () => {
   const httpClient = new FakeHttpClient();

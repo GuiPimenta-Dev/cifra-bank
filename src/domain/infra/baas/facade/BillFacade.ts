@@ -1,6 +1,6 @@
-import AuthDTO from "../../../dto/AuthDTO";
-import MakeBillPaymentDTO from "../../../dto/MakeBillPaymentDTO";
-import OutputDTO from "../../../dto/OutputDTO";
+import AuthDTO from "../../../dto/application/AuthDTO";
+import OutputDTO from "../../../dto/application/OutputDTO";
+import MakeBillPaymentDTO from "../../../dto/usecase/MakeBillPaymentDTO";
 import HttpClientInterface from "../../http/HttpClient";
 
 export default interface BillFacadeInterface {

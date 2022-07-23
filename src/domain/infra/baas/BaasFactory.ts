@@ -3,9 +3,11 @@ import AuthorizeFacadeInterface from "./facade/AuthorizeFacade";
 import BillFacadeInterface from "./facade/BillFacade";
 import InternationalRechargeFacadeInterface from "./facade/InternationalRechargeFacade";
 import NationalRechargeFacadeInterface from "./facade/NationalRechargeFacade";
+import RegisterUserFacadeInterface from "./facade/RegisterUserFacade";
 
 export default interface BaasFactoryInterface {
   httpClient: HttpClientInterface;
+  createRegisterUserFacade(): RegisterUserFacadeInterface;
   createAuthorizeFacade(): AuthorizeFacadeInterface;
   createBillFacade(): BillFacadeInterface;
   createInternationalRechargeFacade(): InternationalRechargeFacadeInterface;

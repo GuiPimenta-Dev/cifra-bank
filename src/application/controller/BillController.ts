@@ -1,4 +1,4 @@
-import InputDTO from "../../domain/dto/InputDTO";
+import InputDTO from "../../domain/dto/application/InputDTO";
 import BaasFactory from "../../infra/baas/BaasFactory";
 import Broker from "../../infra/broker/Broker";
 import AxiosAdapter from "../../infra/http/adapter/AxiosAdapter";

@@ -1,4 +1,4 @@
-import OutputDTO from "../../../dto/OutputDTO";
+import OutputDTO from "../../../dto/application/OutputDTO";
 import HttpClientInterface from "../../http/HttpClient";
 
 export default interface AuthorizeFacadeInterface {

@@ -1,6 +1,6 @@
 import env from "../../../../../env";
-import MakeBillPaymentDTO from "../../../../domain/dto/MakeBillPaymentDTO";
-import OutputDTO from "../../../../domain/dto/OutputDTO";
+import OutputDTO from "../../../../domain/dto/application/OutputDTO";
+import MakeBillPaymentDTO from "../../../../domain/dto/usecase/MakeBillPaymentDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
 
 export default class MakeBillPayment {

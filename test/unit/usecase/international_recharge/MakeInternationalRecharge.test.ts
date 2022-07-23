@@ -1,9 +1,9 @@
 import MakeInternationalRecharge from "../../../../src/application/usecase/international_recharge/MakeInternationalRecharge";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import Broker from "../../../../src/infra/broker/Broker";
-import FakeHandler from "../../../utils/fake/broker/FakeHandler";
-import FakeHttpClient from "../../../utils/fake/httpclient/FakeHttpClient";
 import { fakeAuth } from "../../../utils/Fixtures";
+import FakeHandler from "../../../utils/mocks/broker/FakeHandler";
+import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
 test("Should be able to make an international recharge", async () => {
   const httpClient = new FakeHttpClient();

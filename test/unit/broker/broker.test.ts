@@ -1,6 +1,6 @@
 import Broker from "../../../src/infra/broker/Broker";
-import FakeDomainEvent from "../../utils/fake/broker/FakeDomainEvent";
-import FakeHandler from "../../utils/fake/broker/FakeHandler";
+import FakeDomainEvent from "../../utils/mocks/broker/FakeDomainEvent";
+import FakeHandler from "../../utils/mocks/broker/FakeHandler";
 
 let broker: Broker;
 

@@ -1,5 +1,5 @@
 import env from "../../../../../env";
-import OutputDTO from "../../../../domain/dto/OutputDTO";
+import OutputDTO from "../../../../domain/dto/application/OutputDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
 
 export default class ConsultNationalProviders {

@@ -1,9 +1,9 @@
 import MakeBillPayment from "../../../../src/application/usecase/bill/MakeBillPayment";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import Broker from "../../../../src/infra/broker/Broker";
-import FakeHandler from "../../../utils/fake/broker/FakeHandler";
-import FakeHttpClient from "../../../utils/fake/httpclient/FakeHttpClient";
 import { fakeAuth } from "../../../utils/Fixtures";
+import FakeHandler from "../../../utils/mocks/broker/FakeHandler";
+import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
 test("It should be able to make a bill payment", async () => {
   const httpClient = new FakeHttpClient();

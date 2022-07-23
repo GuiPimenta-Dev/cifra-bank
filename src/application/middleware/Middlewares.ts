@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import env from "../../../env";
-import InputDTO from "../../domain/dto/InputDTO";
+import InputDTO from "../../domain/dto/application/InputDTO";
 import HttpError from "../error/HttpError";
 
 export async function verifyToken(input: InputDTO): Promise<void> {

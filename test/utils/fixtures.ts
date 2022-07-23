@@ -1,5 +1,5 @@
 import Authorize from "../../src/application/usecase/authorize/Authorize";
-import AuthDTO from "../../src/domain/dto/AuthDTO";
+import AuthDTO from "../../src/domain/dto/application/AuthDTO";
 import BaasFactory from "../../src/infra/baas/BaasFactory";
 import AxiosAdapter from "../../src/infra/http/adapter/AxiosAdapter";
 
