@@ -1,3 +1,7 @@
+import RegisterAddressInfo from "../../../../src/application/usecase/register_user/RegisterAddressInfo";
+import BaasFactory from "../../../../src/infra/baas/BaasFactory";
+import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
+
 test("It should be able to register address info", async () => {
   const fakeHttpClient = new FakeHttpClient();
   fakeHttpClient.mockGet({
@@ -14,7 +18,7 @@ test("It should be able to register address info", async () => {
     postalCode: "85800-000",
     street: "Rua dos Bobos",
     number: "123",
-    addressType: 1,
+    addressType: "1",
     neighborhood: "Centro",
     city: "São Paulo",
     state: "SP",

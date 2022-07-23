@@ -2,12 +2,14 @@ import HttpError from "../../../application/error/HttpError";
 import OutputDTO from "../../../domain/dto/application/OutputDTO";
 import ConfirmUserPhoneDTO from "../../../domain/dto/usecase/ConfirmUserPhoneDTO";
 import RegisterAdditionalInfoDTO from "../../../domain/dto/usecase/RegisterAdditionalInfoDTO";
+import RegisterAddressInfoDTO from "../../../domain/dto/usecase/RegisterAddressInfoDTO";
 import RegisterUserInfoDTO from "../../../domain/dto/usecase/RegisterUserInfoDTO";
 import UploadDocumentImageDTO from "../../../domain/dto/usecase/UploadDocumentImageDTO";
 import RegisterUserFacadeInterface from "../../../domain/infra/baas/facade/RegisterUserFacade";
 import HttpClient from "../../../domain/infra/http/HttpClient";
 import ConfirmUserPhone from "../cronos/register_user/ConfirmUserPhone";
 import RegisterAdditionalInfo from "../cronos/register_user/RegisterAdditionalInfo";
+import RegisterAddressInfo from "../cronos/register_user/RegisterAddressInfo";
 import RegisterUserInfo from "../cronos/register_user/RegisterUserInfo";
 import UploadDocumentImage from "../cronos/register_user/UploadDocumentImage";
 import UploadSignature from "../cronos/register_user/UploadSignature";
@@ -43,5 +45,10 @@ export default class RegisterUserFacade implements RegisterUserFacadeInterface {
   async uploadSignature(document: string, file: File | string, type: string): Promise<OutputDTO> {
     const uploadSignature = new UploadSignature(this.httpClient);
     return await uploadSignature.sendSignature(document, file, type);
+  }
+
+  async registerAddressInfo(input: RegisterAddressInfoDTO): Promise<OutputDTO> {
+    const registerAddressInfo = new RegisterAddressInfo(this.httpClient);
+    return await registerAddressInfo.registerAddressInfo(input);
   }
 }
