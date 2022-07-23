@@ -1,11 +1,13 @@
 import HttpError from "../../../application/error/HttpError";
 import OutputDTO from "../../../domain/dto/application/OutputDTO";
 import ConfirmUserPhoneDTO from "../../../domain/dto/usecase/ConfirmUserPhoneDTO";
+import RegisterAdditionalInfoDTO from "../../../domain/dto/usecase/RegisterAdditionalInfoDTO";
 import RegisterUserInfoDTO from "../../../domain/dto/usecase/RegisterUserInfoDTO";
 import UploadDocumentImageDTO from "../../../domain/dto/usecase/UploadDocumentImageDTO";
 import RegisterUserFacadeInterface from "../../../domain/infra/baas/facade/RegisterUserFacade";
 import HttpClient from "../../../domain/infra/http/HttpClient";
 import ConfirmUserPhone from "../cronos/register_user/ConfirmUserPhone";
+import RegisterAdditionalInfo from "../cronos/register_user/RegisterAdditionalInfo";
 import RegisterUserInfo from "../cronos/register_user/RegisterUserInfo";
 import UploadDocumentImage from "../cronos/register_user/UploadDocumentImage";
 
@@ -22,13 +24,18 @@ export default class RegisterUserFacade implements RegisterUserFacadeInterface {
     return await registerUserInfo.registerUserPhone(individualId, phone.stateCode, phone.number);
   }
 
-  confirmUserPhone(input: ConfirmUserPhoneDTO): Promise<OutputDTO> {
+  async confirmUserPhone(input: ConfirmUserPhoneDTO): Promise<OutputDTO> {
     const confirmUserPhone = new ConfirmUserPhone(this.httpClient);
-    return confirmUserPhone.confirmSMSCode(input);
+    return await confirmUserPhone.confirmSMSCode(input);
   }
 
-  uploadDocumentImage(input: UploadDocumentImageDTO): Promise<OutputDTO> {
+  async uploadDocumentImage(input: UploadDocumentImageDTO): Promise<OutputDTO> {
     const uploadDocumentImage = new UploadDocumentImage(this.httpClient);
-    return uploadDocumentImage.sendImage(input);
+    return await uploadDocumentImage.sendImage(input);
+  }
+
+  async registerAdditionalInfo(input: RegisterAdditionalInfoDTO): Promise<OutputDTO> {
+    const registerAdditionalInfo = new RegisterAdditionalInfo(this.httpClient);
+    return await registerAdditionalInfo.sendInfo(input);
   }
 }

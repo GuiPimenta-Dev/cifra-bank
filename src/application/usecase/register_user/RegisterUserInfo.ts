@@ -1,3 +1,4 @@
+import OutputDTO from "../../../domain/dto/application/OutputDTO";
 import RegisterUserDTO from "../../../domain/dto/usecase/RegisterUserInfoDTO";
 import Document from "../../../domain/entity/Document";
 import NationalPhone from "../../../domain/entity/NationalPhone";
@@ -6,7 +7,7 @@ import RegisterUserFacadeInterface from "../../../domain/infra/baas/facade/Regis
 export default class RegisterUserInfo {
   constructor(private registerUser: RegisterUserFacadeInterface) {}
 
-  async execute(input: RegisterUserDTO) {
+  async execute(input: RegisterUserDTO): Promise<OutputDTO> {
     input.document = new Document(input.document).getDocument();
     const phone = input.phone;
     const BRAZIL_COUNTRY_CODE = 55;

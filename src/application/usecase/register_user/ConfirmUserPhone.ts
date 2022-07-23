@@ -11,6 +11,6 @@ export default class ConfirmUserPhone {
     input.document = new Document(input.document).getDocument();
     const BRAZIL_COUNTRY_CODE = 55;
     new NationalPhone(BRAZIL_COUNTRY_CODE, input.stateCode, input.number);
-    return this.registerUser.confirmUserPhone(input);
+    return await this.registerUser.confirmUserPhone(input);
   }
 }
