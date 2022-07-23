@@ -1,5 +1,4 @@
 interface PhoneDTO {
-  countryCode?: number;
   stateCode: number;
   number: number;
 }
