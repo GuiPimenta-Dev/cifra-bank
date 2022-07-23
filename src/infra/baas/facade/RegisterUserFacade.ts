@@ -10,6 +10,7 @@ import ConfirmUserPhone from "../cronos/register_user/ConfirmUserPhone";
 import RegisterAdditionalInfo from "../cronos/register_user/RegisterAdditionalInfo";
 import RegisterUserInfo from "../cronos/register_user/RegisterUserInfo";
 import UploadDocumentImage from "../cronos/register_user/UploadDocumentImage";
+import UploadSignature from "../cronos/register_user/UploadSignature";
 
 export default class RegisterUserFacade implements RegisterUserFacadeInterface {
   constructor(readonly httpClient: HttpClient) {}
@@ -37,5 +38,10 @@ export default class RegisterUserFacade implements RegisterUserFacadeInterface {
   async registerAdditionalInfo(input: RegisterAdditionalInfoDTO): Promise<OutputDTO> {
     const registerAdditionalInfo = new RegisterAdditionalInfo(this.httpClient);
     return await registerAdditionalInfo.sendInfo(input);
+  }
+
+  async uploadSignature(document: string, file: File | string, type: string): Promise<OutputDTO> {
+    const uploadSignature = new UploadSignature(this.httpClient);
+    return await uploadSignature.sendSignature(document, file, type);
   }
 }

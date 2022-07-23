@@ -1,5 +1,3 @@
-import BaasFactory from "../../../../src/infra/baas/BaasFactory";
-import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 test("It should be able to register address info", async () => {
   const fakeHttpClient = new FakeHttpClient();
   fakeHttpClient.mockGet({
