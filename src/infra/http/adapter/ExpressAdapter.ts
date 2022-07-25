@@ -6,7 +6,11 @@ export default class ExpressAdapter {
   static create() {
     const app = express();
     app.use(express.json());
-    app.use(fileUpload());
+    app.use(
+      fileUpload({
+        debug: true,
+      })
+    );
     return app;
   }
 

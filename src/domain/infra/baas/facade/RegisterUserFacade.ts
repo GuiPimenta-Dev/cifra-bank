@@ -12,7 +12,8 @@ export default interface RegisterUserFacadeInterface {
   confirmUserPhone(input: ConfirmUserPhoneDTO): Promise<OutputDTO>;
   uploadDocumentImage(input: UploadDocumentImageDTO): Promise<OutputDTO>;
   registerAdditionalInfo(input: RegisterAdditionalInfoDTO): Promise<OutputDTO>;
-  uploadSignature(document: string, file: File | string, type: string): Promise<OutputDTO>;
+  uploadSignature(document: string, file: any, type: string): Promise<OutputDTO>;
+  uploadSelfie(document: string, file: any): Promise<OutputDTO>;
   registerAddressInfo(input: RegisterAddressInfoDTO): Promise<OutputDTO>;
   createPassword(document: string, password: string, confirmPassword: string): Promise<OutputDTO>;
 }

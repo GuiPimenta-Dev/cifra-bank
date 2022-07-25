@@ -1,5 +1,3 @@
-export default class HttpError extends Error {
-  constructor(readonly statusCode: number, message?: any) {
-    super(message);
-  }
+export default class HttpError {
+  constructor(readonly statusCode: number, readonly message?: any) {}
 }

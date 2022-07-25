@@ -13,6 +13,7 @@ import RegisterAdditionalInfo from "../cronos/register_user/RegisterAdditionalIn
 import RegisterAddressInfo from "../cronos/register_user/RegisterAddressInfo";
 import RegisterUserInfo from "../cronos/register_user/RegisterUserInfo";
 import UploadDocumentImage from "../cronos/register_user/UploadDocumentImage";
+import UploadSelfie from "../cronos/register_user/UploadSelfie";
 import UploadSignature from "../cronos/register_user/UploadSignature";
 
 export default class RegisterUserFacade implements RegisterUserFacadeInterface {
@@ -46,6 +47,11 @@ export default class RegisterUserFacade implements RegisterUserFacadeInterface {
   async uploadSignature(document: string, file: File | string, type: string): Promise<OutputDTO> {
     const uploadSignature = new UploadSignature(this.httpClient);
     return await uploadSignature.sendSignature(document, file, type);
+  }
+
+  async uploadSelfie(document: string, file: any): Promise<OutputDTO> {
+    const uploadSelfie = new UploadSelfie(this.httpClient);
+    return await uploadSelfie.sendSelfie(document, file);
   }
 
   async registerAddressInfo(input: RegisterAddressInfoDTO): Promise<OutputDTO> {
