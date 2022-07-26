@@ -2,12 +2,12 @@ import AuthDTO from "../../../domain/dto/application/AuthDTO";
 import OutputDTO from "../../../domain/dto/application/OutputDTO";
 import MakeBillPaymentDTO from "../../../domain/dto/usecase/MakeBillPaymentDTO";
 import BillFacadeInterface from "../../../domain/infra/baas/facade/BillFacade";
-import HttpClient from "../../../domain/infra/http/HttpClient";
+import HttpClientInterface from "../../../domain/infra/http/HttpClient";
 import ConsultBill from "../celcoin/bill/ConsultBill";
 import MakeBillPayment from "../celcoin/bill/MakeBillPayment";
 
 export default class BillFacade implements BillFacadeInterface {
-  constructor(readonly httpClient: HttpClient) {}
+  constructor(readonly httpClient: HttpClientInterface) {}
 
   async consultBill(type: number, digitable: string, auth: AuthDTO): Promise<OutputDTO> {
     const bill = new ConsultBill(this.httpClient);

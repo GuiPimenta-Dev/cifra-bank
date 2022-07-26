@@ -27,8 +27,8 @@ test("must throw an error if there is no authorization header", async () => {
     files: {},
   };
   expect(() => {
-    return verifyToken(input);
-  }).rejects.toThrowError("Authorization header is required");
+    verifyToken(input);
+  }).toThrowError("Authorization header is required");
 });
 
 test("must throw an error if there is no token in authorization header", async () => {
@@ -42,8 +42,8 @@ test("must throw an error if there is no token in authorization header", async (
     files: {},
   };
   expect(() => {
-    return verifyToken(input);
-  }).rejects.toThrowError("jwt token is required");
+    verifyToken(input);
+  }).toThrowError("jwt token is required");
 });
 
 test("must throw an error if token is invalid", async () => {
@@ -57,6 +57,6 @@ test("must throw an error if token is invalid", async () => {
     files: {},
   };
   expect(() => {
-    return verifyToken(input);
-  }).rejects.toThrow("Invalid token");
+    verifyToken(input);
+  }).toThrowError("Invalid token");
 });

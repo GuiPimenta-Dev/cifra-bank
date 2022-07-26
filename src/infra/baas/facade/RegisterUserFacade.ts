@@ -6,7 +6,7 @@ import RegisterAddressInfoDTO from "../../../domain/dto/usecase/RegisterAddressI
 import RegisterUserInfoDTO from "../../../domain/dto/usecase/RegisterUserInfoDTO";
 import UploadDocumentImageDTO from "../../../domain/dto/usecase/UploadDocumentImageDTO";
 import RegisterUserFacadeInterface from "../../../domain/infra/baas/facade/RegisterUserFacade";
-import HttpClient from "../../../domain/infra/http/HttpClient";
+import HttpClientInterface from "../../../domain/infra/http/HttpClient";
 import ConfirmUserPhone from "../cronos/register_user/ConfirmUserPhone";
 import CreatePassword from "../cronos/register_user/CreatePassword";
 import RegisterAdditionalInfo from "../cronos/register_user/RegisterAdditionalInfo";
@@ -17,7 +17,7 @@ import UploadSelfie from "../cronos/register_user/UploadSelfie";
 import UploadSignature from "../cronos/register_user/UploadSignature";
 
 export default class RegisterUserFacade implements RegisterUserFacadeInterface {
-  constructor(readonly httpClient: HttpClient) {}
+  constructor(readonly httpClient: HttpClientInterface) {}
 
   async registerUserInfo(input: RegisterUserInfoDTO): Promise<OutputDTO> {
     const { document, name, username, email, phone } = input;

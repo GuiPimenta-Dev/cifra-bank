@@ -1,16 +1,15 @@
 import express from "express";
-import fileUpload from "express-fileupload";
 import HttpError from "../../../application/error/HttpError";
 
 export default class ExpressAdapter {
   static create() {
     const app = express();
     app.use(express.json());
-    app.use(
-      fileUpload({
-        debug: true,
-      })
-    );
+    // app.use(
+    //   fileUpload({
+    //     debug: true,
+    //   })
+    // );
     return app;
   }
 

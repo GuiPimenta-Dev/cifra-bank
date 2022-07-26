@@ -22,13 +22,13 @@ export default class NationalRechargeController {
   static async consultNationalValues(input: InputDTO): Promise<OutputDTO> {
     const { path, query, headers } = input;
     const consultNationalValues = new ConsultNationalValues(nationalRechargeFacade);
-    return consultNationalValues.execute(query.stateCode, path.providerId, headers.auth);
+    return await consultNationalValues.execute(query.stateCode, path.providerId, headers.auth);
   }
 
   static async makeNationalRecharge(input: InputDTO): Promise<any> {
     const { body, path, headers } = input;
     const data = { ...body, ...path };
     const makeNationalRecharge = new MakeNationalRecharge(nationalRechargeFacade, broker);
-    return makeNationalRecharge.execute(data, headers.auth);
+    return await makeNationalRecharge.execute(data, headers.auth);
   }
 }

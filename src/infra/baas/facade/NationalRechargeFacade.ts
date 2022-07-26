@@ -2,13 +2,13 @@ import AuthDTO from "../../../domain/dto/application/AuthDTO";
 import OutputDTO from "../../../domain/dto/application/OutputDTO";
 import MakeNationalRechargeDTO from "../../../domain/dto/usecase/MakeNationalRechargeDTO";
 import NationalRechargeFacadeInterface from "../../../domain/infra/baas/facade/NationalRechargeFacade";
-import HttpClient from "../../../domain/infra/http/HttpClient";
+import HttpClientInterface from "../../../domain/infra/http/HttpClient";
 import ConsultNationalProviders from "../celcoin/national_recharge/ConsultNationalProviders";
 import ConsultNationalValues from "../celcoin/national_recharge/ConsultNationalValues";
 import MakeNationalRecharge from "../celcoin/national_recharge/MakeNationalRecharge";
 
 export default class NationalRechargeFacade implements NationalRechargeFacadeInterface {
-  constructor(readonly httpClient: HttpClient) {}
+  constructor(readonly httpClient: HttpClientInterface) {}
 
   async consultNationalProviders(stateCode: number, auth: AuthDTO): Promise<OutputDTO> {
     const nationalRecharge = new ConsultNationalProviders(this.httpClient);

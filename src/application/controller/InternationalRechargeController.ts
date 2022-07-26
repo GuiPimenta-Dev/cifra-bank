@@ -22,13 +22,13 @@ export default class InternationalRechargeController {
   static async consultInternationalValues(input: InputDTO): Promise<OutputDTO> {
     const { query, headers } = input;
     const consultInternationalValues = new ConsultInternationalValues(internationalRechargeFacade);
-    return consultInternationalValues.execute(query.countryCode, query.phoneNumber, headers.auth);
+    return await consultInternationalValues.execute(query.countryCode, query.phoneNumber, headers.auth);
   }
 
   static async makeInternationalRecharge(input: InputDTO): Promise<any> {
     const { body, path, headers } = input;
     const data = { ...body, ...path };
     const makeInternationalRecharge = new MakeInternationalRecharge(internationalRechargeFacade, broker);
-    return makeInternationalRecharge.execute(data, headers.auth);
+    return await makeInternationalRecharge.execute(data, headers.auth);
   }
 }

@@ -3,7 +3,7 @@ import env from "../../../env";
 import InputDTO from "../../domain/dto/application/InputDTO";
 import HttpError from "../error/HttpError";
 
-export async function verifyToken(input: InputDTO): Promise<void> {
+export function verifyToken(input: InputDTO): void {
   const { authorization } = input.headers;
   if (!authorization) throw new HttpError(400, "Authorization header is required");
   const token = authorization.split(" ")[1];
