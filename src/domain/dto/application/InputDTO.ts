@@ -3,5 +3,5 @@ export default interface InputDTO {
   body: any;
   headers: any;
   path: any;
-  files: any;
+  file: any;
 }

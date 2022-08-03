@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import multer from "multer";
 import env from "../../../env";
 import InputDTO from "../../domain/dto/application/InputDTO";
 import HttpError from "../error/HttpError";
@@ -14,3 +15,16 @@ export function verifyToken(input: InputDTO): void {
     throw new HttpError(401, "Invalid token");
   }
 }
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function (_, file, cb) {
+    const fileExtension = file.originalname.split(".").at(-1);
+    const newFileName = require("crypto").randomBytes(64).toString("hex");
+    cb(null, `${newFileName}.${fileExtension}`);
+  },
+});
+
+export const uploadFile = multer({ storage });

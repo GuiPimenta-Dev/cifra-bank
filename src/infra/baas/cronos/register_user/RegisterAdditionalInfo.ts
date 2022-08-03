@@ -17,12 +17,16 @@ export default class RegisterAdditionalInfo extends User {
       document_name: documentInfo.type,
       document_number: documentInfo.number,
       document_state: documentInfo.state,
+      issuance_date: documentInfo.issuanceDate,
+      orgao_emissor: documentInfo.issuingAgency,
       mother_name: info.motherName,
       birth_date: info.birthDate,
       marital_status: info.maritalStatus,
       nationality_state: info.nationalityState,
       nationality: info.nationality,
       gender: info.gender,
+      renda_mensal: info.monthlyProfit,
+      is_web: "1",
     };
     return await this.httpClient.post(env.CRONOS_BASE_URL + "/register/individual/step4", body, {
       Authorization: `Bearer ${env.CRONOS_SECRET}`,

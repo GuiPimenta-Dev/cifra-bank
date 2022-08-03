@@ -7,6 +7,7 @@ interface registerPersonalInfoDTO {
   name: string;
   username: string;
   email: string;
+  phone: { stateCode: number; number: number };
 }
 
 export default class RegisterUserInfo {
@@ -39,19 +40,10 @@ export default class RegisterUserInfo {
       username: input.username,
       email: input.email,
       individual_id: input.individualId,
+      phone_prefix: input.phone.stateCode,
+      phone_number: input.phone.number,
     };
     return await this.httpClient.post(env.CRONOS_BASE_URL + "/register/individual/step1", body, {
-      Authorization: `Bearer ${env.CRONOS_SECRET}`,
-    });
-  }
-
-  async registerUserPhone(individualId: number, stateCode: number, number: number): Promise<OutputDTO> {
-    const body = {
-      individual_id: individualId,
-      phone_prefix: stateCode,
-      phone_number: number,
-    };
-    return await this.httpClient.post(env.CRONOS_BASE_URL + "/register/individual/step2", body, {
       Authorization: `Bearer ${env.CRONOS_SECRET}`,
     });
   }

@@ -2,6 +2,8 @@ interface DocumentInfoDTO {
   type: string;
   number: string;
   state: string;
+  issuanceDate: string;
+  issuingAgency: string;
 }
 
 export default interface RegisterAdditionalInfoDTO {
@@ -12,5 +14,6 @@ export default interface RegisterAdditionalInfoDTO {
   birthDate: string;
   nationalityState: string;
   nationality: string;
+  monthlyProfit: string;
   documentInfo: DocumentInfoDTO;
 }

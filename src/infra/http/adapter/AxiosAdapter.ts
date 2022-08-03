@@ -19,8 +19,8 @@ export default class AxiosAdapter implements HttpClientInterface {
       method: "POST",
       url,
       headers: {
-        ...headers,
         "Content-Type": "application/json",
+        ...headers,
       },
       data: body,
     };
@@ -38,8 +38,8 @@ export default class AxiosAdapter implements HttpClientInterface {
       method: "PUT",
       url,
       headers: {
-        ...headers,
         "Content-Type": "application/json",
+        ...headers,
       },
       data: body,
     };

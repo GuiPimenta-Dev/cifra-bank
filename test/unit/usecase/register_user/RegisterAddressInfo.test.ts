@@ -23,6 +23,8 @@ test("It should be able to register address info", async () => {
     city: "São Paulo",
     state: "SP",
     country: "Brasil",
+    monthlyProfit: "1000",
+    issuingAgency: "DETRAN",
   };
   const { data } = await registerAddressInfo.execute(input);
   expect(data.success).toBe(true);

@@ -11,7 +11,7 @@ test("must be able to verify token", async () => {
       auth: {},
     },
     path: {},
-    files: {},
+    file: {},
   };
   verifyToken(input);
   expect(input.headers.auth).toHaveProperty("document");
@@ -24,7 +24,7 @@ test("must throw an error if there is no authorization header", async () => {
     body: {},
     headers: {},
     path: {},
-    files: {},
+    file: {},
   };
   expect(() => {
     verifyToken(input);
@@ -39,7 +39,7 @@ test("must throw an error if there is no token in authorization header", async (
       authorization: "Bearer",
     },
     path: {},
-    files: {},
+    file: {},
   };
   expect(() => {
     verifyToken(input);
@@ -54,7 +54,7 @@ test("must throw an error if token is invalid", async () => {
       authorization: "Bearer 12345",
     },
     path: {},
-    files: {},
+    file: {},
   };
   expect(() => {
     verifyToken(input);

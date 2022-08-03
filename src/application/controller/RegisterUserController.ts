@@ -2,14 +2,12 @@ import InputDTO from "../../domain/dto/application/InputDTO";
 import OutputDTO from "../../domain/dto/application/OutputDTO";
 import BaasFactory from "../../infra/baas/BaasFactory";
 import AxiosAdapter from "../../infra/http/adapter/AxiosAdapter";
-import ConfirmUserPhone from "../usecase/register_user/ConfirmUserPhone";
 import CreatePassword from "../usecase/register_user/CreatePassword";
 import RegisterAdditionalInfo from "../usecase/register_user/RegisterAdditionalInfo";
 import RegisterAddressInfo from "../usecase/register_user/RegisterAddressInfo";
 import RegisterUserInfo from "../usecase/register_user/RegisterUserInfo";
 import UploadDocumentImage from "../usecase/register_user/UploadDocumentImage";
 import UploadSelfie from "../usecase/register_user/UploadSelfie";
-import UploadSignature from "../usecase/register_user/UploadSignature";
 
 const httpClient = new AxiosAdapter();
 const baasFactory = new BaasFactory(httpClient);
@@ -23,18 +21,9 @@ export default class RegisterUserController {
     return await registerUserInfo.execute(body);
   }
 
-  static async confirmUserPhone(input: InputDTO): Promise<OutputDTO> {
-    const { path, body } = input;
-    body.document = path.document;
-    const confirmUserPhone = new ConfirmUserPhone(registerUserFacade);
-    return await confirmUserPhone.execute(body);
-  }
-
   static async uploadDocumentImage(input: InputDTO): Promise<OutputDTO> {
-    const { path, body, files } = input;
-    const { file } = files;
-    file.tmp_name = file.name;
-    body.file = file;
+    const { path, body, file } = input;
+    body.file = file.path;
     body.document = path.document;
     const uploadDocumentImage = new UploadDocumentImage(registerUserFacade);
     return await uploadDocumentImage.execute(body);
@@ -47,20 +36,10 @@ export default class RegisterUserController {
     return await registerAdditionalInfo.execute(body);
   }
 
-  static async uploadSignature(input: InputDTO): Promise<OutputDTO> {
-    const { path, body, files } = input;
-    const { file } = files;
-    file.tmp_name = file.name;
-    const uploadSignature = new UploadSignature(registerUserFacade);
-    return await uploadSignature.execute(path.document, file, body.type);
-  }
-
   static async uploadSelfie(input: InputDTO): Promise<OutputDTO> {
-    const { path, files } = input;
-    const { file } = files;
-    file.tmp_name = file.name;
+    const { path, file } = input;
     const uploadSelfie = new UploadSelfie(registerUserFacade);
-    return await uploadSelfie.execute(path.document, file);
+    return await uploadSelfie.execute(path.document, file.path);
   }
 
   static async registerAddressInfo(input: InputDTO): Promise<OutputDTO> {

@@ -5,22 +5,14 @@ export default class ExpressAdapter {
   static create() {
     const app = express();
     app.use(express.json());
-    // app.use(
-    //   fileUpload({
-    //     debug: true,
-    //   })
-    // );
     return app;
   }
 
-  static route(...fns: any[]) {
+  static route(fn: any) {
     return async function (req: any, res: any) {
       try {
-        const { query, body, headers, params, files } = req;
-        let output: any;
-        for (let fn of fns) {
-          output = await fn({ query, body, headers, path: params, files });
-        }
+        const { query, body, headers, params, file } = req;
+        const output = await fn({ query, body, headers, path: params, file });
         res.status(output.statusCode).json(output.data);
       } catch (e: any) {
         if (e instanceof HttpError) {

@@ -21,10 +21,14 @@ test("it should be able to register additional info", async () => {
     birthDate: "1996-04-24",
     nationalityState: "RJ",
     nationality: "BRASIL",
+    monthlyProfit: "1000",
+    issuingAgency: "DETRAN",
     documentInfo: {
       type: "RG",
       number: "284315694",
       state: "RJ",
+      issuanceDate: "2017-06-20",
+      issuingAgency: "DETRAN",
     },
   };
   const { data } = await registerAdditionalInfo.execute(input);
