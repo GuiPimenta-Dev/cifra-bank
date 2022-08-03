@@ -22,6 +22,9 @@ app.post(
 );
 app.post("/register/user/:document/address", ExpressAdapter.route(RegisterUserController.registerAddressInfo));
 app.post("/register/user/:document/password", ExpressAdapter.route(RegisterUserController.createPassword));
+app.post("/register/user/:document/consultTerm", ExpressAdapter.route(RegisterUserController.consultTerm));
+app.post("/register/user/:document/acceptTerm", ExpressAdapter.route(RegisterUserController.acceptTerm));
+
 app.post("/authorize", ExpressAdapter.route(AuthorizeController.authorize));
 app.post("/bills/:digitable", verifyToken, ExpressAdapter.route(BillController.makeBillPayment));
 app.post(

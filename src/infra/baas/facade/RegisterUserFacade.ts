@@ -6,6 +6,8 @@ import RegisterUserInfoDTO from "../../../domain/dto/usecase/RegisterUserInfoDTO
 import UploadDocumentImageDTO from "../../../domain/dto/usecase/UploadDocumentImageDTO";
 import RegisterUserFacadeInterface from "../../../domain/infra/baas/facade/RegisterUserFacade";
 import HttpClientInterface from "../../../domain/infra/http/HttpClient";
+import AcceptTerm from "../cronos/register_user/AcceptTerm";
+import ConsultTerm from "../cronos/register_user/ConsultTerm";
 import CreatePassword from "../cronos/register_user/CreatePassword";
 import RegisterAdditionalInfo from "../cronos/register_user/RegisterAdditionalInfo";
 import RegisterAddressInfo from "../cronos/register_user/RegisterAddressInfo";
@@ -48,5 +50,15 @@ export default class RegisterUserFacade implements RegisterUserFacadeInterface {
   async createPassword(document: string, password: string, confirmPassword: string): Promise<OutputDTO> {
     const createPassword = new CreatePassword(this.httpClient);
     return await createPassword.createPassword(document, password, confirmPassword);
+  }
+
+  consultTerm(document: string, term: string): Promise<OutputDTO> {
+    const consultTerm = new ConsultTerm(this.httpClient);
+    return consultTerm.consultTerm(document, term);
+  }
+
+  acceptTerm(document: string, term: string, code: string): Promise<OutputDTO> {
+    const acceptTerm = new AcceptTerm(this.httpClient);
+    return acceptTerm.acceptTerm(document, term, code);
   }
 }

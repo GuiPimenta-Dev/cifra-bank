@@ -13,4 +13,6 @@ export default interface RegisterUserFacadeInterface {
   uploadSelfie(document: string, file: any): Promise<OutputDTO>;
   registerAddressInfo(input: RegisterAddressInfoDTO): Promise<OutputDTO>;
   createPassword(document: string, password: string, confirmPassword: string): Promise<OutputDTO>;
+  consultTerm(document: string, term: string): Promise<OutputDTO>;
+  acceptTerm(document: string, term: string, code: string): Promise<OutputDTO>;
 }

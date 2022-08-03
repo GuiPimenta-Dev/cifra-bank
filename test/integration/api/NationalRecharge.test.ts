@@ -8,7 +8,7 @@ beforeEach(async () => {
   authorization = `Bearer ${token}`;
 });
 
-test("It should be able to consult national providers", async () => {
+test.skip("It should be able to consult national providers", async () => {
   const { statusCode } = await request(app)
     .get("/national/providers")
     .query({
@@ -19,7 +19,7 @@ test("It should be able to consult national providers", async () => {
   expect(statusCode).toBe(200);
 });
 
-test("It should be able to consult national values", async () => {
+test.skip("It should be able to consult national values", async () => {
   const { statusCode } = await request(app)
     .get("/national/values/2125")
     .query({
@@ -30,7 +30,7 @@ test("It should be able to consult national values", async () => {
   expect(statusCode).toBe(200);
 });
 
-test("It should be able to make a national recharge", async () => {
+test.skip("It should be able to make a national recharge", async () => {
   const { statusCode } = await request(app)
     .post("/national/recharge/2125")
     .send({

@@ -2,6 +2,8 @@ import InputDTO from "../../domain/dto/application/InputDTO";
 import OutputDTO from "../../domain/dto/application/OutputDTO";
 import BaasFactory from "../../infra/baas/BaasFactory";
 import AxiosAdapter from "../../infra/http/adapter/AxiosAdapter";
+import AcceptTerm from "../usecase/register_user/AcceptTerm";
+import ConsultTerm from "../usecase/register_user/ConsultTerm";
 import CreatePassword from "../usecase/register_user/CreatePassword";
 import RegisterAdditionalInfo from "../usecase/register_user/RegisterAdditionalInfo";
 import RegisterAddressInfo from "../usecase/register_user/RegisterAddressInfo";
@@ -53,5 +55,17 @@ export default class RegisterUserController {
     const { path, body } = input;
     const createPassword = new CreatePassword(registerUserFacade);
     return await createPassword.execute(path.document, body.password, body.confirmPassword);
+  }
+
+  static async consultTerm(input: InputDTO): Promise<OutputDTO> {
+    const { path, body } = input;
+    const consultTerm = new ConsultTerm(registerUserFacade);
+    return await consultTerm.execute(path.document, body.term);
+  }
+
+  static async acceptTerm(input: InputDTO): Promise<OutputDTO> {
+    const { path, body } = input;
+    const acceptTerm = new AcceptTerm(registerUserFacade);
+    return await acceptTerm.execute(path.document, body.term, body.code);
   }
 }

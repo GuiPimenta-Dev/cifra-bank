@@ -8,7 +8,7 @@ beforeEach(async () => {
   authorization = `Bearer ${token}`;
 });
 
-test("It should be able to consult a bill", async () => {
+test.skip("It should be able to consult a bill", async () => {
   const { statusCode } = await request(app)
     .get("/bills/848900000002776303791513211590704018479055745822")
     .query({ type: 1 })
@@ -16,7 +16,7 @@ test("It should be able to consult a bill", async () => {
   expect([200, 400]).toContain(statusCode);
 });
 
-test("It should be able to pay a bill", async () => {
+test.skip("It should be able to pay a bill", async () => {
   const { statusCode } = await request(app)
     .post("/bills/848900000002776303791513211590704018479055745822")
     .send({

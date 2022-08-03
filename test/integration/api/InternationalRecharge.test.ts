@@ -8,12 +8,12 @@ beforeEach(async () => {
   authorization = `Bearer ${token}`;
 });
 
-test("It should be able to list available countries", async () => {
+test.skip("It should be able to list available countries", async () => {
   const { statusCode } = await request(app).get("/international/countries").query({ page: 1 }).set({ authorization });
   expect(statusCode).toBe(200);
 });
 
-test("It should be able to consult international values", async () => {
+test.skip("It should be able to consult international values", async () => {
   const { statusCode } = await request(app)
     .get("/international/values")
     .query({
@@ -25,7 +25,7 @@ test("It should be able to consult international values", async () => {
   expect(statusCode).toBe(200);
 });
 
-test("It should be able to make a international recharge", async () => {
+test.skip("It should be able to make a international recharge", async () => {
   const { statusCode } = await request(app)
     .post("/international/recharge/5")
     .send({
