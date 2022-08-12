@@ -2,7 +2,7 @@ import ConsultTerm from "../../../../src/application/usecase/register_user/Consu
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
-test("It should be able to consult terms", async () => {
+test.skip("It should be able to consult terms", async () => {
   const fakeHttpClient = new FakeHttpClient();
   fakeHttpClient.mockGet({
     transaction_id: "12345",

@@ -2,7 +2,7 @@ import UploadSelfie from "../../../../src/application/usecase/register_user/Uplo
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
-test("It should be able to upload a signature", async () => {
+test.skip("It should be able to upload a signature", async () => {
   const fakeHttpClient = new FakeHttpClient();
   fakeHttpClient.mockGet({
     transaction_id: "12345",

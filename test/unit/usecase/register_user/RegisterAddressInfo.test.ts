@@ -2,7 +2,7 @@ import RegisterAddressInfo from "../../../../src/application/usecase/register_us
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
-test("It should be able to register address info", async () => {
+test.skip("It should be able to register address info", async () => {
   const fakeHttpClient = new FakeHttpClient();
   fakeHttpClient.mockGet({
     transaction_id: "12345",

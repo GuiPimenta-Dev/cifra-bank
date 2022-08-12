@@ -22,4 +22,5 @@ test("It should be able to authorize Celcoin", async () => {
   expect(typeof decodedToken).toBe("object");
   expect(decodedToken.document).toBe("46949827881");
   expect(decodedToken.celcoinToken).toBeDefined();
+  // expect(decodedToken.arbiToken).toBeDefined();
 });

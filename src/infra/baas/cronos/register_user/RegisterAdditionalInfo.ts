@@ -22,7 +22,7 @@ export default class RegisterAdditionalInfo extends User {
       mother_name: info.motherName,
       birth_date: info.birthDate,
       marital_status: info.maritalStatus,
-      nationality_state: info.nationalityState,
+      nacionalidade_estado: info.nationalityState,
       nationality: info.nationality,
       gender: info.gender,
       renda_mensal: info.monthlyProfit,

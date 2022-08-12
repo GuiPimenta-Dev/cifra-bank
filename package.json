@@ -1,7 +1,7 @@
 {
   "main": "index.js",
   "scripts": {
-    "test": "tsc && jest ./dist",
+    "test": "tsc && jest --silent ./dist",
     "coverage": "npx jest --coverage --runInBand",
     "start": "nodemon",
     "debug": "tsnd --inspect --respawn --transpile-only --ignore-watch node_modules --no-notify src/Server.ts"

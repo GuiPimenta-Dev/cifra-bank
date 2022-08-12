@@ -16,6 +16,7 @@ export default class UploadSelfie extends User {
     return await this.httpClient.post(
       env.CRONOS_BASE_URL + "/register/individual/step6/" + individualId,
       {
+        image_type: "signature_file",
         file: fs.createReadStream(absolutePath + "/" + file),
       },
       {

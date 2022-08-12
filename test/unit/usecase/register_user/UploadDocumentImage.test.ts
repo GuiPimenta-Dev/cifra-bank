@@ -1,7 +1,7 @@
 import UploadDocumentImage from "../../../../src/application/usecase/register_user/UploadDocumentImage";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
-test("It should be able to upload document images", async () => {
+test.skip("It should be able to upload document images", async () => {
   const fakeHttpClient = new FakeHttpClient();
   fakeHttpClient.mockGet({
     transaction_id: "12345",

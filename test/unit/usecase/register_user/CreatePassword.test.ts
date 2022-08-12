@@ -2,7 +2,7 @@ import CreatePassword from "../../../../src/application/usecase/register_user/Cr
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
-test("It should be able to create a new password", async () => {
+test.skip("It should be able to create a new password", async () => {
   const fakeHttpClient = new FakeHttpClient();
   fakeHttpClient.mockGet({
     transaction_id: "12345",

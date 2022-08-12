@@ -22,6 +22,7 @@ export default class RegisterAddressInfo extends User {
       state: input.state,
       address_type_id: input.addressType,
       country: input.country,
+      is_web: "1",
     };
     return await this.httpClient.post(env.CRONOS_BASE_URL + "/register/individual/step7", body, {
       Authorization: `Bearer ${env.CRONOS_SECRET}`,

@@ -2,7 +2,7 @@ import RegisterAdditionalInfo from "../../../../src/application/usecase/register
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
-test("it should be able to register additional info", async () => {
+test.skip("it should be able to register additional info", async () => {
   const fakeHttpClient = new FakeHttpClient();
   fakeHttpClient.mockGet({
     transaction_id: "12345",
