@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
 
-import env from "../../../../env";
 import OutputDTO from "../../../domain/dto/application/OutputDTO";
 import Document from "../../../domain/entity/Document";
 import AuthorizeFacadeInterface from "../../../domain/infra/baas/facade/AuthorizeFacade";
@@ -8,10 +7,10 @@ import AuthorizeFacadeInterface from "../../../domain/infra/baas/facade/Authoriz
 export default class Authorize {
   constructor(private authorizeFacade: AuthorizeFacadeInterface) {}
 
-  async execute(id: string, document: string): Promise<OutputDTO> {
-    const { data: celcoinToken } = await this.authorizeFacade.authorize(id);
+  async execute(id: string, document: string, username: string, password: string): Promise<OutputDTO> {
+    const { data } = await this.authorizeFacade.authorize(id, username, password);
     document = new Document(document).getDocument();
-    const token = jwt.sign({ document, celcoinToken }, env.JWT_SECRET, {
+    const token = jwt.sign({ document, ...data }, process.env.JWT_SECRET as string, {
       expiresIn: "40min",
     });
     return { statusCode: 200, data: { token } };

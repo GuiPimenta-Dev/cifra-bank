@@ -1,4 +1,3 @@
-import env from "../../../../../env";
 import OutputDTO from "../../../../domain/dto/application/OutputDTO";
 import RegisterAdditionalInfoDTO from "../../../../domain/dto/usecase/RegisterAdditionalInfoDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
@@ -28,8 +27,8 @@ export default class RegisterAdditionalInfo extends User {
       renda_mensal: info.monthlyProfit,
       is_web: "1",
     };
-    return await this.httpClient.post(env.CRONOS_BASE_URL + "/register/individual/step4", body, {
-      Authorization: `Bearer ${env.CRONOS_SECRET}`,
+    return await this.httpClient.post(process.env.CRONOS_BASE_URL + "/register/individual/step4", body, {
+      Authorization: `Bearer ${process.env.CRONOS_SECRET}`,
     });
   }
 }

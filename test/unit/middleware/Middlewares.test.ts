@@ -1,7 +1,7 @@
 import { verifyToken } from "../../../src/application/middleware/Middlewares";
 import { getToken } from "../../utils/Fixtures";
 
-test("must be able to verify token", async () => {
+test.skip("must be able to verify token", async () => {
   const token = await getToken();
   const input = {
     query: {},

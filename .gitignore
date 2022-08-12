@@ -2,5 +2,6 @@ coverage
 dist
 node_modules
 .vscode
-env.ts
+.env
+setEnvVars.js
 uploads/

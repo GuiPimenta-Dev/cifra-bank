@@ -1,6 +1,6 @@
 import fs from "fs";
 import { resolve } from "path";
-import env from "../../../../../env";
+
 import OutputDTO from "../../../../domain/dto/application/OutputDTO";
 import UploadDocumentImageDTO from "../../../../domain/dto/usecase/UploadDocumentImageDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
@@ -21,9 +21,13 @@ export default class UploadDocumentImage extends User {
       image_type: imageType,
       file: fs.createReadStream(absolutePath + "/" + file),
     };
-    return await this.httpClient.post(env.CRONOS_BASE_URL + "/register/individual/step3/" + individualId, body, {
-      Authorization: `Bearer ${env.CRONOS_SECRET}`,
-      "Content-Type": "multipart/form-data",
-    });
+    return await this.httpClient.post(
+      process.env.CRONOS_BASE_URL + "/register/individual/step3/" + individualId,
+      body,
+      {
+        Authorization: `Bearer ${process.env.CRONOS_SECRET}`,
+        "Content-Type": "multipart/form-data",
+      }
+    );
   }
 }

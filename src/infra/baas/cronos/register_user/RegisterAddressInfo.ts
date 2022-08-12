@@ -1,4 +1,3 @@
-import env from "../../../../../env";
 import OutputDTO from "../../../../domain/dto/application/OutputDTO";
 import RegisterAddressInfoDTO from "../../../../domain/dto/usecase/RegisterAddressInfoDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
@@ -24,8 +23,8 @@ export default class RegisterAddressInfo extends User {
       country: input.country,
       is_web: "1",
     };
-    return await this.httpClient.post(env.CRONOS_BASE_URL + "/register/individual/step7", body, {
-      Authorization: `Bearer ${env.CRONOS_SECRET}`,
+    return await this.httpClient.post(process.env.CRONOS_BASE_URL + "/register/individual/step7", body, {
+      Authorization: `Bearer ${process.env.CRONOS_SECRET}`,
     });
   }
 }

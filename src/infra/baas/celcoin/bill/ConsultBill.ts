@@ -1,4 +1,3 @@
-import env from "../../../../../env";
 import OutputDTO from "../../../../domain/dto/application/OutputDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
 export default class ConsultBill {
@@ -11,7 +10,7 @@ export default class ConsultBill {
         digitable,
       },
     };
-    return await this.httpClient.post(env.CELLCOIN_BASE_URL + "/transactions/billpayments/authorize", body, {
+    return await this.httpClient.post(process.env.CELLCOIN_BASE_URL + "/transactions/billpayments/authorize", body, {
       Authorization: `Bearer ${token}`,
     });
   }

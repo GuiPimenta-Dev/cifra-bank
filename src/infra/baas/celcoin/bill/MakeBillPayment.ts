@@ -1,4 +1,3 @@
-import env from "../../../../../env";
 import OutputDTO from "../../../../domain/dto/application/OutputDTO";
 import MakeBillPaymentDTO from "../../../../domain/dto/usecase/MakeBillPaymentDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
@@ -21,7 +20,7 @@ export default class MakeBillPayment {
       transactionIdAuthorize: input.transactionId,
     };
     const { statusCode, data } = await this.httpClient.post(
-      env.CELLCOIN_BASE_URL + "/transactions/billpayments",
+      process.env.CELLCOIN_BASE_URL + "/transactions/billpayments",
       body,
       {
         Authorization: `Bearer ${token}`,
@@ -32,7 +31,7 @@ export default class MakeBillPayment {
   }
 
   async confirmBillPayment(transactionId: number, token: string): Promise<OutputDTO> {
-    const url = env.CELLCOIN_BASE_URL + `/transactions/billpayments/${transactionId}/capture`;
+    const url = process.env.CELLCOIN_BASE_URL + `/transactions/billpayments/${transactionId}/capture`;
     const data = {};
     return await this.httpClient.put(url, data, {
       Authorization: `Bearer ${token}`,

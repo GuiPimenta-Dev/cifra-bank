@@ -1,4 +1,3 @@
-import env from "../../../../../env";
 import OutputDTO from "../../../../domain/dto/application/OutputDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
 
@@ -15,10 +14,10 @@ export default class RegisterUserInfo {
 
   async isUserRegistered(document: string): Promise<Boolean> {
     const { data } = await this.httpClient.get(
-      env.CRONOS_BASE_URL + "/individual/" + document,
+      process.env.CRONOS_BASE_URL + "/individual/" + document,
       {},
       {
-        Authorization: `Bearer ${env.CRONOS_SECRET}`,
+        Authorization: `Bearer ${process.env.CRONOS_SECRET}`,
       }
     );
     return data.status == "complete";
@@ -26,10 +25,10 @@ export default class RegisterUserInfo {
 
   async registerUserDocument(document: string): Promise<OutputDTO> {
     return await this.httpClient.post(
-      env.CRONOS_BASE_URL + "/register/individual",
+      process.env.CRONOS_BASE_URL + "/register/individual",
       { document },
       {
-        Authorization: `Bearer ${env.CRONOS_SECRET}`,
+        Authorization: `Bearer ${process.env.CRONOS_SECRET}`,
       }
     );
   }
@@ -43,8 +42,8 @@ export default class RegisterUserInfo {
       phone_prefix: input.phone.stateCode,
       phone_number: input.phone.number,
     };
-    return await this.httpClient.post(env.CRONOS_BASE_URL + "/register/individual/step1", body, {
-      Authorization: `Bearer ${env.CRONOS_SECRET}`,
+    return await this.httpClient.post(process.env.CRONOS_BASE_URL + "/register/individual/step1", body, {
+      Authorization: `Bearer ${process.env.CRONOS_SECRET}`,
     });
   }
 }
