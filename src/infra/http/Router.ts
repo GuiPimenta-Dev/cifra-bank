@@ -33,8 +33,9 @@ app.post(
   verifyToken,
   ExpressAdapter.route(NationalRechargeController.makeNationalRecharge)
 );
-app.get("/payment/balance/:originAccount", ExpressAdapter.route(verifyToken, PaymentController.consultBalance));
+app.get("/payment/balances/:account", ExpressAdapter.route(verifyToken, PaymentController.consultBalance));
 app.post("/payment/ted", ExpressAdapter.route(verifyToken, PaymentController.makeTED));
+app.get("/payment/extracts/:account", ExpressAdapter.route(verifyToken, PaymentController.consultExtract));
 app.post(
   "/international/recharge/:productId",
   verifyToken,

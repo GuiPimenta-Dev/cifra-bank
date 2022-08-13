@@ -2,11 +2,11 @@ export default interface MakeTEDDTO {
   originbank: string;
   originAgency: string;
   originAccount: string;
-  typeOriginAccount: string;
+  originAccountType: string;
   targetBank: string;
   targetAgency: string;
   targetAccount: string;
-  typeTargetAccount: string;
+  targetAccountType: string;
   targetClientDocument: string;
   targetClientName: string;
   targetClientType: string;

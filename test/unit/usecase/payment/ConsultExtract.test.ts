@@ -1,4 +1,5 @@
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
+import ConsultExtract from "../../../../src/usecase/payment/ConsultExtract";
 import { fakeAuth } from "../../../utils/Fixtures";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
@@ -19,14 +20,14 @@ test("It should be able to consult the extract", async () => {
   const baasFactory = new BaasFactory(httpClient);
   const paymentFacade = baasFactory.createPaymentFacade();
   const payment = new ConsultExtract(paymentFacade);
-  const body = {
+  const query = {
     bank: "213",
     agency: "00019",
-    contaorigem: "7140020700",
-    tipocontadebitada: "CC",
-    datainicial: "2022-08-12",
-    datafinal: "2022-08-12",
+    account: "7140020700",
+    accountType: "CC",
+    startDate: "2022-08-12",
+    finalDate: "2022-08-12",
   };
-  const { data } = await payment.execute(body, fakeAuth());
+  const { data } = await payment.execute(query, fakeAuth());
   expect(data).toHaveLength(1);
 });
