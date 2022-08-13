@@ -12,7 +12,7 @@ export default class PaymentController {
   static async consultBalance(input: InputDTO): Promise<any> {
     const { query, path, headers } = input;
     const consultBill = new ConsultBalance(paymentFacade);
-    return consultBill.execute(query.bank, query.agency, path.originAccount, headers.auth);
+    return consultBill.execute(query.bank, query.agency, path.account, headers.auth);
   }
 
   static async makeTED(input: InputDTO): Promise<any> {
