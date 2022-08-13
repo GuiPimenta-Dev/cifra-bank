@@ -2,7 +2,7 @@ import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
 export default class Authorize {
   constructor(private httpClient: HttpClientInterface) {}
 
-  async getCode(username?: string, password?: string): Promise<any> {
+  async getCode(username: string, password: string): Promise<any> {
     const body = {
       client_id: username,
       redirect_uri: process.env.ARBI_REDIRECT_URI,
@@ -27,6 +27,6 @@ export default class Authorize {
       Authorization: `Basic ${Buffer.from(`${username}:${password}`).toString("base64")}`,
     };
     const { data } = await this.httpClient.post(process.env.ARBI_BASE_URL + "/oauth/access-token", body, headers);
-    return data.access_token;
+    return { arbiToken: data.access_token, arbiUsername: username, arbiPassword: password };
   }
 }

@@ -3,6 +3,7 @@ import AuthorizeFacadeInterface from "./facade/AuthorizeFacade";
 import BillFacadeInterface from "./facade/BillFacade";
 import InternationalRechargeFacadeInterface from "./facade/InternationalRechargeFacade";
 import NationalRechargeFacadeInterface from "./facade/NationalRechargeFacade";
+import PaymentFacadeInterface from "./facade/PaymentFacade";
 import RegisterUserFacadeInterface from "./facade/RegisterUserFacade";
 
 export default interface BaasFactoryInterface {
@@ -12,4 +13,5 @@ export default interface BaasFactoryInterface {
   createBillFacade(): BillFacadeInterface;
   createInternationalRechargeFacade(): InternationalRechargeFacadeInterface;
   createNationalRechargeFacade(): NationalRechargeFacadeInterface;
+  createPaymentFacade(): PaymentFacadeInterface;
 }

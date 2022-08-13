@@ -2,6 +2,7 @@ import AuthorizeController from "../../application/controller/AuthorizeControlle
 import BillController from "../../application/controller/BillController";
 import InternationalRechargeController from "../../application/controller/InternationalRechargeController";
 import NationalRechargeController from "../../application/controller/NationalRechargeController";
+import PaymentController from "../../application/controller/PaymentController";
 import RegisterUserController from "../../application/controller/RegisterUserController";
 import { uploadFile, verifyToken } from "../../application/middleware/Middlewares";
 import ExpressAdapter from "./adapter/ExpressAdapter";
@@ -32,6 +33,8 @@ app.post(
   verifyToken,
   ExpressAdapter.route(NationalRechargeController.makeNationalRecharge)
 );
+app.get("/payment/balance/:originAccount", ExpressAdapter.route(verifyToken, PaymentController.consultBalance));
+app.post("/payment/ted", ExpressAdapter.route(verifyToken, PaymentController.makeTED));
 app.post(
   "/international/recharge/:productId",
   verifyToken,
@@ -40,6 +43,7 @@ app.post(
 app.get(
   "/international/countries",
   verifyToken,
+
   ExpressAdapter.route(InternationalRechargeController.consultAvailableCountries)
 );
 app.get(

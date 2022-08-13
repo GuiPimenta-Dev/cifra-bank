@@ -8,11 +8,14 @@ export default class ExpressAdapter {
     return app;
   }
 
-  static route(fn: any) {
+  static route(...fns: any[]) {
     return async function (req: any, res: any) {
       try {
-        const { query, body, headers, params, file } = req;
-        const output = await fn({ query, body, headers, path: params, file });
+        const { query, body, headers, params } = req;
+        let output: any;
+        for (let fn of fns) {
+          output = await fn({ query, body, headers, path: params });
+        }
         res.status(output.statusCode).json(output.data);
       } catch (e: any) {
         if (e instanceof HttpError) {

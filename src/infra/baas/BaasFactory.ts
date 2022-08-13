@@ -3,12 +3,14 @@ import AuthorizeFacadeInterface from "../../domain/infra/baas/facade/AuthorizeFa
 import BillFacadeInterface from "../../domain/infra/baas/facade/BillFacade";
 import InternationalRechargeFacadeInterface from "../../domain/infra/baas/facade/InternationalRechargeFacade";
 import NationalRechargeFacadeInterface from "../../domain/infra/baas/facade/NationalRechargeFacade";
+import PaymentFacadeInterface from "../../domain/infra/baas/facade/PaymentFacade";
 import RegisterUserFacadeInterface from "../../domain/infra/baas/facade/RegisterUserFacade";
 import HttpClientInterface from "../../domain/infra/http/HttpClient";
 import AuthorizeFacade from "./facade/AuthorizeFacade";
 import BillFacade from "./facade/BillFacade";
 import InternationalRechargeFacade from "./facade/InternationalRechargeFacade";
 import NationalRechargeFacade from "./facade/NationalRechargeFacade";
+import PaymentFacade from "./facade/PaymentFacade";
 import RegisterUserFacade from "./facade/RegisterUserFacade";
 
 export default class BaasFactory implements BaasFactoryInterface {
@@ -32,5 +34,9 @@ export default class BaasFactory implements BaasFactoryInterface {
 
   createNationalRechargeFacade(): NationalRechargeFacadeInterface {
     return new NationalRechargeFacade(this.httpClient);
+  }
+
+  createPaymentFacade(): PaymentFacadeInterface {
+    return new PaymentFacade(this.httpClient);
   }
 }

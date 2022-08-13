@@ -6,12 +6,12 @@ import CelcoinAuthorize from "../celcoin/authorize/Authorize";
 export default class AuthorizeFacade implements AuthorizeFacadeInterface {
   constructor(readonly httpClient: HttpClientInterface) {}
 
-  async authorize(id: string, username?: string, password?: string): Promise<OutputDTO> {
+  async authorize(id: string, username: string, password: string): Promise<OutputDTO> {
     const arbiAuthorize = new ArbiAuthorize(this.httpClient);
     const code = await arbiAuthorize.getCode(username, password);
-    const arbiToken = await arbiAuthorize.authorize(code, username, password);
+    const arbiInfo = await arbiAuthorize.authorize(code, username, password);
     const celcoinAuthorize = new CelcoinAuthorize(this.httpClient);
     const celcoinToken = await celcoinAuthorize.authorize(id);
-    return { statusCode: 200, data: { arbiToken, celcoinToken } };
+    return { statusCode: 200, data: { ...arbiInfo, celcoinToken } };
   }
 }

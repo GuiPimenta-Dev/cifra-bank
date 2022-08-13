@@ -9,7 +9,7 @@ export function verifyToken(input: InputDTO): void {
   const token = authorization.split(" ")[1];
   if (!token) throw new HttpError(401, "jwt token is required");
   try {
-    input.headers.auth = jwt.verify(token, process.env.JWT_SECRET as string);
+    input.headers.auth = jwt.verify(token, process.env.JWT_SECRET);
   } catch (e) {
     throw new HttpError(401, "Invalid token");
   }

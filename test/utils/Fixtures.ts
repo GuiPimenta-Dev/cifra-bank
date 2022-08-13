@@ -23,5 +23,7 @@ export function fakeAuth(): AuthDTO {
     document: "35914746817",
     celcoinToken: "fake-token",
     arbiToken: "fake-token",
+    arbiUsername: "fake-username",
+    arbiPassword: "fake-password",
   };
 }
