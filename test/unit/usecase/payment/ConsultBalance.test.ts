@@ -1,5 +1,5 @@
-import ConsultBalance from "../../../../src/application/usecase/payment/ConsultBalance";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
+import ConsultBalance from "../../../../src/usecase/payment/ConsultBalance";
 import { fakeAuth } from "../../../utils/Fixtures";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 

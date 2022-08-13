@@ -1,5 +1,5 @@
-import RegisterUserInfo from "../../../../src/application/usecase/register_user/RegisterUserInfo";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
+import RegisterUserInfo from "../../../../src/usecase/register_user/RegisterUserInfo";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
 test.skip("It should be able to register user info", async () => {

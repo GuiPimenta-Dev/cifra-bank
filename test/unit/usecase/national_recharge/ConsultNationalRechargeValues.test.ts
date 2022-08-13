@@ -1,5 +1,5 @@
-import ConsultNationalValues from "../../../../src/application/usecase/national_recharge/ConsultNationalValues";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
+import ConsultNationalValues from "../../../../src/usecase/national_recharge/ConsultNationalValues";
 import { fakeAuth } from "../../../utils/Fixtures";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 

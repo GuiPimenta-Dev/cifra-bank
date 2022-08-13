@@ -1,8 +1,8 @@
 import InputDTO from "../../domain/dto/application/InputDTO";
 import BaasFactory from "../../infra/baas/BaasFactory";
 import AxiosAdapter from "../../infra/http/adapter/AxiosAdapter";
-import ConsultBalance from "../usecase/payment/ConsultBalance";
-import MakeTED from "../usecase/payment/MakeTED";
+import ConsultBalance from "../../usecase/payment/ConsultBalance";
+import MakeTED from "../../usecase/payment/MakeTED";
 
 const httpClient = new AxiosAdapter();
 const baasFactory = new BaasFactory(httpClient);

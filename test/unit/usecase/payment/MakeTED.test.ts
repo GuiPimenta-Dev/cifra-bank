@@ -1,5 +1,5 @@
-import MakeTED from "../../../../src/application/usecase/payment/MakeTED";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
+import MakeTED from "../../../../src/usecase/payment/MakeTED";
 import { fakeAuth } from "../../../utils/Fixtures";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 

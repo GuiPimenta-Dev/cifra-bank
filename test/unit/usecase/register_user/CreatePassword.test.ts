@@ -1,5 +1,5 @@
-import CreatePassword from "../../../../src/application/usecase/register_user/CreatePassword";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
+import CreatePassword from "../../../../src/usecase/register_user/CreatePassword";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
 test.skip("It should be able to create a new password", async () => {

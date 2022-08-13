@@ -1,6 +1,6 @@
-import MakeNationalRecharge from "../../../../src/application/usecase/national_recharge/MakeNationalRecharge";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import Broker from "../../../../src/infra/broker/Broker";
+import MakeNationalRecharge from "../../../../src/usecase/national_recharge/MakeNationalRecharge";
 import { fakeAuth } from "../../../utils/Fixtures";
 import FakeHandler from "../../../utils/mocks/broker/FakeHandler";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";

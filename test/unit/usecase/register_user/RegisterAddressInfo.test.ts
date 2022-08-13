@@ -1,5 +1,5 @@
-import RegisterAddressInfo from "../../../../src/application/usecase/register_user/RegisterAddressInfo";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
+import RegisterAddressInfo from "../../../../src/usecase/register_user/RegisterAddressInfo";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
 test.skip("It should be able to register address info", async () => {

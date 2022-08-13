@@ -1,5 +1,5 @@
-import AcceptTerm from "../../../../src/application/usecase/register_user/AcceptTerm";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
+import AcceptTerm from "../../../../src/usecase/register_user/AcceptTerm";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
 test.skip("It should be able to consult terms", async () => {

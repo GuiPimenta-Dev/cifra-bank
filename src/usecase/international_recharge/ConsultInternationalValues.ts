@@ -1,7 +1,7 @@
-import AuthDTO from "../../../domain/dto/application/AuthDTO";
-import OutputDTO from "../../../domain/dto/application/OutputDTO";
-import InternationalPhone from "../../../domain/entity/InternationalPhone";
-import InternationalRechargeFacadeInterface from "../../../domain/infra/baas/facade/InternationalRechargeFacade";
+import AuthDTO from "../../domain/dto/application/AuthDTO";
+import OutputDTO from "../../domain/dto/application/OutputDTO";
+import InternationalPhone from "../../domain/entity/InternationalPhone";
+import InternationalRechargeFacadeInterface from "../../domain/infra/baas/facade/InternationalRechargeFacade";
 
 export default class ConsultInternationalValues {
   constructor(private internationalRecharge: InternationalRechargeFacadeInterface) {}

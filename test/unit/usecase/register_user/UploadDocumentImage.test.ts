@@ -1,5 +1,5 @@
-import UploadDocumentImage from "../../../../src/application/usecase/register_user/UploadDocumentImage";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
+import UploadDocumentImage from "../../../../src/usecase/register_user/UploadDocumentImage";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 test.skip("It should be able to upload document images", async () => {
   const fakeHttpClient = new FakeHttpClient();

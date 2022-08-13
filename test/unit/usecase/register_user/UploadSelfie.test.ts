@@ -1,5 +1,5 @@
-import UploadSelfie from "../../../../src/application/usecase/register_user/UploadSelfie";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
+import UploadSelfie from "../../../../src/usecase/register_user/UploadSelfie";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
 test.skip("It should be able to upload a signature", async () => {

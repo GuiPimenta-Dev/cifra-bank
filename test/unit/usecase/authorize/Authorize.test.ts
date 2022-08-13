@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
-import Authorize from "../../../../src/application/usecase/authorize/Authorize";
 import AuthDTO from "../../../../src/domain/dto/application/AuthDTO";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
+import Authorize from "../../../../src/usecase/authorize/Authorize";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
 test("It should be able to authorize Celcoin", async () => {

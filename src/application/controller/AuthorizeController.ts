@@ -2,7 +2,7 @@ import InputDTO from "../../domain/dto/application/InputDTO";
 import OutputDTO from "../../domain/dto/application/OutputDTO";
 import BaasFactory from "../../infra/baas/BaasFactory";
 import AxiosAdapter from "../../infra/http/adapter/AxiosAdapter";
-import Authorize from "../usecase/authorize/Authorize";
+import Authorize from "../../usecase/authorize/Authorize";
 
 const httpClient = new AxiosAdapter();
 const baasFactory = new BaasFactory(httpClient);

@@ -1,6 +1,6 @@
-import MakeBillPayment from "../../../../src/application/usecase/bill/MakeBillPayment";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import Broker from "../../../../src/infra/broker/Broker";
+import MakeBillPayment from "../../../../src/usecase/bill/MakeBillPayment";
 import { fakeAuth } from "../../../utils/Fixtures";
 import FakeHandler from "../../../utils/mocks/broker/FakeHandler";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";

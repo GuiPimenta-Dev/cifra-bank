@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
 
-import OutputDTO from "../../../domain/dto/application/OutputDTO";
-import Document from "../../../domain/entity/Document";
-import AuthorizeFacadeInterface from "../../../domain/infra/baas/facade/AuthorizeFacade";
+import OutputDTO from "../../domain/dto/application/OutputDTO";
+import Document from "../../domain/entity/Document";
+import AuthorizeFacadeInterface from "../../domain/infra/baas/facade/AuthorizeFacade";
 
 export default class Authorize {
   constructor(private authorizeFacade: AuthorizeFacadeInterface) {}

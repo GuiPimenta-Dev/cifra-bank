@@ -1,9 +1,9 @@
-import AuthDTO from "../../../domain/dto/application/AuthDTO";
-import OutputDTO from "../../../domain/dto/application/OutputDTO";
-import MakeBillPaymentDTO from "../../../domain/dto/usecase/MakeBillPaymentDTO";
-import BillPaymentMade from "../../../domain/event/BillPaymentMade";
-import BillFacadeInterface from "../../../domain/infra/baas/facade/BillFacade";
-import BrokerInterface from "../../../domain/infra/broker/Broker";
+import AuthDTO from "../../domain/dto/application/AuthDTO";
+import OutputDTO from "../../domain/dto/application/OutputDTO";
+import MakeBillPaymentDTO from "../../domain/dto/usecase/MakeBillPaymentDTO";
+import BillPaymentMade from "../../domain/event/BillPaymentMade";
+import BillFacadeInterface from "../../domain/infra/baas/facade/BillFacade";
+import BrokerInterface from "../../domain/infra/broker/Broker";
 
 export default class MakeBillPayment {
   constructor(private billFacade: BillFacadeInterface, private broker: BrokerInterface) {}

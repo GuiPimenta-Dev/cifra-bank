@@ -1,10 +1,10 @@
-import AuthDTO from "../../../domain/dto/application/AuthDTO";
-import OutputDTO from "../../../domain/dto/application/OutputDTO";
-import MakeInternationalRechargeDTO from "../../../domain/dto/usecase/MakeInternationalRechargeDTO";
-import InternationalPhone from "../../../domain/entity/InternationalPhone";
-import InternationalRechargeMade from "../../../domain/event/InternationalRechargeMade";
-import InternationalRechargeFacadeInterface from "../../../domain/infra/baas/facade/InternationalRechargeFacade";
-import BrokerInterface from "../../../domain/infra/broker/Broker";
+import AuthDTO from "../../domain/dto/application/AuthDTO";
+import OutputDTO from "../../domain/dto/application/OutputDTO";
+import MakeInternationalRechargeDTO from "../../domain/dto/usecase/MakeInternationalRechargeDTO";
+import InternationalPhone from "../../domain/entity/InternationalPhone";
+import InternationalRechargeMade from "../../domain/event/InternationalRechargeMade";
+import InternationalRechargeFacadeInterface from "../../domain/infra/baas/facade/InternationalRechargeFacade";
+import BrokerInterface from "../../domain/infra/broker/Broker";
 
 export default class MakeInternationalRecharge {
   constructor(private internationalRecharge: InternationalRechargeFacadeInterface, private broker: BrokerInterface) {}

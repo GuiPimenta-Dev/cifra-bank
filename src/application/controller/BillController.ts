@@ -2,8 +2,8 @@ import InputDTO from "../../domain/dto/application/InputDTO";
 import BaasFactory from "../../infra/baas/BaasFactory";
 import Broker from "../../infra/broker/Broker";
 import AxiosAdapter from "../../infra/http/adapter/AxiosAdapter";
-import ConsultBill from "../usecase/bill/ConsultBill";
-import MakeBillPayment from "../usecase/bill/MakeBillPayment";
+import ConsultBill from "../../usecase/bill/ConsultBill";
+import MakeBillPayment from "../../usecase/bill/MakeBillPayment";
 
 const httpClient = new AxiosAdapter();
 const baasFactory = new BaasFactory(httpClient);

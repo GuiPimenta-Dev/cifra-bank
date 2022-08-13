@@ -1,6 +1,6 @@
 // import "dotenv";
-import ConsultBill from "../../../../src/application/usecase/bill/ConsultBill";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
+import ConsultBill from "../../../../src/usecase/bill/ConsultBill";
 import { fakeAuth } from "../../../utils/Fixtures";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 

@@ -3,9 +3,9 @@ import OutputDTO from "../../domain/dto/application/OutputDTO";
 import BaasFactory from "../../infra/baas/BaasFactory";
 import Broker from "../../infra/broker/Broker";
 import AxiosAdapter from "../../infra/http/adapter/AxiosAdapter";
-import ConsultNationalProviders from "../usecase/national_recharge/ConsultNationalProviders";
-import ConsultNationalValues from "../usecase/national_recharge/ConsultNationalValues";
-import MakeNationalRecharge from "../usecase/national_recharge/MakeNationalRecharge";
+import ConsultNationalProviders from "../../usecase/national_recharge/ConsultNationalProviders";
+import ConsultNationalValues from "../../usecase/national_recharge/ConsultNationalValues";
+import MakeNationalRecharge from "../../usecase/national_recharge/MakeNationalRecharge";
 
 const httpClient = new AxiosAdapter();
 const baasFactory = new BaasFactory(httpClient);

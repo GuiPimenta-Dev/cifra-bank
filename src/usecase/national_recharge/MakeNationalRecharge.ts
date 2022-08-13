@@ -1,10 +1,10 @@
-import AuthDTO from "../../../domain/dto/application/AuthDTO";
-import OutputDTO from "../../../domain/dto/application/OutputDTO";
-import MakeNationalRechargeDTO from "../../../domain/dto/usecase/MakeNationalRechargeDTO";
-import NationalPhone from "../../../domain/entity/NationalPhone";
-import NationalRechargeMade from "../../../domain/event/NationalRechargeMade";
-import NationalRechargeFacadeInterface from "../../../domain/infra/baas/facade/NationalRechargeFacade";
-import BrokerInterface from "../../../domain/infra/broker/Broker";
+import AuthDTO from "../../domain/dto/application/AuthDTO";
+import OutputDTO from "../../domain/dto/application/OutputDTO";
+import MakeNationalRechargeDTO from "../../domain/dto/usecase/MakeNationalRechargeDTO";
+import NationalPhone from "../../domain/entity/NationalPhone";
+import NationalRechargeMade from "../../domain/event/NationalRechargeMade";
+import NationalRechargeFacadeInterface from "../../domain/infra/baas/facade/NationalRechargeFacade";
+import BrokerInterface from "../../domain/infra/broker/Broker";
 
 export default class NationalRecharge {
   constructor(private nationalRecharge: NationalRechargeFacadeInterface, private broker: BrokerInterface) {}
