@@ -4,7 +4,7 @@ import AxiosAdapter from "../../infra/http/adapter/AxiosAdapter";
 import ConsultBalance from "../../usecase/payment/ConsultBalance";
 import ConsultExtract from "../../usecase/payment/ConsultExtract";
 import MakePix from "../../usecase/payment/MakePix";
-import MakeTed from "../../usecase/payment/MakeTed";
+import MakeTed from "../../usecase/payment/MakeTED";
 
 const httpClient = new AxiosAdapter();
 const baasFactory = new BaasFactory(httpClient);

@@ -6,9 +6,9 @@ import PaymentFacadeInterface from "../../../domain/infra/baas/facade/PaymentFac
 import HttpClientInterface from "../../../domain/infra/http/HttpClient";
 import ConsultBalance from "../arbi/payment/ConsultBalance";
 import ConsultExtract from "../arbi/payment/ConsultExtract";
-import MakeTed from "../arbi/payment/MakeTed";
 import MakePixDTO from "../../../dto/usecase/MakePixDTO";
 import MakePix from "../arbi/payment/MakePix";
+import MakeTed from "../arbi/payment/MakeTED";
 
 export default class PaymentFacade implements PaymentFacadeInterface {
   constructor(readonly httpClient: HttpClientInterface) {}
