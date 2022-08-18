@@ -1,11 +1,11 @@
 import { v4 as uuidv4 } from "uuid";
-import AuthDTO from "../../../../domain/dto/application/AuthDTO";
+import AuthDTO from "../../../../dto/application/AuthDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
 
 export default class ConsultBalance {
   constructor(private httpClient: HttpClientInterface) {}
 
-  async getBalance(bank: string, agency: string, originAccount: string, auth: AuthDTO): Promise<any> {
+  async getBalance(bank: string, agency: string, payerAccount: string, auth: AuthDTO): Promise<any> {
     const body = {
       contacorrente: {
         inscricaoparceiro: process.env.ARBI_SUBSCRIPTION,
@@ -15,7 +15,7 @@ export default class ConsultBalance {
         idtransacao: "3",
         bancoorigem: bank,
         agenciaorigem: agency,
-        contaorigem: originAccount,
+        contaorigem: payerAccount,
         tipocontadebitada: "CC",
       },
     };

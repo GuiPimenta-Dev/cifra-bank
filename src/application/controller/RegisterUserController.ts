@@ -1,5 +1,5 @@
-import InputDTO from "../../domain/dto/application/InputDTO";
-import OutputDTO from "../../domain/dto/application/OutputDTO";
+import InputDTO from "../../dto/application/InputDTO";
+import OutputDTO from "../../dto/application/OutputDTO";
 import BaasFactory from "../../infra/baas/BaasFactory";
 import AxiosAdapter from "../../infra/http/adapter/AxiosAdapter";
 import AcceptTerm from "../../usecase/register_user/AcceptTerm";

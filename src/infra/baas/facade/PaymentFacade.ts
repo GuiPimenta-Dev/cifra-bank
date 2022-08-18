@@ -1,12 +1,14 @@
-import AuthDTO from "../../../domain/dto/application/AuthDTO";
-import OutputDTO from "../../../domain/dto/application/OutputDTO";
-import ConsultExtractDTO from "../../../domain/dto/usecase/ConsultExtractDTO";
-import MakeTEDDTO from "../../../domain/dto/usecase/MakeTEDDTO";
+import AuthDTO from "../../../dto/application/AuthDTO";
+import OutputDTO from "../../../dto/application/OutputDTO";
+import ConsultExtractDTO from "../../../dto/usecase/ConsultExtractDTO";
+import MakeTEDDTO from "../../../dto/usecase/MakeTedDTO";
 import PaymentFacadeInterface from "../../../domain/infra/baas/facade/PaymentFacade";
 import HttpClientInterface from "../../../domain/infra/http/HttpClient";
 import ConsultBalance from "../arbi/payment/ConsultBalance";
 import ConsultExtract from "../arbi/payment/ConsultExtract";
-import MakeTED from "../arbi/payment/MakeTED";
+import MakeTed from "../arbi/payment/MakeTed";
+import MakePixDTO from "../../../dto/usecase/MakePixDTO";
+import MakePix from "../arbi/payment/MakePix";
 
 export default class PaymentFacade implements PaymentFacadeInterface {
   constructor(readonly httpClient: HttpClientInterface) {}
@@ -16,13 +18,19 @@ export default class PaymentFacade implements PaymentFacadeInterface {
     return await consultBalance.getBalance(bank, agency, account, auth);
   }
 
-  async makeTED(input: MakeTEDDTO, auth: AuthDTO): Promise<OutputDTO> {
-    const makeTED = new MakeTED(this.httpClient);
-    return await makeTED.makeTED(input, auth);
-  }
-
   async consultExtract(input: ConsultExtractDTO, auth: AuthDTO): Promise<OutputDTO> {
     const consultExtract = new ConsultExtract(this.httpClient);
     return await consultExtract.getExtract(input, auth);
+  }
+
+  async makeTed(input: MakeTEDDTO, auth: AuthDTO): Promise<OutputDTO> {
+    const makeTed = new MakeTed(this.httpClient);
+    return await makeTed.makeTed(input, auth);
+  }
+
+  async makePix(input: MakePixDTO, auth: AuthDTO): Promise<OutputDTO> {
+    const makePix = new MakePix(this.httpClient);
+    const transactionId = await makePix.getEndToEndKey(input.key, auth);
+    return await makePix.makePix(input, transactionId, auth);
   }
 }

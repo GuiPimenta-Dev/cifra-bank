@@ -1,5 +1,5 @@
-import OutputDTO from "../../../../domain/dto/application/OutputDTO";
-import RegisterAddressInfoDTO from "../../../../domain/dto/usecase/RegisterAddressInfoDTO";
+import OutputDTO from "../../../../dto/application/OutputDTO";
+import RegisterAddressInfoDTO from "../../../../dto/usecase/RegisterAddressInfoDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
 import User from "./User";
 

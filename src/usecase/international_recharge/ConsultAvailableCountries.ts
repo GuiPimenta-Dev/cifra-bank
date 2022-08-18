@@ -1,5 +1,5 @@
-import AuthDTO from "../../domain/dto/application/AuthDTO";
-import OutputDTO from "../../domain/dto/application/OutputDTO";
+import AuthDTO from "../../dto/application/AuthDTO";
+import OutputDTO from "../../dto/application/OutputDTO";
 import InternationalRechargeFacadeInterface from "../../domain/infra/baas/facade/InternationalRechargeFacade";
 
 export default class ConsultAvailableCountries {

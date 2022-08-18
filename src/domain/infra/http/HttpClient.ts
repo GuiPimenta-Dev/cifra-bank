@@ -1,4 +1,4 @@
-import OutputDTO from "../../dto/application/OutputDTO";
+import OutputDTO from "../../../dto/application/OutputDTO";
 
 export default interface HttpClientInterface {
   get(url: string, query?: {}, headers?: {}): Promise<OutputDTO>;

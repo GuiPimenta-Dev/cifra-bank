@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
-import AuthDTO from "../../../../domain/dto/application/AuthDTO";
-import OutputDTO from "../../../../domain/dto/application/OutputDTO";
-import ConsultExtractDTO from "../../../../domain/dto/usecase/ConsultExtractDTO";
+import AuthDTO from "../../../../dto/application/AuthDTO";
+import OutputDTO from "../../../../dto/application/OutputDTO";
+import ConsultExtractDTO from "../../../../dto/usecase/ConsultExtractDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
 
 export default class ConsultExtract {

@@ -1,5 +1,5 @@
-import OutputDTO from "../../domain/dto/application/OutputDTO";
-import UploadDocumentImageDTO from "../../domain/dto/usecase/UploadDocumentImageDTO";
+import OutputDTO from "../../dto/application/OutputDTO";
+import UploadDocumentImageDTO from "../../dto/usecase/UploadDocumentImageDTO";
 import Document from "../../domain/entity/Document";
 import RegisterUserFacadeInterface from "../../domain/infra/baas/facade/RegisterUserFacade";
 

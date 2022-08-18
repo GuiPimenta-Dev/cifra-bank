@@ -1,6 +1,6 @@
 import axios from "axios";
 import HttpError from "../../../application/error/HttpError";
-import OutputDTO from "../../../domain/dto/application/OutputDTO";
+import OutputDTO from "../../../dto/application/OutputDTO";
 import HttpClientInterface from "../../../domain/infra/http/HttpClient";
 
 export default class AxiosAdapter implements HttpClientInterface {

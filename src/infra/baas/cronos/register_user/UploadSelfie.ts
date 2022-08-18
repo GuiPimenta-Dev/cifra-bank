@@ -1,7 +1,7 @@
 import fs from "fs";
 import { resolve } from "path";
 
-import OutputDTO from "../../../../domain/dto/application/OutputDTO";
+import OutputDTO from "../../../../dto/application/OutputDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
 import User from "./User";
 

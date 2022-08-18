@@ -1,5 +1,5 @@
-import AuthDTO from "../../domain/dto/application/AuthDTO";
-import OutputDTO from "../../domain/dto/application/OutputDTO";
+import AuthDTO from "../../dto/application/AuthDTO";
+import OutputDTO from "../../dto/application/OutputDTO";
 import BillFacadeInterface from "../../domain/infra/baas/facade/BillFacade";
 
 export default class ConsultBill {

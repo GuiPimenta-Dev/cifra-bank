@@ -1,4 +1,4 @@
-import OutputDTO from "../../../domain/dto/application/OutputDTO";
+import OutputDTO from "../../../dto/application/OutputDTO";
 import AuthorizeFacadeInterface from "../../../domain/infra/baas/facade/AuthorizeFacade";
 import HttpClientInterface from "../../../domain/infra/http/HttpClient";
 import ArbiAuthorize from "../arbi/authorize/Authorize";

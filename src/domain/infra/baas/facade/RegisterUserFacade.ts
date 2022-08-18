@@ -1,8 +1,8 @@
-import OutputDTO from "../../../dto/application/OutputDTO";
-import RegisterAdditionalInfoDTO from "../../../dto/usecase/RegisterAdditionalInfoDTO";
-import RegisterAddressInfoDTO from "../../../dto/usecase/RegisterAddressInfoDTO";
-import RegisterUserDTO from "../../../dto/usecase/RegisterUserInfoDTO";
-import UploadDocumentImageDTO from "../../../dto/usecase/UploadDocumentImageDTO";
+import OutputDTO from "../../../../dto/application/OutputDTO";
+import RegisterAdditionalInfoDTO from "../../../../dto/usecase/RegisterAdditionalInfoDTO";
+import RegisterAddressInfoDTO from "../../../../dto/usecase/RegisterAddressInfoDTO";
+import RegisterUserDTO from "../../../../dto/usecase/RegisterUserInfoDTO";
+import UploadDocumentImageDTO from "../../../../dto/usecase/UploadDocumentImageDTO";
 import HttpClientInterface from "../../http/HttpClient";
 
 export default interface RegisterUserFacadeInterface {

@@ -1,5 +1,5 @@
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
-import MakeTED from "../../../../src/usecase/payment/MakeTED";
+import MakeTed from "../../../../src/usecase/payment/MakeTed";
 import { fakeAuth } from "../../../utils/Fixtures";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";
 
@@ -18,12 +18,12 @@ test("it should be able to make a TED transfer", async () => {
   ]);
   const baasFactory = new BaasFactory(httpClient);
   const paymentFacade = baasFactory.createPaymentFacade();
-  const makeTED = new MakeTED(paymentFacade);
+  const makeTed = new MakeTed(paymentFacade);
   const body = {
     originbank: "213",
-    originAgency: "00019",
-    originAccount: "7140020700",
-    originAccountType: "CC",
+    payerAgency: "00019",
+    payerAccount: "7140020700",
+    payerAccountType: "CC",
     targetBank: "001",
     targetAgency: "00019",
     targetAccount: "0002",
@@ -33,6 +33,6 @@ test("it should be able to make a TED transfer", async () => {
     targetClientType: "F",
     value: "5",
   };
-  const { data } = await makeTED.execute(body, fakeAuth());
+  const { data } = await makeTed.execute(body, fakeAuth());
   expect(data.message).toEqual("TED created successfully");
 });

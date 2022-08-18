@@ -1,6 +1,6 @@
-import AuthDTO from "../../../dto/application/AuthDTO";
-import OutputDTO from "../../../dto/application/OutputDTO";
-import MakeNationalRechargeDTO from "../../../dto/usecase/MakeNationalRechargeDTO";
+import AuthDTO from "../../../../dto/application/AuthDTO";
+import OutputDTO from "../../../../dto/application/OutputDTO";
+import MakeNationalRechargeDTO from "../../../../dto/usecase/MakeNationalRechargeDTO";
 import HttpClientInterface from "../../http/HttpClient";
 
 export default interface NationalRechargeFacadeInterface {

@@ -1,5 +1,5 @@
-import OutputDTO from "../../../../domain/dto/application/OutputDTO";
-import MakeInternationalRechargeDTO from "../../../../domain/dto/usecase/MakeInternationalRechargeDTO";
+import OutputDTO from "../../../../dto/application/OutputDTO";
+import MakeInternationalRechargeDTO from "../../../../dto/usecase/MakeInternationalRechargeDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
 
 export default class MakeInternationalRecharge {

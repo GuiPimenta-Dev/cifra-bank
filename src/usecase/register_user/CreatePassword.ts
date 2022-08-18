@@ -1,4 +1,4 @@
-import OutputDTO from "../../domain/dto/application/OutputDTO";
+import OutputDTO from "../../dto/application/OutputDTO";
 import Document from "../../domain/entity/Document";
 import RegisterUserFacadeInterface from "../../domain/infra/baas/facade/RegisterUserFacade";
 

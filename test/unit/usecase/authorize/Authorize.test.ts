@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import AuthDTO from "../../../../src/domain/dto/application/AuthDTO";
+import AuthDTO from "../../../../src/dto/application/AuthDTO";
 import BaasFactory from "../../../../src/infra/baas/BaasFactory";
 import Authorize from "../../../../src/usecase/authorize/Authorize";
 import FakeHttpClient from "../../../utils/mocks/httpclient/FakeHttpClient";

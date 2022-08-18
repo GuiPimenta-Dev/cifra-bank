@@ -1,13 +1,13 @@
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
-import AuthDTO from "../../../../domain/dto/application/AuthDTO";
-import OutputDTO from "../../../../domain/dto/application/OutputDTO";
-import MakeTEDDTO from "../../../../domain/dto/usecase/MakeTEDDTO";
+import AuthDTO from "../../../../dto/application/AuthDTO";
+import OutputDTO from "../../../../dto/application/OutputDTO";
+import MakeTedDTO from "../../../../dto/usecase/MakeTedDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
-export default class MakeTED {
+export default class MakeTed {
   constructor(readonly httpClient: HttpClientInterface) {}
 
-  async makeTED(input: MakeTEDDTO, auth: AuthDTO): Promise<OutputDTO> {
+  async makeTed(input: MakeTedDTO, auth: AuthDTO): Promise<OutputDTO> {
     const body = {
       contacorrente: {
         inscricaoparceiro: process.env.ARBI_SUBSCRIPTION,
@@ -16,9 +16,9 @@ export default class MakeTED {
         idmodulo: "1",
         idtransacao: "2",
         bancoorigem: input.originbank,
-        agenciaorigem: input.originAgency,
-        contaorigem: input.originAccount,
-        tipocontadebitada: input.originAccountType,
+        agenciaorigem: input.payerAgency,
+        contaorigem: input.payerAccount,
+        tipocontadebitada: input.payerAccountType,
         bancodestino: input.targetBank,
         agenciadestino: input.targetAgency,
         contadestino: input.targetAccount,

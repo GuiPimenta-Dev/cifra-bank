@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import multer from "multer";
-import InputDTO from "../../domain/dto/application/InputDTO";
+import InputDTO from "../../dto/application/InputDTO";
 import HttpError from "../error/HttpError";
 
 export function verifyToken(input: InputDTO): void {

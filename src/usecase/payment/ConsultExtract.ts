@@ -1,6 +1,6 @@
-import AuthDTO from "../../domain/dto/application/AuthDTO";
-import OutputDTO from "../../domain/dto/application/OutputDTO";
-import ConsultExtractDTO from "../../domain/dto/usecase/ConsultExtractDTO";
+import AuthDTO from "../../dto/application/AuthDTO";
+import OutputDTO from "../../dto/application/OutputDTO";
+import ConsultExtractDTO from "../../dto/usecase/ConsultExtractDTO";
 import PaymentFacadeInterface from "../../domain/infra/baas/facade/PaymentFacade";
 
 export default class ConsultExtract {

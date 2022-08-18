@@ -1,8 +1,8 @@
 import fs from "fs";
 import { resolve } from "path";
 
-import OutputDTO from "../../../../domain/dto/application/OutputDTO";
-import UploadDocumentImageDTO from "../../../../domain/dto/usecase/UploadDocumentImageDTO";
+import OutputDTO from "../../../../dto/application/OutputDTO";
+import UploadDocumentImageDTO from "../../../../dto/usecase/UploadDocumentImageDTO";
 import HttpClientInterface from "../../../../domain/infra/http/HttpClient";
 import User from "./User";
 

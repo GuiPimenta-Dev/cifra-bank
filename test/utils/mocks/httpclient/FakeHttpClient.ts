@@ -1,4 +1,4 @@
-import OutputDTO from "../../../../src/domain/dto/application/OutputDTO";
+import OutputDTO from "../../../../src/dto/application/OutputDTO";
 import HttpClientInterface from "../../../../src/domain/infra/http/HttpClient";
 
 export default class FakeHttpClient implements HttpClientInterface {
